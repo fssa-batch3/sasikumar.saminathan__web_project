@@ -24,6 +24,9 @@ header{
     top: 0%; 
     z-index: 1; 
 }
+ul{
+    list-style: none;
+}
 .top-list{
     display: flex;
     width: 500px;
@@ -266,17 +269,33 @@ footer ul a:hover{
 footer .fa{
     font-size:x-large;
 }
-.social :nth-last-child(1){
+.social{
+    cursor: pointer;
+}
+.social :nth-last-child(1):hover{
     color:rgb(60, 175, 247);
 }
-.social :nth-last-child(2){
+.social :nth-last-child(2):hover{
     color:red;
 }
-.social :nth-last-child(3){
+.social :nth-last-child(3):hover{
     color: rgb(228, 16, 164);
 }
-.social :nth-last-child(4){
+.social :nth-last-child(4):hover{
     color:blue;
+}
+
+.social :nth-last-child(1){
+    color:var(--primary)
+}
+.social :nth-last-child(2){
+    color:var(--primary);
+}
+.social :nth-last-child(3){
+    color:var(--primary);
+}
+.social :nth-last-child(4){
+    color:var(--primary);
 }
 /* end of homepage */
 .pincode{
