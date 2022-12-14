@@ -254,6 +254,11 @@ margin-left: 5px;
     color: var(--primary);
     right: 50px;
 }
+.lap-contain{
+    width: 900px;
+    position: relative;
+    right: 300px;
+}
 .product-container img{
     margin-bottom: 40px;
 }

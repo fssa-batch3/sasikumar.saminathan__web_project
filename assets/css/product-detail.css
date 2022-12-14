@@ -204,6 +204,18 @@ ul a{
 .ra{
     width: 40px;
 }
+.lap-1{
+    margin-left: 20px;
+    height: 100px;
+}
+.lap-2{
+    position: relative;
+    right: 35px;
+}
+.lap-3{
+    position: relative;
+    right: 15px;
+}
 .high{
     width: 90%;
     border: 0.5px solid lightgray;
@@ -216,6 +228,7 @@ ul a{
 .high p,ul{
     margin-top: 30px;
     margin-right: 50px;
+    margin-left: 30px;
 }
 
 .head{

@@ -87,3 +87,62 @@ ul a{
     height:25px;
     text-align: center; 
 }
+.login-container{
+    width: 100%;
+    height: 600px;
+    margin-top: 110px;
+    display: flex;
+    justify-content: space-around;
+}
+.login-container-text{
+    width: 500px;
+    height: 500px;
+    margin-left: 30px;
+}
+
+.login-container-text :nth-child(1){
+    font-size: 60px;
+    font-weight:bolder;
+    margin-top: 70px;
+    color: var(--primary);
+}
+.login-container-text :nth-child(2){
+    margin-top: 30px;
+    font-size: large;
+    font-weight: 500;
+    width: 600px;
+    color: rgb(0, 173, 95);
+}
+.btn-sell{
+    height: 40px;
+    padding: 10px;
+    width: 125px;
+    position: relative;
+    margin: 30px;
+    bottom: 270px;
+    left:130px;
+    box-shadow:0px 0px 10px rgb(0,0,0,0.2);
+    
+}
+.sell-btn-1{
+    border: none;
+    border-radius: 15px 30px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    box-shadow:0px 0px 20px rgb(0,0,0,0.2);
+}
+.sell-btn-2{
+    border: none;
+    border-radius: 15px 30px;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+.svg{
+    margin-bottom: 700px;
+    z-index: -1;
+    position: relative;
+    bottom: 350px;
+}
+body{
+    overflow: hidden;
+}
