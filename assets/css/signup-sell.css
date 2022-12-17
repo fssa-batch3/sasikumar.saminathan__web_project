@@ -4,7 +4,7 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
-    font-family:'Barlow', sans-serif;
+    font-family:PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
 }
 
 /* variable declarations */
@@ -13,39 +13,28 @@
     --secondary:#ADEFD1FF;
 }
 body{
-    background-color: rgba(173, 239, 209, 0.285);
-}
-.container{
-    width: 1000px;
-    height: 420px;
-    scale: 1.1;
-    display: flex;
-    margin: auto;
-    margin-top: 180px;
-    box-shadow: 0px 0px 20px rgb(0,0,0,0.2);
-    border-radius: 10px;
-    background-color: #ffff;
-}
-body{
-    background-image: url(../../assets/image/stacked-waves-haikei.png);
+    background-image: url(../../assets/image/circle-2.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
-.contain-text{
-    margin-left: 20px;
+.signup-container{
+    margin: auto;
+    width: 500px;
+    margin-top: 70px;
+    height: 750px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
+    border-radius: 20px;
+    background-color: #ffff;
 }
-.container img{
-    margin-left: 30px;
-}
-.contain-text h2{
-    margin-left: 170px;
-    margin-top: 30px;
-}
-.contain-input{
-    padding: 20px 50px;
-}
-.contain-input input{
+.signup-container h2{
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ADEFD1FF;
     padding: 20px;
+}
+.signup-input input{
+         padding: 20px;
     width: 380px;
     border: none;
     background-color: rgba(211, 211, 211, 0.144);
@@ -53,30 +42,41 @@ body{
     outline: none;
     border-left: 4px solid var(--secondary);
     box-shadow: 0px 0px 7px rgb(0,0,0,0.1);
+    margin-left: 50px;
 }
-.contain-text button{
-    padding: 11px;
+img{
+    margin-left: 200px;
+    margin-top: 20px;
+}
+.signup-btn{
+    padding: 17px;
     width: 200px;
     font-weight: bold;
     color: var(--secondary);
     background-color: var(--primary);
     position: relative;
-    left: 100px;
-    top: 20px;
+    margin-right: 10px;
+    top: 60px;
+    right: 90px;
     border-radius: 20px;
-    box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
+    box-shadow: 0px 0px 20px rgb(0,0,0,0.1);
     transition: 0.5s;
     cursor: pointer;
     border:3px solid var(--secondary) ;
+    z-index: 2;
 }
-.contain-text button:hover{
+label{
+    position: relative;
+    left: 120px;
+}
+.signup-btn:hover{
     box-shadow: inset 3px 3px 3px var(--secondary);
     box-shadow: inset -3px -3px -3px var(--secondary);
     background-color: var(--secondary);
     color: var(--primary);
     transition: 0.4s;
 }
-.contain-text p{
-    margin-left: 140px;
-    margin-top: 30px;
+label input{
+    margin-right: 8px;
+    margin-top: 2px;
 }
