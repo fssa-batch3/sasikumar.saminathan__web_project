@@ -1,5 +1,7 @@
 # Shopnow
  100th-day project
+ 
+ [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=fssa-batch3_sasikumar.saminathan__web_project&metric=bugs)](https://sonarcloud.io/summary/new_code?id=fssa-batch3_sasikumar.saminathan__web_project)
 
 
 About my project:
