@@ -4,7 +4,7 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
-    font-family:'Barlow', sans-serif;
+    font-family:PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
 }
 
 /* variable declarations */
@@ -15,6 +15,11 @@
 body{
     background-color:#ffffff;
 }
+
+.our h3{
+    width: 175px;
+}
+
 header{
     display: flex;
     height: 100px;
@@ -24,6 +29,7 @@ header{
     top: 0%; 
     z-index: 1; 
     box-shadow: 0px 10px 20px rgb(0,0,0,0.1);
+    
 }
 ul{
     list-style: none;
@@ -41,16 +47,21 @@ ul{
     margin-top: 30px;
     margin-left: 50px;
     color:var(--secondary);
+    
 }
 .search{
     width: 200px;
-    height: 30px;
+    outline: none;
+    height: 35px;
     margin-top: 40px;
-    border: 2px solid var(--secondary);
-    border-radius: 10px;
+    border: none;
+    border-radius: 20px;
     padding: 10px;
     position: relative;
     right: 200px;
+    bottom: 4px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
+
 }
 .login{
     padding: 10px;
@@ -66,7 +77,9 @@ ul{
 .logo-name{
     margin-top: 6px;
     margin-right: 80px;
+    font-weight: bold;
     font-size: 25px;
+    font-family:PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
 }
 ul a{
     text-decoration: none;   
@@ -149,8 +162,7 @@ ul a{
 
 }
 .active{
-    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
-    border: none; 
+    border-left: 4px solid var(--secondary);
 }
 .active:hover{
   
@@ -188,12 +200,14 @@ border-radius: 10px;
     position: relative;
     bottom: 10px;
     color:var(--primary);
+    scale: 1.3;
+    background-color: white;
 }
 .mob{
     width: 250px;
     height: 350px;
     border-radius: 10px;
-    border: 0.5px solid lightgray;
+    box-shadow: 0px 0px 7px rgb(0,0,0,0.1);
     cursor: pointer;
 }
 .mob img{
@@ -211,9 +225,15 @@ border-radius: 10px;
     margin-top: 40px;
 }
 .mob:hover{
-    box-shadow: 5px 7px 20px rgb(145, 145, 145);
     transition: 0.5s;
     scale: 1.05;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
+}
+.laps .rate{
+    margin-top: 15px;
+}
+.laps .detail-1,.rating{
+    margin-top: 10px;
 }
 .lap{
     position: relative;
@@ -224,7 +244,7 @@ border-radius: 10px;
 }
 .rate{
     display: flex;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 50px;
 }
 .onward{
@@ -249,6 +269,7 @@ border-radius: 10px;
     justify-content: space-evenly;
     padding: 7px;
     border-radius:15px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
 }
 .fa-star{
     font-size:smaller;
@@ -269,7 +290,8 @@ footer{
     background-position-y:center;
     background-repeat: no-repeat;
     background-size:cover;
-    font-family: PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;;
+    font-family:PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
+
 }
 footer ul:nth-child(2){
    position: relative;
@@ -281,12 +303,8 @@ footer ul{
     padding: 100px;
 }
 footer ul a{
-    padding: 3px;
+
     color: var(--primary);
-}
-footer ul a:hover{
-    color:rgb(68, 251, 169);
-    transition: 0.3s;
 }
 .social{
     height: 50px;
@@ -327,6 +345,27 @@ footer .fa{
 .social :nth-last-child(4){
     color:var(--primary);
 }
+footer li a::after{
+    content: '';
+    background-color: black;
+    height: 1px;
+    display: block;
+    margin: auto;
+    width: 0%;
+    transition: 0.5s;
+    }
+    
+    li a:hover::after{
+        width:100% ;
+
+    }
+    footer ul{
+        
+    }
+    footer ul li{
+        padding-top: 2px;
+    
+    }
 /* end of homepage */
 .pincode{
     box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
@@ -361,6 +400,11 @@ footer .fa{
 .pin-but{
     width: 200px;
 }
+.pin-input::-webkit-outer-spin-button,
+.pin-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .pin-but button{
     padding: 15px;
     width: 100px;
@@ -380,6 +424,12 @@ footer .fa{
     color: var(--primary);
     transition: 0.4s;
     border: 2px solid var(--primary);
+}
+.pin-text h2{
+    width: 500px;
+    position: relative;
+    top:20px;
+    right: 30px;
 }
 
 /* pincode page end */
@@ -520,9 +570,7 @@ html{
     box-shadow: 5px 7px 25px rgb(145, 145, 145);
     cursor: pointer;
 }
-.login-body{
-    background-color: rgba(211, 211, 211, 0.253);
-}
+
 .login-but:hover{
     scale: 1.04;
     transition: 0.6s;
@@ -531,6 +579,7 @@ html{
 }
 .login-body{
     overflow: hidden;
+    background-color: rgba(211, 211, 211, 0.253);
 }
 .signup{
     position:relative;
@@ -554,5 +603,8 @@ html{
     display: flex;
     justify-content: space-evenly;
     cursor: pointer;
+    text-decoration: none;
+}
+.scroll a{
     text-decoration: none;
 }

@@ -80,3 +80,8 @@ label input{
     margin-right: 8px;
     margin-top: 2px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

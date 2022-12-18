@@ -55,15 +55,24 @@ main{
     margin-left: 50px;
     color:var(--secondary);
 }
+ul{
+    list-style: none;
+}
+a,button{
+    cursor: pointer;
+}
 .search{
     width: 200px;
-    height: 30px;
+    outline: none;
+    height: 35px;
     margin-top: 40px;
-    border: 2px solid var(--secondary);
-    border-radius: 10px;
+    border: none;
+    border-radius: 20px;
     padding: 10px;
     position: relative;
     right: 200px;
+    bottom: 4px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
 }
 .fa-search{
     color: var(--primary);

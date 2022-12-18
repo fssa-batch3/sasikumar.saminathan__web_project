@@ -4,7 +4,8 @@
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
-    font-family:'Barlow', sans-serif;
+    font-family:PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
+
 }
 
 /* variable declarations */
@@ -43,13 +44,16 @@ header{
 }
 .search{
     width: 200px;
-    height: 30px;
+    outline: none;
+    height: 35px;
     margin-top: 40px;
-    border: 2px solid var(--secondary);
-    border-radius: 10px;
+    border: none;
+    border-radius: 20px;
     padding: 10px;
     position: relative;
     right: 200px;
+    bottom: 4px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
 }
 .container img{
     box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
@@ -112,7 +116,7 @@ ul a{
 .detail-1{
     display: flex;
     height: 33px;
-    width: 130px;
+    width: 150px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
     background-color: var(--secondary);
@@ -121,7 +125,8 @@ ul a{
     padding: 5px;
 }
 .detail-2{
-    width: 150px;
+    width: 160px;
+    margin-left: 10px;
 }
 .details{
     display: flex;
@@ -144,9 +149,16 @@ ul a{
     text-decoration: none;
     color: var(--secondary);
 }
-footer{
-    box-shadow: 0px 0px 5px rgb(0,0,0,0.1);
+.fa-search{
+    color: var(--primary);
+    position: relative;
+    top:46px;
+    right:390px;
+    width: 25px;
+    height:25px;
+    text-align: center; 
 }
+
 .our{
     display: flex;
     text-align: center;
@@ -161,6 +173,7 @@ border: 2px solid var(--secondary);
  border-radius: 10px;
  box-shadow: 0px 0px 1px rgb(0,0,0,0.1);
 }
+
 .line-2{
  border: 2px solid var(--secondary);
  width:610px;
@@ -224,7 +237,7 @@ box-shadow: 0px 0px 1px rgb(0,0,0,0.1);
 }
 .product-container{
     display: flex;
-     box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
     height: 350px;
     width: 800px;
     padding-left: 40px;
@@ -273,7 +286,8 @@ box-shadow: 0px 0px 1px rgb(0,0,0,0.1);
     height: 350px;
     border-radius: 10px;
     background-color:white;
-    border: 0.5px solid lightgray;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
+
 }
 .mob-2 img{
     margin-top: 20px;
@@ -419,4 +433,23 @@ footer .fa{
 .btn-buy{
     transition: 0.5s;
     cursor: pointer;
+}
+ul{
+    list-style: none;
+}
+button,a{
+    cursor: pointer;
+}
+.scroll i{
+    margin-left: 3px;
+    margin-top: 3px;
+}
+.scroll button{
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+    text-decoration: none;
+}
+.scroll a{
+    text-decoration: none;
 }
