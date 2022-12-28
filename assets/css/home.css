@@ -345,7 +345,7 @@ footer .fa{
 .social :nth-last-child(4){
     color:var(--primary);
 }
-footer li a::after{
+/* footer li a::after{
     content: '';
     background-color: black;
     height: 1px;
@@ -358,6 +358,9 @@ footer li a::after{
     li a:hover::after{
         width:100% ;
 
+    } */
+    li a:hover{
+        text-decoration: underline;
     }
     footer ul{
         
@@ -607,4 +610,112 @@ html{
 }
 .scroll a{
     text-decoration: none;
+}
+
+/* media queries for mobile */
+@media only screen and (max-width: 600px){
+    body{
+        overflow-x: hidden;
+        height: 1000px
+        
+    }
+    .our h3{
+        width: 5.1rem;
+        font-size: 1rem;
+    }
+    
+    header{
+        display: flex;
+        height: 80px;
+        justify-content: space-between;
+        background-color:var(--primary);
+        position: sticky;
+        top: 0%; 
+        z-index: 1; 
+        box-shadow: 0px 10px 20px rgb(0,0,0,0.1);
+        
+    }
+    ul{
+        list-style: none;
+    }
+    .top-list{
+        display: flex;
+        width: 500px;
+        justify-content: space-around;
+        margin-top: 30px;
+    }
+    .top-list li{
+        margin: 10px;
+        scale: 0.8;
+        position: relative;
+        right: 190px;
+        bottom: 10px;}
+    .logo-name{
+        color: var(--primary);
+    }
+    .logo{
+        position: relative;
+        right: 30px;
+        bottom: 10px;
+        
+    }
+    header input{
+        scale: 0.9;
+        margin-bottom: 20px;
+    }  
+    .download{
+        scale: 0.4;
+        position: relative;
+        right: 28rem;
+        bottom: 150px;
+        
+    }
+    .three{
+        scale: 0.7;
+        position: relative;
+        bottom: 400px;
+    }
+    .assure{
+        margin: 23px;
+        height: 380px;
+    }
+    .mobile{
+        scale: 0.9;
+        display:flex;
+        flex-wrap: wrap;
+    }
+    .mob{
+        margin: 15px;
+    }
+    .our{
+        position: relative;
+        bottom: 500px;
+    }
+    .head-1,.mobile{
+        position: relative;
+        bottom: 450px;
+    }
+    .head-1{
+        position: relative;
+        bottom: 400px;
+    }
+    footer{
+        width: 200%;
+        scale: 0.7;
+        position: relative;
+        right: 200px;
+        position: relative;
+        bottom: 600px;
+        overflow-y: hidden;
+        
+    }
+    .scroll{
+        position: relative;
+        right: 320px;
+        top:35px
+    }
+    .social{
+        position: relative;
+        bottom: 20px;
+    }
 }
