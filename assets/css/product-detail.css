@@ -341,7 +341,7 @@ footer ul a{
     color: var(--primary);
 }
 footer ul a:hover{
-    color:rgb(68, 251, 169);
+   text-decoration: underline;
     transition: 0.3s;
 }
 .social{
@@ -351,20 +351,21 @@ footer ul a:hover{
     display: flex;
     justify-content: space-around;
     margin-top: 220px;
+    color: var(--primary);
 }
 footer .fa{
     font-size:x-large;
 }
-.social :nth-last-child(1){
+.social :nth-last-child(1):hover{
     color:rgb(60, 175, 247);
 }
-.social :nth-last-child(2){
+.social :nth-last-child(2):hover{
     color:red;
 }
-.social :nth-last-child(3){
+.social :nth-last-child(3):hover{
     color: rgb(228, 16, 164);
 }
-.social :nth-last-child(4){
+.social :nth-last-child(4):hover{
     color:blue;
 }
 .scroll button{
@@ -396,4 +397,11 @@ html{
 .logo a{
     text-decoration: none;
     color: var(--secondary);
+}
+.lap-ul{
+    scale: 0.9;
+}
+.lap-high ul,h3{
+    position: relative;
+    bottom: 20px;
 }

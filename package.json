@@ -1,0 +1,22 @@
+{
+  "name": "shopnow",
+  "version": "1.0.0",
+  "description": "100th-day project",
+  "main": "main.js",
+  "scripts": {
+    "div": "http-server ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fssa-batch3/sasikumar.saminathan__web_project.git"
+  },
+  "author": "sasikumar77",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fssa-batch3/sasikumar.saminathan__web_project/issues"
+  },
+  "homepage": "https://github.com/fssa-batch3/sasikumar.saminathan__web_project#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
