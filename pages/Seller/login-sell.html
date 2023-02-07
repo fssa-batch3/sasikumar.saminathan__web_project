@@ -9,18 +9,43 @@
 </head>
 <body>
     <main>
+<!-- div class:container contain with login inputs         -->
 <div class="container">
     <img src="../../assets/image/login-sell-2.jpg" alt="login" width="400px" height="400px">
     <div class="contain-text">
         <h2>SELLER LOGIN</h2>
+       
+        <!-- div class:contain-input contain inputs and button         -->
       <div class="contain-input">
-       <div> <input type="email" placeholder="Email"></div>
-       <div> <input type="password" placeholder="Password"></div>
-        <a href="../../index.html"><button>LOGIN</button></a>
+       <div> <input type="email" placeholder="Email" id="email" ></div>
+       <div> <input type="password" placeholder="Password" id="password"></div>
+        <a><button onclick = "getData()" type="button">LOGIN</button></a>
       </div>
+      <!-- this anchor tag for redirect to signup page -->
       <p>New seller to Shopnow <a href="signup-sell.html"><b>sign-up</b></a></p>
     </div>
 </div>
     </main>
+ 
+
+    <script>
+        //this functiotion get value from inputs
+        function getData(){
+          const email = document.getElementById("email").value
+          const password= document.getElementById("password").value  
+   
+    
+          console.log(email)
+  console.log(password)
+    
+    
+        localStorage.setItem("user_email",email)
+    
+    
+        window.location.href = "../../index.html"
+        }
+
+    
+    </script> 
 </body>
 </html>

@@ -29,23 +29,47 @@
             <h3>Contact Details</h3>
         </div>
         <div class="address-1">
-            <div><input type="text" placeholder="Name"></div>
-            <div><input type="number" placeholder="Phone number"></div>
+            <div><input type="text" placeholder="Name" id="name"></div>
+            <div><input type="number" placeholder="Phone number" id="number"></div>
         </div>
         <div class="location">
             <img src="../../assets/icon/location.gif" alt="" height="40px" width="40px">
             <h3>Address</h3>
         </div>
         <div class="address-2">
-           <div> <input type="text" placeholder="House no./buling name"></div>
-            <div><input type="text" placeholder="Road name/Area/Colany"></div>
-           <div> <input type="text" placeholder="Pincode"></div>
-            <div><input type="text" placeholder="Nearby location(optional)"></div>
+           <div> <input type="text" placeholder="House no./buling name" id="house_no"></div>
+            <div><input type="text" placeholder="Road name/Area/Colany" id="area"></div>
+           <div> <input type="text" placeholder="Pincode"  id="pincode"></div>
+            <div><input type="text" placeholder="Nearby location(optional)" id="spd"></div>
         </div>
-       <a href="payment.html"> <button class="but-1"><b>Deliver here</b></button></a>
+        <a href="payment.html"><button class="but-1" onclick="getData()" type="button"><b>Deliver here</b></button></a>
 </form>
    </div>
-</main>   
+</main> 
+<script>
+    function getData(){
+      const name= document.getElementById("name").value
+      const number= document.getElementById("number.value")  
+      const house_no= document.getElementById("house_no").value
+      const area= document.getElementById("area").value
+      const pincode= document.getElementById("pincode").value
+      const spd= document.getElementById("spd").value
+
+    console.log(name)
+    console.log(number)
+    console.log(house_no)
+    console.log(area)
+    console.log(pincode)
+    console.log(spd)
+
+
+    localStorage.setItem("user_email",email)
+
+
+    window.location.href="../../index.html"
+    }
+
+</script>  
     
 </body>
 </html>

@@ -13,15 +13,34 @@
         <h2>Create an account</h2>
         <img src="../../assets/icon/priority.png" alt="priority" width="70px" height="70px">
         <div class="signup-input">
-            <div><input type="text" placeholder="Name"></div>
-            <div><input type="number" placeholder="Phone number"></div>
-            <div><input type="email" placeholder="Email"></div>
-            <div><input type="password" placeholder="Create password"></div>
-            <div><input type="password" placeholder="Confirm password"></div>
+            <div><input type="text" placeholder="Name" id="name"></div>
+            <div><input type="number" placeholder="Phone number" id="number"></div>
+            <div><input type="email" placeholder="Email" id="email"></div>
+            <div><input type="password" placeholder="Create password" id="pass"></div>
+            <div><input type="password" placeholder="Confirm password" id="pass_2"></div>
         </div>
-       <label> <input type="checkbox">I agree to the <b>Shopnow terms</b></label>
-       <a href="signup-sell-2.html"><button class="signup-btn">CONTINUE</button></a>
+       <label> <input type="checkbox" id="check">I agree to the <b>Shopnow terms</b></label>
+       <a><button class="signup-btn" onclick="getData()" type="button">CONTINUE</button></a>
     </div>
 </main>
+<script>
+    function getData(){
+        const name = document.getElementById("name").value
+        const number = document.getElementById("number").value
+        const email = document.getElementById("email").value
+        const pass = document.getElementById("pass").value
+        const pass_2 = document.getElementById("pass_2").value
+
+    console.log(name);
+    console.log(number);
+    console.log(email);
+    console.log(pass);
+    console.log(pass_2);
+
+    window.location.href = "signup-sell-2.html"
+    }
+ 
+
+</script>
 </body>
 </html>

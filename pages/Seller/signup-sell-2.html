@@ -13,18 +13,49 @@
         <div class="shop-contain-img"><img src="../../assets/image/shop-sign.jpg" alt="shop-sign" width="400px" height="400px"></div>
         <div class="shop-text-content">
             <h2>Add shop details</h2>
-            <div class="shop-input"><input type="text" placeholder="Shop name">
-            <input type="number" placeholder="shop contact number"></div>
-            <div class="shop-input"><input type="text" placeholder="Shop address">
-            <input type="number" placeholder="Shop pincode"></div>
-            <div class="shop-input"><input type="text" placeholder="Shop license-id"></div>
-            <div class="shop-detail">
-                <div class="shop-img"><p>Add shop image:</p><input class="file-upload" type="file"></div>
-                <textarea name="" id="" cols="40" rows="10" placeholder="Type about your shop"></textarea>
+            <div class="shop-input">
+             <input type="text" placeholder="Shop name" id="shop_name">
+             <input type="number" placeholder="shop contact number" id="number">
             </div>
-            <a href="../../index.html"><button>SIGNUP</button></a>
+            <div class="shop-input">
+             <input type="text" placeholder="Shop address" id="address">
+             <input type="number" placeholder="Shop pincode" id="number_2">
+            </div>
+            <div class="shop-input">
+                <input type="text" placeholder="Shop license-id" id="shop_id">
+            </div>
+            <div class="shop-detail">
+                <div class="shop-img">
+                    <p>Add shop image:</p><input class="file-upload" type="file" id="file">
+                </div>
+                <textarea name="" id="area" cols="40" rows="10" placeholder="Type about your shop" ></textarea>
+            </div>
+            <a><button onclick="getData()" type="button">SIGNUP</button></a>
         </div>
     </div>
  </main>   
+ <script>
+    function getData(){
+     const shop_name = document.getElementById("shop_name").value
+     const number = document.getElementById("number").value
+     const address = document.getElementById("address").value
+     const number_2 = document.getElementById("number_2").value
+     const shop_id = document.getElementById("shop_id").value
+     const area = document.getElementById("area").value
+
+    console.log(shop_name);
+    console.log(number);
+    console.log(address);
+    console.log(number_2);
+    console.log(shop_id);
+    console.log(area);
+
+
+    window.location.href ="../../index.html"
+    }
+
+
+    
+ </script>
 </body>
 </html>

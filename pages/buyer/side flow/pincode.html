@@ -30,12 +30,21 @@
         <div class="pin-text">
          <h2>Enter your pincode</h2>
     <form action="shop.html">
-        <input class="pin-input" type="number" placeholder="Enter your pincode">
-        <div class="pin-but"> <a href="shop.html"><button>Submit</button></a>
+        <input class="pin-input" type="number" placeholder="Enter your pincode" id="pincode">
+        <div class="pin-but"> <a><button onclick="getData()" type="button">Submit</button></a>
     </form>
     </div>
         </div>
     </div>
 </main>
+<script>
+    function getData() {
+        const pincode = document.getElementById("pincode").value
+
+        console.log(pincode);
+
+        window.location.href ="shop.html"
+    }
+</script>
 </body>
 </html>

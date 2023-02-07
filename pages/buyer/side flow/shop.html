@@ -28,7 +28,8 @@
     <div class="back-img">
         <h1>Nearby shop <br>to your <br>pincode</h1>
     </div>   
-    <div class="shop-list">
+    <div class="cards_pack">
+      <!-- <div class="shop-list">
         <div class="shop-container">
           <div class="visit-content">
             <h3>Chennai - Madipakam</h3>
@@ -159,7 +160,8 @@
                 <img src="../../../assets/icon/icons8-shop-64.png" alt="" class="shop-icon">  
               </div>
           </div>
-    </div> 
+    </div>  -->
+    </div>
 
 </main>
 <footer>
@@ -187,6 +189,103 @@
       <a aria-label="Back" href="#"> <button><p><b>Back to top</b></p> <i class="fa-solid fa-angles-up"></i></button></a>
    </div>
 </footer>
+    <script>
+
+        //create a shop list array for create objects with shop info
+        const shop_list = [
+          { name : "chennai - madipakam",
+             address : "69/70, Bazaar Road, Meenatchi Sundareswarar Koil, Sadasiva Nagar, Madipakkam, Chennai.Tamil Nadu 600091Ph: 8056788899"},
+           { name : "Chennai - Koyambedu",
+             address : "No: 1, Kaliamman Koil Street, opp KFC Koyambedu, Chennai.Tamil Nadu 600107 Ph: 8428100000"},
+           { name : "Chennai - Pallavaram",
+             address :"5/18, Pillaiyar Kovil Street, Indira Gandhi Road, Pallavaram, Chennai Tamil Nadu 600043 Ph: 8056444451"},
+           { name :"Chennai - kumananchavadi",
+             address :"397, Poonamalle High Road, Swaminatha Nagar, Kumananchavadi, Poonamallee, Chennai. Tamil Nadu 600056 Ph: 8220549333"},
+           { name : "Chennai - ECR ROAD",
+             address : "No. 3/173, Near Vettukeni Church, East Cosast Road, Vetukenni, Chennai. Tamil Nadu 600115 Ph: 98942 30666"},
+           { name : "Chennai - Kodambakkam",
+             address : "80, Arcot Road, Trustpuram, Kodambakkam, Chennai, Tamil Nadu - 600024.Tamil Nadu 600024 Ph: 9500310000"},
+           { name : "Chennai - Medavakam",
+             address : "556-210, Velachery Main Road, United Colony, Sivagami Nagar, Ranganathapuram, Medavakkam, Chennai Tamil Nadu 600100 Ph: 8056666597"},
+           { name : "Chennai - Porur",
+             address : "3/24, Kundrathur Main Road, Signal Corner, Jaya Nagar, Porur, Chennai. Tamil Nadu 600116 Ph: 8056663394"},
+           { name : "Chennai - OMR karapakkam",
+             address : "3/60-3/61, Door no: 43, Rajiv gandhi road, Near Saravana store, Karapakkam, Chennai, Tamil Nadu 600097 Ph: 8056775757"}
+
+        ]
+        function sk(){
+        document.textContent = "hello guys"
+      }
+
+      //for loop for creating 9 shop containers  
+      for (let i = 8; 0<=i; i-- )
+      {
+
+        // <div class="shop-container">
+        //   <div class="visit-content">
+        //     <h3>Chennai - Madipakam</h3>
+        //     <p>69/70, Bazaar Road, Meenatchi Sundareswarar Koil, Sadasiva Nagar, Madipakkam, Chennai.
+        //         Tamil Nadu 600091
+        //         Ph: 8056788899
+        //     </p>
+        //   </div>
+        //     <div class="visit">
+        //       <a href="side-flow.html"><button>Visit store</button></a>
+        //       <img src="../../../assets/icon/icons8-shop-64.png" alt="" class="shop-icon">  
+        //     </div>
+        // </div>
+        //div-1 class name:shop-container
+        const div_1 = document.createElement("div")
+        div_1.setAttribute("class","shop-container")
+        document.querySelector(".cards_pack").prepend(div_1)
+
+        //div-2 class name:visit-content
+        const div_2 = document.createElement("div")
+        div_2.setAttribute("class","visit-content")
+        
+        document.querySelector(".shop-container").append(div_2)
+
+        //shop name
+        const h3 = document.createElement("h3")
+        h3.innerHTML = shop_list[i].name
+        document.querySelector(".visit-content").append(h3)
+
+        //shop address
+        const p = document.createElement("p")
+        p.innerHTML = shop_list[i].address
+        document.querySelector(".visit-content").append(p)
+
+        //div-3 class name:visit
+        const div_3 = document.createElement("div")
+        div_3.setAttribute("class","visit")
+        document.querySelector(".shop-container").append(div_3) 
+
+        //a tag for redirect to next page
+        const a = document.createElement("a")
+        a.setAttribute("href","side-flow.html")
+        a.setAttribute("class","anker")
+        document.querySelector(".visit").append(a)
+
+        //visit store button
+        const btn = document.createElement("button")
+        btn.innerHTML = "Visit store"
+        btn.setAttribute("onclick","sk()")
+        document.querySelector(".anker").append(btn)
+
+        //shop icon img
+        const img = document.createElement("img")
+        img.setAttribute("src","../../../assets/icon/icons8-shop-64.png")
+        img.setAttribute("alt","shop-img")
+        img.setAttribute("class","shop-icon")
+        document.querySelector(".visit").append(img)
+      }
+
     
+    
+
+      
+
+
+    </script>
 </body>
 </html>

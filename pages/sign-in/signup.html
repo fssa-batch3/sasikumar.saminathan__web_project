@@ -5,19 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../assets/css/home.css">
+    <link rel="stylesheet" href="../../assets/css/signup3.css">
+    <script src="../../assets/js/sweetalert.min.js"></script>
 
 </head>
 <body class="login-body">
 <div class="login-container">
-    <img src="../../assets/image/4957412_Mobile-login-Cristina.jpg" alt="" width="450px" height="400px">
+    <div class="sign_container">
+        <h1>Hello,there</h1>
+    </div>
+
 </div>
 <div class="login-text">
     <h2><b>SIGN UP</b></h2>
-    <input type="text" placeholder="Enter your email or mobile number" class="input-1">
-    <input type="password" placeholder="Password" class="input-2">
+<form>
+    <input type="text" placeholder="Name" class="input-1" id="name" required>
+    <input type="email" placeholder="Email" class="input-1" id="email" required>
+    <input type="password" placeholder="Create Password" class="input-2" id="password" required>
+    <input type="password" placeholder="Confirm Password" class="input-2" id="pass_2" required>
+</form>
+
 </div> 
-<a href="../../index.html"><button class="login-but"><b>SIGN UP</b></button></a>
+<button class="login-but" type="button" onclick="getdata()"><b>SIGN UP</b></button>
 <p class="signup">Already i have an account<b><a href="login.html">Login</a></b></p>  
+
+<script>
+   function getdata() {
+    const name = document.getElementById("name").value
+    const email = document.getElementById("email").value
+    const create_password = document.getElementById("password").value
+    const confirm_password = document.getElementById("pass_2").value
+
+    let user_records = new Array();
+
+    user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+    
+    user_records.push ({
+        "user_name" : name,
+        "user_email" : email,
+        "user_password" : create_password
+    })
+localStorage.setItem("users",JSON.stringify(user_records));
+
+
+    
+   }
+
+
+   
+//     const json = JSON.stringify(user)
+//     localStorage.setItem(email,json)
+//     //console.log("user added")
+
+//     if(confirm_password == create_password){
+//         swal("Good job!", "Welcome to shopnow!", "success"); 
+//    //window.location.href = "../../index.html"
+//    }
+// //    else if(create_password === null && confirm_password === null){
+// //     swal("Oops!", "Please fill the inputs!", "error");
+// //    }
+  
+//    else{
+//     swal("Oops!", "Your Password is mismatch!", "error");
+//    }
+
+  
+</script>
 </body>
 </html>

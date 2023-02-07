@@ -453,3 +453,13 @@ button,a{
 .scroll a{
     text-decoration: none;
 }
+.head-1-2{
+    border-bottom: 2px solid var(--secondary);
+    width: 145px;
+    padding-bottom: 5px;
+
+}
+.mob-2 a{
+    text-decoration: none;
+    color: black;
+}

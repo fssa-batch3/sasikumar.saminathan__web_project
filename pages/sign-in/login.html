@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../assets/css/home.css">
+    <script src="../../assets/js/sweetalert.min.js"></script>
+    
 
 </head>
 <body class="login-body">
@@ -14,10 +16,72 @@
 </div>
 <div class="login-text">
     <h2><b>LOGIN</b></h2>
-    <input type="text" placeholder="Enter your email or mobile number" class="input-1">
-    <input type="password" placeholder="Password" class="input-2">
+
+
+
+<form action="">
+    <input type="text" placeholder="Enter your email or mobile number" class="input-1" id="email">
+
+    <input type="password" placeholder="Password" class="input-2" id="password">
 </div> 
-<a href="../../index.html"><button class="login-but"><b>LOGIN</b></button></a>
+<button type="button" class="login-but" id="sk" onclick="getData()">LOGIN</button>
+</form>
+
+
 <p class="signup">Need an account <b><a href="signup.html">Sign up</a></b></p>  
+
+<script>
+    
+
+     function getData(){
+        const email = document.getElementById("email").value
+        const create_password = document.getElementById("password").value
+
+        let array = JSON.parse(localStorage.getItem("users"))
+
+        let res;
+            array.find(element =>{
+                if(element["user_email"] == email && element["user_password"] == create_password){
+                    return res=1;
+                }
+                else{
+                    return res=0;
+                }
+            });
+            if(res==1){
+                swal("Yep!", "you logged in bruh!", "success");
+                window.location.href="../../index.html"
+            }
+            else{
+                swal("Oops!", "email or password is not correct!", "error");
+            }
+
+        // const user = localStorage.getItem(email)
+        // const data = JSON.parse(user);
+        // console.log(data);
+
+        // if(email == data.user_email && create_password == data.user_password){
+        //     swal("Yep!", "Welcome bruh!", "success");
+
+        //     //window.location.href="../../index.html"
+        // }
+        // else if(email == null && create_password == null){
+        //     swal("Oops!", "please fill the input page!", "error");
+        // }
+        //  else{
+        //     swal("Oops!", "email or password is not correct!", "error");
+        }
+        
+
+    
+
+    
+
+    console.log(email)
+    console.log(password)
+
+
+
+</script>
 </body>
 </html>
