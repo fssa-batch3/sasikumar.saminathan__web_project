@@ -47,6 +47,13 @@
     })
 localStorage.setItem("users",JSON.stringify(user_records));
 
+if (create_password==confirm_password) {
+    swal("Yep!", "you logged in bruh!", "success");
+    
+} else {
+    swal("Oops!", "Your password is mismatch!", "error");
+}
+
 
     
    }
