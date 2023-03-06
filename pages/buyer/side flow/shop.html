@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../assets/css/home.css">
+    <link rel="stylesheet" href="../../../assets/css/shop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
@@ -16,8 +16,7 @@
         <img src="../../../assets/icon/shopping-bag.png" alt="" width="40px" height="40px">
         <a href="../../../index.html"><h5 class="logo-name"><b>Shopnow</b></h5></a>
     </div>
-    <input type="search" placeholder="search " class="search">
-    <i class="fa fa-search" aria-hidden="true"></i>
+    
     <ul class="top-list">
         <a href="../../sign-in/login.html"><button class="login"><b>Login</b></button></a>
         <a href="../../Seller/Seller.html"><p class="seller">Seller</p></a>
@@ -27,7 +26,9 @@
 <main class="shop main">
     <div class="back-img">
         <h1>Nearby shop <br>to your <br>pincode</h1>
-    </div>   
+    </div>
+    <input type="search" placeholder="search " class="search" id="search">
+    <i class="fa fa-search" aria-hidden="true"></i>   
     <div class="cards_pack">
       <!-- <div class="shop-list">
         <div class="shop-container">
@@ -213,9 +214,9 @@
              address : "3/60-3/61, Door no: 43, Rajiv gandhi road, Near Saravana store, Karapakkam, Chennai, Tamil Nadu 600097 Ph: 8056775757"}
 
         ]
-        function sk(){
-        document.textContent = "hello guys"
-      }
+      //   function sk(){
+      //   document.textContent = "hello guys"
+      // }
 
       //for loop for creating 9 shop containers  
       for (let i = 8; 0<=i; i-- )
@@ -280,6 +281,65 @@
         document.querySelector(".visit").append(img)
       }
 
+    //get element by id from search input
+    const search = document.getElementById("search")
+    
+    search.addEventListener("input",function () {
+      const searchvalue = search.value.trim().toLowerCase()
+      const filter = shop_list.filter(function(item){
+        return item.name.toLowerCase().includes(searchvalue)
+      })
+
+      const parent = document.querySelector(".cards_pack")
+      parent.innerHTML = "";
+
+      filter.forEach((item) => {
+        const div_1 = document.createElement("div")
+        div_1.setAttribute("class","shop-container")
+        document.querySelector(".cards_pack").prepend(div_1)
+
+        //div-2 class name:visit-content
+        const div_2 = document.createElement("div")
+        div_2.setAttribute("class","visit-content")
+        
+        document.querySelector(".shop-container").append(div_2)
+
+        //shop name
+        const h3 = document.createElement("h3")
+        h3.innerHTML = item.name
+        document.querySelector(".visit-content").append(h3)
+
+        //shop address
+        const p = document.createElement("p")
+        p.innerHTML = item.address
+        document.querySelector(".visit-content").append(p)
+
+        //div-3 class name:visit
+        const div_3 = document.createElement("div")
+        div_3.setAttribute("class","visit")
+        document.querySelector(".shop-container").append(div_3) 
+
+        //a tag for redirect to next page
+        const a = document.createElement("a")
+        a.setAttribute("href","side-flow.html")
+        a.setAttribute("class","anker")
+        document.querySelector(".visit").append(a)
+
+        //visit store button
+        const btn = document.createElement("button")
+        btn.innerHTML = "Visit store"
+        btn.setAttribute("onclick","sk()")
+        document.querySelector(".anker").append(btn)
+
+        //shop icon img
+        const img = document.createElement("img")
+        img.setAttribute("src","../../../assets/icon/icons8-shop-64.png")
+        img.setAttribute("alt","shop-img")
+        img.setAttribute("class","shop-icon")
+        document.querySelector(".visit").append(img)
+      })
+    })
+    
     
     
 

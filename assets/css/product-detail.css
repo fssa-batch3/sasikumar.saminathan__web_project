@@ -405,3 +405,14 @@ html{
     position: relative;
     bottom: 20px;
 }
+.pr_btn{
+    padding: 10px;
+    float: right;
+    margin: 3%;
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary);
+    color: var(--secondary);
+
+}

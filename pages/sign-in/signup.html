@@ -5,78 +5,94 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../assets/css/signup3.css">
+    <link rel="stylesheet" href="../../assets/css/uesr_signup.css">
     <script src="../../assets/js/sweetalert.min.js"></script>
 
 </head>
+
 <body class="login-body">
 <div class="login-container">
+
     <div class="sign_container">
-        <h1>Hello,there</h1>
+        <h1> Hello,there </h1>
     </div>
 
 </div>
-<div class="login-text">
-    <h2><b>SIGN UP</b></h2>
-<form>
-    <input type="text" placeholder="Name" class="input-1" id="name" required>
-    <input type="email" placeholder="Email" class="input-1" id="email" required>
-    <input type="password" placeholder="Create Password" class="input-2" id="password" required>
-    <input type="password" placeholder="Confirm Password" class="input-2" id="pass_2" required>
+<div class = "login-text">
+
+    <h2 ><b>SIGN UP</b> </h2>
+    <!-- form for contain inputs and button -->
+ <form id="forms">
+    <input type="text" placeholder="Name" class="input-1" id="name" pattern="^[A-Za-z]+" title="use letters only" required>
+    <input type="email" placeholder="Email" class="input-1" id="email" required >
+    <input type="number" placeholder="Phone number" class="input-1" id="phone_no" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" required>
+    <input type="password" placeholder="Create Password" class="input-2" id="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
+    <input type="password" placeholder="Confirm Password" class="input-2" id="pass_2" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
+     
+</div>
+<!-- btn for submiting the form  -->
+   <button class="login-but"  type="submit"> <b>SIGN UP</b> </button>
+
+   <p class="signup">Already i have an account<b><a href="login.html">Login</a></b></p>
+
 </form>
 
-</div> 
-<button class="login-but" type="button" onclick="getdata()"><b>SIGN UP</b></button>
-<p class="signup">Already i have an account<b><a href="login.html">Login</a></b></p>  
-
 <script>
-   function getdata() {
+
+    // submit function for this form
+    const formValue=document.getElementById("forms")
+    formValue.addEventListener('submit',e=>{
+        e.preventDefault();
+        getData();
+
+    });
+
+    //this function for get data from input and store in localstorage
+   function getData() {
+
+    //get values from input
     const name = document.getElementById("name").value
+    const num = document.getElementById("phone_no").value
     const email = document.getElementById("email").value
     const create_password = document.getElementById("password").value
     const confirm_password = document.getElementById("pass_2").value
 
+
+    //creating new and declar in user_record var
     let user_records = new Array();
 
+
+    //this terminory opreatos for create array
     user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
     
-    user_records.push ({
+
+    //this statement for check the email is exist or not and password matching
+    if(user_records.some( (v) => { return v.user_email == email } )){
+        swal("Oops!", "email is invaild!", "error");
+    }
+
+    else if(confirm_password !== create_password){
+        swal("Oops!", "Your Password is mismatch!", "error");
+    }
+
+    else{
+
+        user_records.push ({
         "user_name" : name,
+        "user_no" : num,
         "user_email" : email,
         "user_password" : create_password
-    })
-localStorage.setItem("users",JSON.stringify(user_records));
+    });
 
-if (create_password==confirm_password) {
-    swal("Yep!", "you logged in bruh!", "success");
-    
-} else {
-    swal("Oops!", "Your password is mismatch!", "error");
-}
+    //after check this conditons redirect to home page
+    window.location.href = "login.html"
+    }
 
-
-    
+    localStorage.setItem("users",JSON.stringify(user_records));
+      
    }
-
-
-   
-//     const json = JSON.stringify(user)
-//     localStorage.setItem(email,json)
-//     //console.log("user added")
-
-//     if(confirm_password == create_password){
-//         swal("Good job!", "Welcome to shopnow!", "success"); 
-//    //window.location.href = "../../index.html"
-//    }
-// //    else if(create_password === null && confirm_password === null){
-// //     swal("Oops!", "Please fill the inputs!", "error");
-// //    }
-  
-//    else{
-//     swal("Oops!", "Your Password is mismatch!", "error");
-//    }
-
   
 </script>
+
 </body>
 </html>

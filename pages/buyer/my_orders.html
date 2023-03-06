@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/my_orders.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <!-- toggle bar -->
+        <ul class="menu">
+            <li><a href="./pages/sign-in/login.html">Login</a></li>
+            <li><a href="./pages/Seller/Seller.html">Seller</a></li>
+            <li><a href="./pages/buyer/cart.html">Cart</a></li>
+            <li><a href="./pages/buyer/side flow/pincode.html">Shops</a></li>
+            <li><a href="./pages/sign-in/real-profile.html">Profile</a></li>
+            <li><a href="#">Orders</a></li>
+        </ul>
+        <!-- div:logo  contain:logo img and name -->
+        <div class="logo">
+            <img src="./../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
+            <h5 class="logo-name"><b>Shopnow</b></h5>
+        </div>
+
+        <!-- search bar -->
+   
+
+        <!-- header nav links -->
+        <ul class="top-list">
+            <li><a aria-label="login" href="./pages/sign-in/login.html"><button class="login"><b>Login</b></button></a>
+            </li>
+            <li><a aria-label="seller" href="pages/Seller/Seller.html">
+                    <p class="seller">Seller</p>
+                </a></li>
+            <li><a aria-label="cart" href="./pages/buyer/cart.html"><i class="home-icon fa fa-shopping-cart"
+                        aria-hidden="true"></i></a></li>
+            <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
+                        class="home-icon fa-solid fa-location-dot"></i></a></li>
+
+        </ul>
+        <i id="bar" class="fa-solid fa-bars"></i>
+    </header>
+    <main>
+        <div class="head"><p>My Orders</p><hr></div>
+        <input type="search" placeholder="search your orders here" class="search" id="search">
+        <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
+        <div class="main_container">
+            <img src="../../assets/image/galaxy-s21-fe-5g-lavender-8gb-128gb-storage-sm-g990elviinu-original-imagbnbdaj3tygup.webp" alt="" id="product_img">
+          <div class="product_info">  <p id="product_name">SAMSUNG Galaxy S21 FE 5G (Lavender, 128 GB)</p>
+           <div class="product_price">
+            <p>Qty 1</p>
+            <p>₹39,999</p>
+           </div>
+         </div>
+         <div class="status">
+            <p>Status</p>
+            <p>In - Transit</p>
+         </div>
+         <div class="date">
+            <p>Delivery expected by</p>
+            <p id="date">7 March 2023</p>
+            <div class="btn">
+                <button><i class="fa-solid fa-location-crosshairs"></i><p>Track order</p></button>
+            <button><i class="fa-solid fa-xmark"></i><p>Cancel order</p></button>
+            </div>
+         </div>
+        </div>
+    </main>
+       
+</body>
+</html>

@@ -25,10 +25,11 @@
     </ul>
 </header>
 <main>
+    <a id="edit_link"><button class="pr_btn">EDIT</button></a>
     <div class="main-contain">
         <div class="images">
             <!-- this image appended on javascript -->
-            <!-- <img src="../../../assets/image/redmi-main.webp" alt="images" width="500px" height="500px"> -->
+            <img  id="img_1" alt="images" width="500px" height="500px">
             <!-- <div class="img-1"> -->
                <!-- <span> <img src="../../../assets/image/redmi-1.webp" alt="image" width="60px" height="130px" class="img-2"></span> -->
                 <!-- <span><img src="../../../assets/image/redmi-2.webp" alt="image" class="img-3"></span> -->
@@ -116,64 +117,126 @@
 </main>
 <script>
 //product_detail array with contain page details
-   const product_detail =[
-    {
-        Images : {
-            main_image :"../../../assets/image/redmi-main.webp",
-            image_1  : "../../../assets/image/redmi-1.webp",
-            image_2 : "../../../assets/image/redmi-2.webp",
-            image_3 : "../../../assets/image/redmi-3.webp"
-        },
+//    const product_detail =[
+//     {
+//         id : "1",
+//         images : {
+//             main_image :"../../../assets/image/redmi-main.webp",
+//             image_1  : "../../../assets/image/redmi-1.webp",
+//             image_2 : "../../../assets/image/redmi-2.webp",
+//             image_3 : "../../../assets/image/redmi-3.webp"
+//         },
 
-        product_name : "Redmi Note 11 (Horizon Blue, 128 GB) (6 GB RAM)",
-        product_price : "₹14,690",
-        star : "4.3",
-        ratings : "26,443 Ratings",
+//         product_name : "Redmi Note 11 (Horizon Blue, 128 GB) (6 GB RAM)",
+//         product_price : "₹14,690",
+//         star : "4.3",
+//         ratings : "26,443 Ratings",
 
-        highlights : {
-            lists_1 : "5000 mAh Battery",
-            lists_2 : "50MP Rear Camera",
-            lists_3 : "16.33 cm (6.43 inch) Display",
-            lists_4 : "6 GB RAM | 128 GB ROM",
-        },
-        shop_name : "Chennai - Madipakam",
-        shop_address : "69/70, Bazaar Road, Meenatchi Sundareswarar Koil, Sadasiva Nagar, Madipakkam, Chennai. Tamil Nadu 600091 Ph: 805678889"
+//         highlights : {
+//             lists_1 : "5000 mAh Battery",
+//             lists_2 : "50MP Rear Camera",
+//             lists_3 : "16.33 cm (6.43 inch) Display",
+//             lists_4 : "6 GB RAM | 128 GB ROM",
+//         },
+//         shop_name : "Chennai - Madipakam",
+//         shop_address : "69/70, Bazaar Road, Meenatchi Sundareswarar Koil, Sadasiva Nagar, Madipakkam, Chennai. Tamil Nadu 600091 Ph: 805678889",
+//         width : "500px",
+//         height : "500px"
 
-    },
-    {
-        Images : {
-            main_image :"../../../../assets/image/samsung-galaxy/samsung-main.webp",
-            image_1  : "../../../../assets/image/samsung-galaxy/samsung-2.webp",
-            image_2 : "../../../../assets/image/samsung-galaxy/samsung-3.webp",
-            image_3 : "../../../../assets/image/samsung-galaxy/samsung-4.webp"
-        },
+//     },
+//     {
+//         id : "2",
+//         images : {
+//             main_image :"../../../../assets/image/samsung-galaxy/Resize_samsung-main.webp",
+//             image_1  : "../../../../assets/image/samsung-galaxy/samsung-2.webp",
+//             image_2 : "../../../../assets/image/samsung-galaxy/samsung-3.webp",
+//             image_3 : "../../../../assets/image/samsung-galaxy/samsung-4.webp"
+//         },
 
-        product_name : "SAMSUNG Galaxy S21 FE 5G (Lavender, 128 GB)",
-        product_price : "₹39,999",
-        star : "4.3",
-        ratings : "26,946 Ratings",
+//         product_name : "SAMSUNG Galaxy S21 FE 5G (Lavender, 128 GB)",
+//         product_price : "₹39,999",
+//         star : "4.3",
+//         ratings : "26,946 Ratings",
 
-        highlights : {
-            lists_1 : "8 GB RAM | 128 GB ROM",
-            lists_2 : "16.26 cm (6.4 inch) Full HD+ Display",
-            lists_3 : "12MP + 12MP + 8MP (OIS) | 32MP Front Camera",
-            lists_4 : "4500 mAh Lithium-ion Battery",
-        },
-        shop_name : "Chennai - Koyambedu",
-        shop_address : "No: 1, Kaliamman Koil Street, opp KFC Koyambedu, Chennai.Tamil Nadu 600107 Ph: 8428100000"
-    },
+//         highlights : {
+//             lists_1 : "8 GB RAM | 128 GB ROM",
+//             lists_2 : "16.26 cm (6.4 inch) Full HD+ Display",
+//             lists_3 : "12MP + 12MP + 8MP (OIS) | 32MP Front Camera",
+//             lists_4 : "4500 mAh Lithium-ion Battery",
+//         },
+//         shop_name : "Chennai - Koyambedu",
+//         shop_address : "No: 1, Kaliamman Koil Street, opp KFC Koyambedu, Chennai.Tamil Nadu 600107 Ph: 8428100000",
+//         width : "400px",
+//         height : "500px"
+//     },
+//     {
+//         id : "3",
+//         images : {
+//             main_image :"../../../../assets/image/iphone 14/iphone_main.webp",
+//             image_1  : "../../../../assets/image/iphone 14/iphone_1.webp",
+//             image_2 : "../../../../assets/image/iphone 14/iphone_2.webp",
+//             image_3 : "../../../../assets/image/iphone 14/iphone_3.webp"
+//         },
+
+//         product_name : "APPLE iPhone 14 (Blue, 128 GB)",
+//         product_price : "₹71,999",
+//         star : "4.7",
+//         ratings : "15,830 Ratings",
+
+//         highlights : {
+//             lists_1 : "15.49 cm (6.1 inch) Super Retina XDR Display",
+//             lists_2 : "12MP + 12MP | 12MP Front Camera",
+//             lists_3 : "A15 Bionic Chip, 6 Core Processor Processor",
+//             lists_4 : "128 GB ROM",
+//         },
+//         shop_name : "Chennai - Koyambedu",
+//         shop_address : "No: 1, Kaliamman Koil Street, opp KFC Koyambedu, Chennai.Tamil Nadu 600107 Ph: 8428100000",
+//         width : "400px",
+//         height : "500px"
+//     }
 
 
-   ]
+ //  ]
+
+ //get product details array from local storage
+ const product_array = JSON.parse(localStorage.getItem("products"))
+ //console.log(product_array)
+
+//get url from search bar
+const url = window.location.search;
+//console.log(url);
+const urlParams = new URLSearchParams(url);
+//console.log(urlParams);
+const productname = urlParams.get("user_id")
+//console.log(productname);
+
+//console.log(productname);
+
+let user
+const search = product_array.find(function (userobj){
+
+    const name = userobj["user_id"]+"";
+    //console.log(name);
+    user = name
+    //console.log(name);
+    if (productname === name) {
+        return true
+
+    } else {
+
+        return false
+
+    }
+})
 
     //create elements those are want to change the content
 
 //<img src="../../../assets/image/redmi-main.webp" alt="images" width="500px" height="500px">
-const main_img = document.createElement("img")
-main_img.setAttribute("src","../../../assets/image/redmi-main.webp")
+const main_img = document.getElementById("img_1")
+main_img.setAttribute("src",search["product_img_1"])
 main_img.setAttribute("alt","redmi")
-main_img.setAttribute("width","500px")
-main_img.setAttribute("height","500px")
+main_img.setAttribute("width","400px")
+main_img.setAttribute("height", "500px")
 document.querySelector(".images").append(main_img)
 
 const div_2 = document.createElement("div")
@@ -200,7 +263,7 @@ document.querySelector(".img-1").prepend(span_3)
 
 
 const img_1 = document.createElement("img")
-img_1.setAttribute("src","../../../assets/image/redmi-1.webp")
+img_1.setAttribute("src",search["product_img_2"])
 img_1.setAttribute("alt","image")
 img_1.setAttribute("width","60px")
 img_1.setAttribute("height","130px")
@@ -209,14 +272,14 @@ document.querySelector(".span_3").append(img_1)
 
 
 const img_2 = document.createElement("img")
-img_2.setAttribute("src","../../../assets/image/redmi-2.webp")
+img_2.setAttribute("src",search["product_img_3"])
 img_2.setAttribute("alt","image")
 img_2.setAttribute("class","img-3")
 document.querySelector(".span_2").append(img_2)
 
 
 const img_3 = document.createElement("img")
-img_3.setAttribute("src","../../../assets/image/redmi-3.webp")
+img_3.setAttribute("src",search["product_img_4"])
 img_3.setAttribute("alt","image")
 img_3.setAttribute("class","img-4")
 document.querySelector(".span_1").append(img_3)
@@ -242,7 +305,7 @@ document.querySelector(".text-box").prepend(div_3)
 
 //product name
 const h2 = document.createElement("h2")
-h2.innerHTML = "Redmi Note 11 (Horizon Blue, 128 GB)  (6 GB RAM)"
+h2.innerHTML = search["product_name"] 
 h2.setAttribute("class","higher")
 document.querySelector(".rate").append(h2)
 
@@ -253,7 +316,7 @@ document.querySelector(".higher").append(b_1)
 //product price
 const p_1 = document.createElement("p")
 p_1.setAttribute("class","price")
-p_1.innerHTML ="₹14,690"
+p_1.innerHTML = search["product_price"] 
 document.querySelector(".rate").append(p_1)
 
 //b tag for bold price
@@ -272,7 +335,7 @@ document.querySelector(".rating").append(div_5)
 
 //rating number
 const h5 = document.createElement("h5")
-h5.innerHTML = "4.3"
+h5.innerHTML = "4.7"
 document.querySelector(".rating-1").append(h5)
 
 //star icon for indicate rating
@@ -283,7 +346,7 @@ document.querySelector(".rating-1").append(i)
 
 //how many peoples rated count
 const p_2 = document.createElement("p")
-p_2.innerHTML ="26,443 Ratings"
+p_2.innerHTML = 2000 + "ratings"
 document.querySelector(".rating").append(p_2)
 
 //6th div for show free deliviry
@@ -306,38 +369,48 @@ document.querySelector(".free").append(h5_2)
 
 //list 1
 const list_1 = document.createElement("li")
-list_1.innerHTML = "6 GB RAM | 128 GB ROM"
+list_1.innerHTML = search["highlights"] 
 document.querySelector(".ul_highlights").prepend(list_1)
 
 //list 2
-const list_2 = document.createElement("li")
-list_2.innerHTML = "16.33 cm (6.43 inch) Display"
-document.querySelector(".ul_highlights").prepend(list_2)
+// const list_2 = document.createElement("li")
+// list_2.innerHTML = search.highlights.lists_2
+// document.querySelector(".ul_highlights").prepend(list_2)
 
-//list 3
-const list_3 = document.createElement("li")
-list_3.innerHTML = "50MP Rear Camera"
-document.querySelector(".ul_highlights").prepend(list_3)
+// //list 3
+// const list_3 = document.createElement("li")
+// list_3.innerHTML = search.highlights.lists_3
+// document.querySelector(".ul_highlights").prepend(list_3)
 
-//list 4
-const list_4 = document.createElement("li")
-list_4.innerHTML = "5000 mAh Battery"
-document.querySelector(".ul_highlights").prepend(list_4)
+// //list 4
+// const list_4 = document.createElement("li")
+// list_4.innerHTML = search.highlights.lists_4
+// document.querySelector(".ul_highlights").prepend(list_4)
 
 //-----------------------------------------------------------------------------------------------------
 // shop information here
 
 
 const h3_shop = document.createElement("h3")
-h3_shop.innerHTML ="Chennai - Madipakam"
+h3_shop.innerHTML = search.shop_name
 document.querySelector(".visit-content").append(h3_shop)
 
 
 const p_shop = document.createElement("p")
-p_shop.innerHTML ="69/70, Bazaar Road, Meenatchi Sundareswarar Koil, Sadasiva Nagar, Madipakkam, Chennai. Tamil Nadu 600091 Ph: 8056788899"
+p_shop.innerHTML = search.shop_address
 document.querySelector(".visit-content").append(p_shop)
 
-window.location.search
+const pr_but = document.querySelector(".pr_btn")
+
+pr_but.addEventListener("click",function(){
+    const edit = document.getElementById("edit_link")
+    edit.setAttribute("href","../../Seller/product_enter.html?user_id="+user)
+})
+
+
+
+
+
 
 </script>  
 </body>

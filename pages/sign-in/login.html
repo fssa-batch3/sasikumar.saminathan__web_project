@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../assets/css/home.css">
+    <link rel="stylesheet" href="../../assets/css/user_login.css">
     <script src="../../assets/js/sweetalert.min.js"></script>
     
 
@@ -19,18 +19,24 @@
 
 
 
-<form action="">
-    <input type="text" placeholder="Enter your email or mobile number" class="input-1" id="email">
+<form id="form">
 
-    <input type="password" placeholder="Password" class="input-2" id="password">
+    <input type="email" placeholder="Email" class="input-1" id="email" required>
+
+    <input type="password" placeholder="Password" class="input-2" id="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
 </div> 
-<button type="button" class="login-but" id="sk" onclick="getData()">LOGIN</button>
+<button class="login-but" id="sk" type="submit">LOGIN</button>
 </form>
 
 
 <p class="signup">Need an account <b><a href="signup.html">Sign up</a></b></p>  
 
 <script>
+const form = document.querySelector("#form")
+form.addEventListener('submit',function(event){
+    event.preventDefault();
+    getData();
+});
     
 
      function getData(){
@@ -39,18 +45,24 @@
 
         let array = JSON.parse(localStorage.getItem("users"))
 
-        let user_details = {
-            "useremail" : email,
-            "password" : create_password
+        // let user_details = new Array();
 
-        }
+        //user_details=JSON.parse(localStorage.getItem("user"))?JSON.parse(localStorage.getItem("user")):[]
+
+         //user_details.push ({
+           // "useremail" : email,
+            //"password" : create_password
+        //});
 
         let res;
             array.find(element =>{
                 if(element["user_email"] == email && element["user_password"] == create_password){
-                    localStorage.setItem("user_details",JSON.stringify(user_details))
+                    let constant = element
+                    localStorage.setItem("profile",JSON.stringify (constant))
 
-                    return res=1;
+
+                    return res = 1;
+                    
                 }
                 else{
                     return res=0;
@@ -58,11 +70,13 @@
             });
             if(res==1){
                 swal("Yep!", "you logged in bruh!", "success");
-                window.location.href="profile.html"
+
+                 window.location.href="real-profile.html"
             }
             else{
                 swal("Oops!", "email or password is not correct!", "error");
             }
+           
 
         // const user = localStorage.getItem(email)
         // const data = JSON.parse(user);
@@ -85,8 +99,7 @@
 
     
 
-    console.log(email)
-    console.log(password)
+
 
 
 

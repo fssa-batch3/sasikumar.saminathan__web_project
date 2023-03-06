@@ -14,7 +14,15 @@
 
 <body>
     <header>
-
+        <!-- toggle bar -->
+        <ul class="menu">
+            <li><a href="./pages/sign-in/login.html">Login</a></li>
+            <li><a href="./pages/Seller/Seller.html">Seller</a></li>
+            <li><a href="./pages/buyer/cart.html">Cart</a></li>
+            <li><a href="./pages/buyer/side flow/pincode.html">Shops</a></li>
+            <li><a href="./pages/sign-in/real-profile.html">Profile</a></li>
+            <li><a href="#">Orders</a></li>
+        </ul>
         <!-- div:logo  contain:logo img and name -->
         <div class="logo">
             <img src="./assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
@@ -22,12 +30,11 @@
         </div>
 
         <!-- search bar -->
-        <input type="search" placeholder="search " class="search">
-        <i class="fa fa-search" aria-hidden="true"></i>
+   
 
         <!-- header nav links -->
         <ul class="top-list">
-            <li><a aria-label="login" href="./pages/sign-in/login.html"><button class="login"><b>Login</b></button></a>
+            <li><button class="login" id="login"><b>My account</b></button>
             </li>
             <li><a aria-label="seller" href="pages/Seller/Seller.html">
                     <p class="seller">Seller</p>
@@ -36,10 +43,14 @@
                         aria-hidden="true"></i></a></li>
             <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
                         class="home-icon fa-solid fa-location-dot"></i></a></li>
+                        <li><a href="/pages/buyer/my_orders.html"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
 
         </ul>
+        <i id="bar" class="fa-solid fa-bars"></i>
     </header>
     <main>
+        <input type="search" placeholder="search " class="search" id="search">
+        <i class="fa fa-search" aria-hidden="true"></i>
         <div class="download">
 
             <!-- downloading option for app -->
@@ -52,7 +63,7 @@
         <!-- assure containers start -->
         <div class="three">
             <!-- container 1 about warranty -->
-            <div class="assure">
+            <div class="assure assure_1">
                 <img src="./assets/icon/guarantee.png" alt="icons8-warranty-64" class="assure-img" width="100px"
                     height="100px">
                 <h3>Warranty <br> guaranted</h3>
@@ -268,7 +279,8 @@ accessories containers
                 price: "₹12,993",
                 star: "4.5",
                 rating: "27,000 Ratings",
-                url : "./pages/buyer/main flow/location.html?product_name = Redmi Note 11 (Horizon Blue, 128 GB) (6 GB RAM)"
+                id : "1"
+                
             },
 
 
@@ -278,7 +290,8 @@ accessories containers
                 price: "₹39,999",
                 star: "4.3",
                 rating: "26,443 Ratings",
-                url : "./pages/buyer/main flow/location.html"
+                url : "./pages/buyer/main flow/location.html",
+                id : "2"
 
 
             },
@@ -289,8 +302,8 @@ accessories containers
                 price: "₹77,400",
                 star: "4.6",
                 rating: "786 Ratings",
-                url : "./pages/buyer/main flow/location.html"
-
+                url : "./pages/buyer/main flow/location.html",
+                id : "3"
             },
 
             {
@@ -380,85 +393,11 @@ accessories containers
 
 
         ]
-    //     
-   
-        for (let j = 11; 0 <= j; j--) //loop for creating 12 product cards
-        {
-            //div 1 class name: pack
-            const div_2 = document.createElement("div");
-            div_2.setAttribute("class", "mob")
-            document.querySelector(".pack").prepend(div_2)
 
-            //product img
-            const img = document.createElement("img");
-            img.setAttribute("src", product_list[j].image)
-            img.setAttribute("alt", "redmi_note_11")
-            img.setAttribute("width", "150px")
-            img.setAttribute("height", "200px")
-            document.querySelector(".mob").append(img)
-
-            //anker tag for going next pages
-            const a = document.createElement("a");
-            a.setAttribute("aria-label", "redmi")
-            a.setAttribute("class", "mob-link")
-            a.setAttribute("href", "./pages/buyer/main flow/location.html")
-            document.querySelector(".mob").append(a)
-
-            //product name
-            const h4 = document.createElement("h4");
-            h4.setAttribute("class", "detail-1")
-            h4.innerHTML = product_list[j].name
-            document.querySelector(".mob-link").append(h4)
-
-            //div 2 class name: rate for show price
-            const div_3 = document.createElement("div");
-            div_3.setAttribute("class", "rate")
-            document.querySelector(".mob").append(div_3)
-
-            //product price
-            const h2 = document.createElement("h2");
-            h2.innerHTML = product_list[j].price
-            document.querySelector(".rate").append(h2)
-
-            //product price
-            const p = document.createElement("p");
-            p.setAttribute("class", "onward")
-            p.innerHTML = "onwards"
-            document.querySelector(".rate").append(p)
-
-            //div 2 class name: rate for show rating
-            const div_4 = document.createElement("div");
-            div_4.setAttribute("class", "rating")
-            document.querySelector(".mob").append(div_4)
-
-            //div 2 class name: rate for show rating
-            const div_5 = document.createElement("div");
-            div_5.setAttribute("class", "rating-1")
-            document.querySelector(".rating").append(div_5)
-
-            //product rating
-            const h5 = document.createElement("h5");
-            h5.innerHTML = product_list[j].star
-            document.querySelector(".rating-1").append(h5)
-
-            //product rating star icon
-            const i = document.createElement("i");
-            i.setAttribute("class", "fa fa-star")
-            i.setAttribute("aria-hidden", "true")
-            document.querySelector(".rating-1").append(i)
-
-            //product rating count
-            const p_1 = document.createElement("p");
-            p_1.innerHTML = product_list[j].rating
-            document.querySelector(".rating").append(p_1)
-        }
-
-        //...................................................................................................
-        //product_detail array with contain page details
-
-   const product_detail =[
+        const product_detail =[
     {
-        Images : {
+        Images :
+         {
             main_image :"../../../assets/image/redmi-main.webp",
             image_1  : "../../../assets/image/redmi-1.webp",
             image_2 : "../../../assets/image/redmi-2.webp",
@@ -505,6 +444,195 @@ accessories containers
 
 
    ]
+    //     
+   
+        // for (let j=0; j<12; j++) //loop for creating 12 product cards
+        // {
+        //     //div 1 class name: pack
+        //     const div_2 = document.createElement("div");
+        //     div_2.setAttribute("class", "mob")
+
+
+        //     //product img
+        //     const img = document.createElement("img");
+        //     img.setAttribute("src", product_list[j].image)
+        //     img.setAttribute("alt", "redmi_note_11")
+        //     img.setAttribute("width", "150px")
+        //     img.setAttribute("height", "200px")
+        //     div_2.append(img)
+
+        //     //anker tag for going next pages
+        //     const a = document.createElement("a");
+        //     a.setAttribute("aria-label", "redmi")
+        //     a.setAttribute("class", "mob-link")
+        //     a.setAttribute("href", "/pages/buyer/main flow/product-detail.html?id="+ product_list[j].id)
+        //     div_2.append(a)
+
+        //     //product name
+        //     const h4 = document.createElement("h4");
+        //     h4.setAttribute("class", "detail-1")
+        //     h4.innerHTML = product_list[j].name
+        //     a.append(h4)
+
+        //     //div 2 class name: rate for show price
+        //     const div_3 = document.createElement("div");
+        //     div_3.setAttribute("class", "rate")
+        //     div_2.append(div_3)
+
+        //     //product price
+        //     const h2 = document.createElement("h2");
+        //     h2.innerHTML = product_list[j].price
+        //     div_3.append(h2)
+
+        //     //product price
+        //     const p = document.createElement("p");
+        //     p.setAttribute("class", "onward")
+        //     p.innerHTML = "onwards"
+        //     div_3.append(p)
+
+        //     //div 2 class name: rate for show rating
+        //     const div_4 = document.createElement("div");
+        //     div_4.setAttribute("class", "rating")
+        //     div_2.append(div_4)
+
+        //     //div 2 class name: rate for show rating
+        //     const div_5 = document.createElement("div");
+        //     div_5.setAttribute("class", "rating-1")
+        //     div_4.append(div_5)
+
+        //     //product rating
+        //     const h5 = document.createElement("h5");
+        //     h5.innerHTML = product_list[j].star
+        //     div_5.append(h5)
+
+        //     //product rating star icon
+        //     const i = document.createElement("i");
+        //     i.setAttribute("class", "fa fa-star")
+        //     i.setAttribute("aria-hidden", "true")
+        //     div_5.append(i)
+
+        //     //product rating count
+        //     const p_1 = document.createElement("p");
+        //     p_1.innerHTML = product_list[j].rating
+        //     div_4.append(p_1)
+
+        //     document.querySelector(".pack").append(div_2)
+
+        // }
+
+        // for(k=0;k<=product_detail.length;k++){
+        //     const a = document.createElement("a");
+        //     a.setAttribute("aria-label", "redmi")
+        //     a.setAttribute("class", "mob-link")
+        //     a.setAttribute("href", "/pages/buyer/main flow/product-detail.html?product_name="+ product_detail[k]["product_name"])
+        //     div_2.append(a)
+        // }
+
+        //...................................................................................................
+        //product_detail array with contain page details
+
+   
+
+
+   //toggle option scripts are there
+   let icon = document.querySelector(".fa-bars")
+   let menu = document.querySelector(".menu")
+
+   icon.addEventListener('click',function(){
+    menu.classList.toggle('showmenu');
+   });
+
+   const login = document.getElementById("login")
+   const profile = JSON.parse(localStorage.getItem("profile"))
+   login.addEventListener("click",function(){
+    if (profile == false) {
+        window.location.href ="/pages/sign-in/login.html"
+    }
+    else if (profile == null) {
+        window.location.href ="/pages/sign-in/login.html"
+    }
+    else{
+        window.location.href ="/pages/sign-in/real-profile.html"
+    }
+   })
+
+   //produucts display from object
+   const product_array = JSON.parse(localStorage.getItem("products"))
+   //console.log(product_array);
+
+   for (let j=0; j< product_array.length; j++) //loop for creating 12 product cards
+        {
+            //div 1 class name: pack
+            const div_2 = document.createElement("div");
+            div_2.setAttribute("class", "mob")
+
+
+            //product img
+            const img = document.createElement("img");
+            img.setAttribute("src", product_array[j]["product_img_1"])
+            img.setAttribute("alt", "redmi_note_11")
+            img.setAttribute("width", "150px")
+            img.setAttribute("height", "200px")
+            div_2.append(img)
+
+            //anker tag for going next pages
+            const a = document.createElement("a");
+            a.setAttribute("aria-label", "redmi")
+            a.setAttribute("class", "mob-link")
+            a.setAttribute("href", "/pages/buyer/main flow/product-detail.html?user_id="+ product_array[j]["user_id"])
+            div_2.append(a)
+
+            //product name
+            const h4 = document.createElement("h4");
+            h4.setAttribute("class", "detail-1")
+            h4.innerHTML = product_array[j]["product_name"]
+            a.append(h4)
+
+            //div 2 class name: rate for show price
+            const div_3 = document.createElement("div");
+            div_3.setAttribute("class", "rate")
+            div_2.append(div_3)
+
+            //product price
+            const h2 = document.createElement("h2");
+            h2.innerHTML = "₹"+product_array[j]["product_price"]
+            div_3.append(h2)
+
+            //product price
+            const p = document.createElement("p");
+            p.setAttribute("class", "onward")
+            p.innerHTML = "onwards"
+            div_3.append(p)
+
+            //div 2 class name: rate for show rating
+            const div_4 = document.createElement("div");
+            div_4.setAttribute("class", "rating")
+            div_2.append(div_4)
+
+            //div 2 class name: rate for show rating
+            const div_5 = document.createElement("div");
+            div_5.setAttribute("class", "rating-1")
+            div_4.append(div_5)
+
+            //product rating
+            const h5 = document.createElement("h5");
+            h5.innerHTML = product_list[j].star
+            div_5.append(h5)
+
+            //product rating star icon
+            const i = document.createElement("i");
+            i.setAttribute("class", "fa fa-star")
+            i.setAttribute("aria-hidden", "true")
+            div_5.append(i)
+
+            //product rating count
+            const p_1 = document.createElement("p");
+            p_1.innerHTML = product_list[j].rating
+            div_4.append(p_1)
+
+            document.querySelector(".pack").append(div_2)
+
+        }
 
 
     </script>
