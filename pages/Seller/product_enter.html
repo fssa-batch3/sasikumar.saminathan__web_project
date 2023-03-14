@@ -23,7 +23,7 @@
       <div><p>Highlights</p><input type="text" id="high"></div>
       <button type="button" class="pr_btn" id="sub">SUBMIT</button>
       <button type="button" class="pr_btn" id="edit">EDIT</button>
-      <button type="button" class="pr_btn" id="delete">DELETE</button>
+      <button type="button" class="pr_btn" id="delete">DISABLE</button>
     </div>
       
  </form>
@@ -86,6 +86,7 @@
         const highlights = document.getElementById("high")
         //get element from submit btn
         const submit_btn = document.getElementById("sub")
+        const delete_btn = document.getElementById("delete")
 
         //genreate unique id
          let uid = Math.floor(Math.random() * 100)
@@ -102,14 +103,15 @@
             product_array.push({
                 "user_id" : uid,
                 "product_name" : pr_name.value,
-                "product_price" : price.value,
+                "product_price" : "₹"+price.value,
                 "product_ram" : ram.value,
                 "product_rom" : rom.value,
                 "product_img_1" : img_1.value,
                 "product_img_2" : img_2.value,
                 "product_img_3" : img_3.value,
                 "product_img_4" : img_4.value,
-                "highlights" : highlights.value
+                "highlights" : highlights.value,
+                "status" : true
             })
 
           
@@ -171,7 +173,7 @@
     highlights.value = search["highlights"]
 
     const edit_btn = document.getElementById("edit")
-    const delete_btn = document.getElementById("delete")
+   
 
 
     
@@ -207,6 +209,8 @@
     } else {
     //change btn name
     edit_btn.innerHTML = "SAVE"
+
+    //enable the inputs
     pr_name.removeAttribute("disabled")
     ram.removeAttribute("disabled")
     rom.removeAttribute("disabled")
@@ -217,11 +221,46 @@
     img_4.removeAttribute("disabled")
     highlights.removeAttribute("disabled")
 
+
+    //getting products array for update
+    const mob_arr = JSON.parse(localStorage.getItem("products"))
+   
+
+ mob_arr.find(function (e) {
+    if (search["user_id"] === e["user_id"]) {
+        e["product_name"] = pr_name.value
+    e["product_price"] = price.value
+    e["product_ram"] = ram.value
+    e["product_rom"] = rom.value
+    e["product_img_1"] = img_1.value
+    e["product_img_2"] = img_2.value
+    e["product_img_3"] = img_3.value
+    e["product_img_4"] = img_4.value
+    e["highlights"] = highlights.value
+ 
+    localStorage.setItem("products",JSON.stringify(mob_arr))
+    }
     
+})
+
+
   }
     })
 
+         
+    delete_btn.addEventListener("click",function(){
+        const product_array = JSON.parse(localStorage.getItem("products"))
 
+        product_array.find(function (erase) {
+            if (search["user_id"] === erase["user_id"]){
+
+                erase["status"] = false
+                localStorage.setItem("products",JSON.stringify(product_array))
+            }
+        })
+    })
+  
+  
     
     
 

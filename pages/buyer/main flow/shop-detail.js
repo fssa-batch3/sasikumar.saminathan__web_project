@@ -111,3 +111,63 @@ for (let j = 3; 0 <= j; j--) //loop for creating 12 product cards
     p_1.innerHTML = product_list[j].rating
     document.querySelector(".rating-2").append(p_1)
 }
+
+const product_array = JSON.parse(localStorage.getItem("products"))
+
+
+//get url from search bar
+const url = window.location.search;
+
+const urlParams = new URLSearchParams(url);
+
+const productname = urlParams.get("id")
+
+const search = product_array.find(function (userobj){
+
+const name = userobj["user_id"]+"";
+//console.log(name);
+
+//console.log(name);
+if (productname === name) {
+    return true
+
+} else {
+
+    return false
+}
+})
+
+//button elements
+const order = document.getElementById("buy")
+const cart = document.getElementById("cart")
+
+//this function for add to cart
+cart.addEventListener("click",function(){
+    search["cart"] = true
+    localStorage.setItem("products",JSON.stringify(product_array))
+})
+
+order.addEventListener("click",function(){
+const quantity = document.getElementById("quantity")
+search["quantity"] = quantity.value
+
+localStorage.setItem("products",JSON.stringify(product_array))
+
+window.location.href = "../address.html?id="+productname
+})
+
+
+const pro_name = document.getElementById("pr_name")
+const pro_image = document.getElementById("pr_image")
+const pro_price = document.getElementById("pr_price")
+
+pro_name.innerText = search["product_name"]
+pro_price.innerText = search["product_price"]
+
+pro_image.setAttribute("src",search["product_img_1"])
+
+
+
+
+
+

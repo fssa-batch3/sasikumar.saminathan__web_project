@@ -85,7 +85,7 @@
           </p> -->
         </div>
           <div class="visit">
-            <a aria-label="visit" href="shop-detail.html"><button>Visit store</button></a>
+            <button id="visit_btn">Visit store</button>
             <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
           </div>
       </div>
@@ -208,6 +208,7 @@ const url = window.location.search;
 const urlParams = new URLSearchParams(url);
 //console.log(urlParams);
 const productname = urlParams.get("user_id")
+
 //console.log(productname);
 
 //console.log(productname);
@@ -218,6 +219,7 @@ const search = product_array.find(function (userobj){
     const name = userobj["user_id"]+"";
     //console.log(name);
     user = name
+    
     //console.log(name);
     if (productname === name) {
         return true
@@ -407,10 +409,13 @@ pr_but.addEventListener("click",function(){
     edit.setAttribute("href","../../Seller/product_enter.html?user_id="+user)
 })
 
+//getting elements for passing id in visit btn
 
+const visit = document.getElementById("visit_btn")
 
-
-
+visit.addEventListener("click",function(){
+    window.location.href = "shop-detail.html?id="+productname
+})
 
 </script>  
 </body>

@@ -542,14 +542,29 @@ accessories containers
     menu.classList.toggle('showmenu');
    });
 
+   //get elements from my account btn for redirecting
    const login = document.getElementById("login")
    const profile = JSON.parse(localStorage.getItem("profile"))
+
+   //this condition for showing login text while there is no profile are logged out
+   if (profile == false) {
+
+          login.innerText = "Login"
+    }
+    else if (profile == null) {
+   
+        login.innerText = "Login"
+    }
+
+    //this logic for decide which page want to go in diffrent situation
    login.addEventListener("click",function(){
     if (profile == false) {
         window.location.href ="/pages/sign-in/login.html"
+        login.innerText = "Login"
     }
     else if (profile == null) {
         window.location.href ="/pages/sign-in/login.html"
+        login.innerText = "Login"
     }
     else{
         window.location.href ="/pages/sign-in/real-profile.html"
@@ -559,8 +574,20 @@ accessories containers
    //produucts display from object
    const product_array = JSON.parse(localStorage.getItem("products"))
    //console.log(product_array);
+  const pr_array = product_array.filter(function (e) {
 
-   for (let j=0; j< product_array.length; j++) //loop for creating 12 product cards
+    if (e["status"] === true) {
+        return true
+    }
+    else{
+        return false
+    }
+    
+   })
+   
+//    console.log(false);
+
+   for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
         {
             //div 1 class name: pack
             const div_2 = document.createElement("div");
@@ -569,7 +596,7 @@ accessories containers
 
             //product img
             const img = document.createElement("img");
-            img.setAttribute("src", product_array[j]["product_img_1"])
+            img.setAttribute("src", pr_array[j]["product_img_1"])
             img.setAttribute("alt", "redmi_note_11")
             img.setAttribute("width", "150px")
             img.setAttribute("height", "200px")
@@ -579,13 +606,13 @@ accessories containers
             const a = document.createElement("a");
             a.setAttribute("aria-label", "redmi")
             a.setAttribute("class", "mob-link")
-            a.setAttribute("href", "/pages/buyer/main flow/product-detail.html?user_id="+ product_array[j]["user_id"])
+            a.setAttribute("href", "/pages/buyer/main flow/product-detail.html?user_id="+ pr_array[j]["user_id"])
             div_2.append(a)
 
             //product name
             const h4 = document.createElement("h4");
             h4.setAttribute("class", "detail-1")
-            h4.innerHTML = product_array[j]["product_name"]
+            h4.innerHTML = pr_array[j]["product_name"]
             a.append(h4)
 
             //div 2 class name: rate for show price
@@ -595,7 +622,7 @@ accessories containers
 
             //product price
             const h2 = document.createElement("h2");
-            h2.innerHTML = "₹"+product_array[j]["product_price"]
+            h2.innerHTML = pr_array[j]["product_price"]
             div_3.append(h2)
 
             //product price

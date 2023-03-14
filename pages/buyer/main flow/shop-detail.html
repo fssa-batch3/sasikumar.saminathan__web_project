@@ -56,10 +56,10 @@
         <div class="line-2"></div>
     </div>
     <div class="product-container">
-        <img src="../../../assets/image/note-11-2201117ti-redmi-original-imagbh8dmpjfzrjw.webp" alt="" width="200px" height="250px">
+        <img id="pr_image" src="" alt="" width="200px" height="250px">
         <div class="rate">
-            <h2><b>Redmi Note 11 (Horizon Blue, 128 GB)  (6 GB RAM)</b></h2>
-            <p class="price"><b>₹14,690</b></p>
+            <h2 id="pr_name"><b>Redmi Note 11 (Horizon Blue, 128 GB)  (6 GB RAM)</b></h2>
+            <p class="price" id="pr_price"><b>₹14,690</b></p>
             <div class="rating">
                 <div class="rating-1">
                     <h5>4.3</h5><i class="fa fa-star" aria-hidden="true"></i>
@@ -75,11 +75,11 @@
             </div>
             <span class="quantity">
                 <p><b>Qty</b></p>
-                <input type="number" min="1" max="100">
+                <input type="number" min="1" max="100" id="quantity" value="">
             </span>
            <div class="buy-btns">
-            <a href="../cart.html"><button class="btn-buy"><p><b>Add cart </b><i class="fa-solid fa-cart-shopping"></i></p></button></a>
-            <a href="../address.html"><button class="btn-buy"><p><b>Buy now </b> <i class="fa-solid fa-angles-right"></i></p></button></a>
+            <a><button class="btn-buy" id="cart"><p><b>Add cart </b><i class="fa-solid fa-cart-shopping"></i></p></button></a>
+            <a><button class="btn-buy" id="buy"><p><b>Buy now </b> <i class="fa-solid fa-angles-right"></i></p></button></a>
            </div>
     </div>
     <!-- similliar products here -->
@@ -154,7 +154,10 @@
      </div>
 </footer>
 <script src="shop-detail.js">
-   
+
+
+
+
 </script>
 </body>
 </html>
