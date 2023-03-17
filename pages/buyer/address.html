@@ -42,32 +42,46 @@
            <div> <input type="text" placeholder="Pincode"  id="pincode"></div>
             <div><input type="text" placeholder="Nearby location(optional)" id="spd"></div>
         </div>
-        <a href="payment.html"><button class="but-1" onclick="getData()" type="button"><b>Deliver here</b></button></a>
+        <a><button class="but-1" id="deliver" type="button"><b>Deliver here</b></button></a>
 </form>
    </div>
 </main> 
 <script>
-    function getData(){
-      const name= document.getElementById("name").value
-      const number= document.getElementById("number.value")  
-      const house_no= document.getElementById("house_no").value
-      const area= document.getElementById("area").value
-      const pincode= document.getElementById("pincode").value
-      const spd= document.getElementById("spd").value
+    // function getData(){
+    //   const name= document.getElementById("name").value
+    //   const number= document.getElementById("number.value")  
+    //   const house_no= document.getElementById("house_no").value
+    //   const area= document.getElementById("area").value
+    //   const pincode= document.getElementById("pincode").value
+    //   const spd= document.getElementById("spd").value
 
-    console.log(name)
-    console.log(number)
-    console.log(house_no)
-    console.log(area)
-    console.log(pincode)
-    console.log(spd)
-
-
-    localStorage.setItem("user_email",email)
+    // console.log(name)
+    // console.log(number)
+    // console.log(house_no)
+    // console.log(area)
+    // console.log(pincode)
+    // console.log(spd)
 
 
-    window.location.href="../../index.html"
-    }
+    // localStorage.setItem("user_email",email)
+
+   
+    // }
+
+    const deliver = document.getElementById("deliver")
+
+    deliver.addEventListener("click",function(){
+        //get url from search bar
+    const url = window.location.search;
+
+    const urlParams = new URLSearchParams(url);
+
+    const productname = urlParams.get("id")
+
+    window.location.href = "payment.html?id="+productname
+
+
+    })
 
 </script>  
     

@@ -29,9 +29,50 @@
             <div class="radio radio-4"><input type="radio" name="radio"><img src="../../assets/icon/icons8-merchant-account-50.png" alt="" width="30px" height="30px"><p>Net banking</p></div>
             <div class="radio radio-5"><input type="radio" name="radio"><img src="../../assets/icon/icons8-cash-on-delivery-66.png" alt="" width="30px" height="30px"><p>Cash on delivery</p></div>
         </div>
-        <a href="order.html"><button class="btn">CONFIRM ORDER</button></a>
+        <a href="order.html"><button class="btn" id="order">CONFIRM ORDER</button></a>
      </form>
     </div>
-</main>   
+</main> 
+<script>
+ //get product details array from local storage
+ const product_array = JSON.parse(localStorage.getItem("products"))
+ //console.log(product_array)
+
+//get url from search bar
+const url = window.location.search;
+//console.log(url);
+const urlParams = new URLSearchParams(url);
+//console.log(urlParams);
+const productname = urlParams.get("id")
+
+//console.log(productname);
+
+//console.log(productname);
+
+let user
+const search = product_array.find(function (userobj){
+
+    const name = userobj["user_id"]+"";
+    //console.log(name);
+    user = name
+    
+    //console.log(name);
+    if (productname === name) {
+        return true
+
+    } else {
+
+        return false
+
+    }
+})
+const order_btn = document.getElementById("order")
+
+order_btn.addEventListener("click",function(){
+    search["order"] = true
+    localStorage.setItem("products",JSON.stringify(product_array))
+})
+
+</script>  
 </body>
 </html>

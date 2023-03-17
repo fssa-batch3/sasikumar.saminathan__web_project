@@ -49,7 +49,15 @@
         <div class="head"><p>My Orders</p><hr></div>
         <input type="search" placeholder="search your orders here" class="search" id="search">
         <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
-        <div class="main_container">
+        <div class="order_container"></div>
+        <div class="cancel">
+            <p>Are you reallly going to cancel the order</p>
+            <div class="sure_btn">
+                <button id="sure">YES</button>
+                <button>NO</button>
+            </div>
+        </div>
+        <!-- <div class="main_container">
             <img src="../../assets/image/galaxy-s21-fe-5g-lavender-8gb-128gb-storage-sm-g990elviinu-original-imagbnbdaj3tygup.webp" alt="" id="product_img">
           <div class="product_info">  <p id="product_name">SAMSUNG Galaxy S21 FE 5G (Lavender, 128 GB)</p>
            <div class="product_price">
@@ -69,8 +77,194 @@
             <button><i class="fa-solid fa-xmark"></i><p>Cancel order</p></button>
             </div>
          </div>
-        </div>
+        </div> -->
     </main>
+
+    <script>
+
+        //get the product array from localstorage 
+        const product_array = JSON.parse(localStorage.getItem("products"))
+
+        //filtter the array based orders
+         const pr_array = product_array.filter(function (e) {
+
+
+        if (e["order"] === true) {
+            return true
+            
+        }
+        else{
+            return false
+        }
+
+
+})
+
+
+    for(let j = 0; j < pr_array.length;j++){
+
+    //ordered products main container  
+    const main_div = document.createElement("div")
+    main_div.setAttribute("class","main_container")
+
+    //product image
+    const img = document.createElement("img")
+    img.setAttribute("id","product_img")
+    img.setAttribute("alt","product_img")
+    img.setAttribute("src",pr_array[j]["product_img_1"])
+    main_div.append(img)
+   
+
+    //div 2 containes product info
+    const div_2 = document.createElement("div")
+    div_2.setAttribute("class","product_info")
+    main_div.append(div_2)
+
+    //product name
+    const pr_name = document.createElement("p")
+    pr_name.setAttribute("id","product_name")
+    pr_name.innerText = pr_array[j]["product_name"]
+    div_2.append(pr_name)
+
+    //div 3 contains product price details
+    const div_3 = document.createElement("div")
+    div_3.setAttribute("class","product_price")
+    div_2.append(div_3)
+
+    //p tag for quantity
+    const pr_qty = document.createElement("p")
+    pr_qty.innerText = "Qty"+" "+pr_array[j]["quantity"]
+    div_3.append(pr_qty)
+
+    //product price
+    const pr_price = document.createElement("p")
+    pr_price.innerText = pr_array[j]["product_price"]
+    div_3.append(pr_price)
+
+    //div 4 contains status about product
+    const div_4 = document.createElement("div")
+    div_4.setAttribute("class","status")
+    main_div.append(div_4)
+
+    //p tag for status
+    const pr_status = document.createElement("p")
+    pr_status.innerText = "status"
+    div_4.append(pr_status)
+
+    //status progress
+    const pr_status_info = document.createElement("p")
+    pr_status_info.innerText = "In-transit"
+    div_4.append(pr_status_info)
+
+    //div 5 expected date to order 
+    const div_5 = document.createElement("div")
+    div_5.setAttribute("class","date")
+    main_div.append(div_5)
+
+    //indicate date
+    const expect_date = document.createElement("p")
+    expect_date.innerText = "Delivery expected by"
+    div_5.append(expect_date)
+
+    //expected date to order
+    const date = document.createElement("p")
+    date.innerText = "7 March 2023"
+    div_5.append(date)
+
+    //btn_div contain with btn's 
+    const btn_div = document.createElement("div")
+    btn_div.setAttribute("class","btn")
+    div_5.append(btn_div)
+
+    //track order btn
+    const track_btn = document.createElement("button")
+    btn_div.append(track_btn)
+
+    //track order icon
+    const track_icon = document.createElement("i")
+    track_icon.setAttribute("class","fa-solid fa-location-crosshairs")
+    track_btn.append(track_icon)
+
+    //track order text
+    const track_p = document.createElement("p")
+    track_p.innerText = "Track order"
+    track_btn.append(track_p)
+
+    //cancel order btn
+    let cancel_btn = document.createElement("button")
+    cancel_btn.setAttribute("data-keyword",pr_array[j]["user_id"])
+    cancel_btn.setAttribute("id","cancel_btn")
+    btn_div.append(cancel_btn)
+
+    //cancel order icon
+    const cancel_icon = document.createElement("i")
+    cancel_icon.setAttribute("class","fa-solid fa-xmark")
+    cancel_btn.append(cancel_icon)
+
+    //cancel order text
+    const cancel_p = document.createElement("p")
+    cancel_p.innerText = "Cancel order"
+    cancel_btn.append(cancel_p)
+
+    document.querySelector(".order_container").append(main_div)
+
+    cancel_btn.addEventListener("click",function remove(e){
+        const confirm_pop = document.querySelector(".cancel")
+        confirm_pop.classList.toggle('cancel_active');
+        const sure = document.getElementById("sure")
+
+                sure.addEventListener("click",function(){
+
+        //get id from data keyword
+        const data = cancel_btn.dataset.keyword
+    
+
+    const order_arr = JSON.parse(localStorage.getItem("products"))
+    
+    order_arr.find(function(order){
+        
+        if (data === order["user_id"]+"") {
+            order["order"] = false
+
+            localStorage.setItem("products",JSON.stringify(order_arr))
+
+            main_div.remove();
+
+            confirm_pop.classList.toggle('cancel_active');
+        }
+
+        
+    })
+           
+        })
+
+            
+        
+    }) 
+
+
+    }
+
+    // const cancel_but = document.getElementById("cancel_btn")
+    // const confirm_pop = document.querySelector(".cancel")
+
+    // cancel_but.addEventListener("click",function remove(e){
+    //     // confirm_pop.classList.toggle('cancel_active');
+
+    //     // const sure = document.getElementById("sure")
+
+    //     // sure.addEventListener("click",function(){
+    //     //     const main = document.querySelector(".main_container")
+    //     //     main.style.display = "none"
+    //     // })
+    //     alert("why")
+        
+    // }) 
+
+   
+
+
+    </script>
        
 </body>
 </html>
