@@ -201,6 +201,24 @@
         if (edit_btn.innerHTML == "SAVE") {
              edit_btn.innerHTML = "EDIT"
              set();
+             const pr_array = JSON.parse(localStorage.getItem("products"))
+
+pr_array.find(function (e) {
+    if (search["user_id"] === e['user_id']) {
+e["product_name"] = pr_name.value
+e["product_ram"] = ram.value
+e["product_rom"] = rom.value
+e["product_price"] = price.value
+e["product_img_1"] = img_1.value
+e["product_img_2"] = img_2.value
+e["product_img_3"] = img_3.value
+e["product_img_4"] = img_4.value
+e["highlights"] = highlights.value
+
+localStorage.setItem("products",JSON.stringify(pr_array))
+
+    }
+})
 
 
 
@@ -217,8 +235,18 @@
     img_4.removeAttribute("disabled")
     highlights.removeAttribute("disabled")
 
+
     
   }
+    })
+    delete_btn.addEventListener("click",function(){
+        product_array.find(function(obj){
+            if (search["user_id"] === obj["user_id"]) {
+                obj["status"] = false
+
+                localStorage.setItem("products",JSON.stringify(product_array))
+            }
+        })
     })
 
 
