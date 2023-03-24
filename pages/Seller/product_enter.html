@@ -11,7 +11,7 @@
  <form>
     <div class="main_container">
         <div><p>Product Name</p><input type="text" class="inputs" id="pr_name"></div>
-      <div><p>Product price</p><input type="number" class="inputs" id="pr_price"></div>
+      <div><p>Product price</p><input type="text" class="inputs" id="pr_price"></div>
       <div><p>Ram</p><input type="number" class="inputs" id="pr_ram"></div>
       <div><p>Rom</p><input type="number" class="inputs" id="pr_rom"></div>
     <div class="product-img">
@@ -90,6 +90,7 @@
 
         //genreate unique id
          let uid = Math.floor(Math.random() * 100)
+         
 
 
         submit_btn.addEventListener("click",function(e){
@@ -103,7 +104,7 @@
             product_array.push({
                 "user_id" : uid,
                 "product_name" : pr_name.value,
-                "product_price" : "₹"+price.value,
+                "product_price" : "₹ " + price.value,
                 "product_ram" : ram.value,
                 "product_rom" : rom.value,
                 "product_img_1" : img_1.value,

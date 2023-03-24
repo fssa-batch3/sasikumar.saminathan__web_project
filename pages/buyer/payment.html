@@ -66,11 +66,26 @@ const search = product_array.find(function (userobj){
 
     }
 })
+
+//get users id for idnefiying
+const user_array = JSON.parse(localStorage.getItem("profile"))
+console.log(user_array["user_id"]);
+
 const order_btn = document.getElementById("order")
 
 order_btn.addEventListener("click",function(){
-    search["order"] = true
-    localStorage.setItem("products",JSON.stringify(product_array))
+    let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
+
+    let uid = Math.floor(Math.random() * 1000)
+    order_arr.push(
+        {
+            "order_id" : uid,
+            "user_id" : user_array["user_id"],
+            "product_id" : search["user_id"]
+        }
+    )
+
+    localStorage.setItem("orders",JSON.stringify(order_arr));
 })
 
 </script>  

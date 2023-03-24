@@ -82,23 +82,36 @@
 
     <script>
 
-        //get the product array from localstorage 
-        const product_array = JSON.parse(localStorage.getItem("products"))
+    //first step : get the id from url and filter the objects
+    const url = window.location.search
+    const urlParams = new URLSearchParams(url)  
+    const username = JSON.parse(urlParams.get("user_id"))
 
-        //filtter the array based orders
-         const pr_array = product_array.filter(function (e) {
-
-
-        if (e["order"] === true) {
+    //get orders array from localstorage
+    const orders_arr = JSON.parse(localStorage.getItem("orders"))
+   const order =  orders_arr.filter(function (obj) {
+        
+        if (obj["user_id"] === username && obj["order"] !== false) {
             return true
-            
         }
         else{
             return false
         }
+    });
+    // console.log(order);
+    const product_arr = JSON.parse(localStorage.getItem("products"))
+    const pr_array = []
+    for(j = 0; j < order.length;j++ ){
+
+    for(i = 0; i < product_arr.length;i++){
+        if(order[j]["product_id"] ===  product_arr[i]["user_id"]){
+            pr_array.push(product_arr[i])
+        }
+    }
+}
+    // console.log(pr_array);
 
 
-})
 
 
     for(let j = 0; j < pr_array.length;j++){
@@ -192,7 +205,7 @@
 
     //cancel order btn
     let cancel_btn = document.createElement("button")
-    cancel_btn.setAttribute("data-keyword",pr_array[j]["user_id"])
+    cancel_btn.setAttribute("data-keyword",order[j]["order_id"])
     cancel_btn.setAttribute("id","cancel_btn")
     btn_div.append(cancel_btn)
 
@@ -219,47 +232,31 @@
         const data = cancel_btn.dataset.keyword
     
 
-    const order_arr = JSON.parse(localStorage.getItem("products"))
+    const order_arr = order
     
     order_arr.find(function(order){
         
-        if (data === order["user_id"]+"") {
+        if (data === order["order_id"]+"") {
+            
             order["order"] = false
 
-            localStorage.setItem("products",JSON.stringify(order_arr))
+            localStorage.setItem("orders",JSON.stringify(order_arr))
 
             main_div.remove();
 
-            confirm_pop.classList.toggle('cancel_active');
+            confirm_pop.classList.remove('cancel_active');
         }
 
         
-    })
-           
-        })
+         })
+       })   
+     }) 
+   }
 
-            
-        
-    }) 
-
-
-    }
-
-    // const cancel_but = document.getElementById("cancel_btn")
-    // const confirm_pop = document.querySelector(".cancel")
-
-    // cancel_but.addEventListener("click",function remove(e){
-    //     // confirm_pop.classList.toggle('cancel_active');
-
-    //     // const sure = document.getElementById("sure")
-
-    //     // sure.addEventListener("click",function(){
-    //     //     const main = document.querySelector(".main_container")
-    //     //     main.style.display = "none"
-    //     // })
-    //     alert("why")
-        
-    // }) 
+   //set order count in profile
+   const profile = JSON.parse(localStorage.getItem("profile"))
+   profile["order_count"] = pr_array.length
+   localStorage.setItem("profile",JSON.stringify(profile))
 
    
 

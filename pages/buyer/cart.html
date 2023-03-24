@@ -26,8 +26,12 @@
     </ul>
 </header>
 <main>
+    <div id="empty">
+        <img src="../../assets/icon/shopping-basket-add.png"/>
+        <p>Cart feel lonely so add some products</p>
+    </div>
 <div class="main-product">
-        <div class="product-container">
+        <!-- <div class="product-container">
         <img src="../../assets/image/note-11-2201117ti-redmi-original-imagbh8dmpjfzrjw.webp" alt="" width="200px" height="250px">
         <div class="rate">
             <h2><b>Redmi Note 11 (Horizon Blue, 128 GB)  (6 GB RAM)</b></h2>
@@ -75,30 +79,237 @@
                 <input type="number">
             </span>
             <a href="#"><button class="btn-buy"><p><b>Remove</b><i class="fa-solid fa-trash"></i></p></button></a>
-    </div>
+    </div> -->
 </div>
     <div class="total">
      <h2>PRICE DETAILS</h2>
      <div class="list">
-        <ul>
-            <li>Redmi Note 11</li>
+        <ul id="ul_1">
+            <!-- <li>Redmi Note 11</li>
             <li>Samsung galaxy S21 FE</li>
-            <li>Delivery charges</li>
+            <li>Delivery charges</li> -->
         </ul>
-        <ul>
-            <li>₹14,690</li>
+        <ul id="ul_2">
+            <!-- <li>₹14,690</li>
             <li>₹39,999</li>
-            <li>FREE</li>
+            <li>FREE</li> -->
         </ul>
      </div>
      <hr id="hrtag">
      <div class="amount">
         <p><b>Total payment</b></p>
-        <p><b>₹54,689</b></p>
+        <p id="total_amount"><b></b></p>
     </div>
     </div>
 </main>
    <script>
+    //first step : get the id from url and filter the objects
+    const url = window.location.search
+    const urlParams = new URLSearchParams(url)  
+    const username = JSON.parse(urlParams.get("user_id"))
+
+    const cart_arr = JSON.parse(localStorage.getItem("cart"))
+
+    const cart_obj = cart_arr.filter(function (obj) {
+        if (username === obj["user_id"] && obj["cart"] !== false) {
+            return true
+        }
+        else{
+            return false
+        }
+    })
+    //console.log(cart_obj);
+    //geting products array for match with cart objects
+    const product_arr = JSON.parse(localStorage.getItem("products"))
+    //pushing finded arraysin this array
+    const pr_array = []
+    for(j = 0; j < cart_obj.length;j++ ){
+
+    for(i = 0; i < product_arr.length;i++){
+    if(cart_obj[j]["product_id"] ===  product_arr[i]["user_id"]){
+        pr_array.push(product_arr[i])
+    
+    }
+}
+}
+//console.log(pr_array);
+
+let product_total = 0;
+
+for(k = 0;k < pr_array.length;k++){
+        //creating elements for read cart containers
+    
+    //main container with contain every elements
+    // <div class="product-container">
+        const main_div = document.createElement("div")
+    main_div.setAttribute("class","product-container")
+
+    // <img src="../../assets/image/note-11-2201117ti-redmi-original-imagbh8dmpjfzrjw.webp" alt="" width="200px" height="250px">
+    const img = document.createElement("img")
+    img.setAttribute("src",pr_array[k]["product_img_1"])
+    img.setAttribute("alt","mobile_img")
+    main_div.append(img)
+
+    // <div class="rate">
+    const div_2 = document.createElement("div")
+    div_2.setAttribute("class","rate")
+    main_div.append(div_2)
+
+    // <h2><b>Redmi Note 11 (Horizon Blue, 128 GB)  (6 GB RAM)</b></h2>
+    const pr_name = document.createElement("h2")
+    pr_name.innerText = pr_array[k]["product_name"]
+    div_2.append(pr_name)
+
+    // <p class="price"><b>₹14,690</b></p>
+    const pr_price = document.createElement("p")
+    pr_price.setAttribute("class","price")
+    pr_price.innerText = pr_array[k]["product_price"]
+    div_2.append(pr_price)
+
+    // <div class="rating">
+    const div_3 = document.createElement("div")
+    div_3.setAttribute("class","rating")
+    div_2.append(div_3)
+
+    // <div class="rating-1">
+    const div_4 = document.createElement("div")
+    div_4.setAttribute("class","rating-1")
+    div_3.append(div_4)
+
+    // <h5>4.3</h5>
+    const rating = document.createElement("h5")
+    rating.innerText ="4.3"
+    div_4.append(rating)
+
+    // <i class="fa fa-star" aria-hidden="true"></i> 
+    const star = document.createElement("i")
+    star.setAttribute("class","fa fa-star")
+    // star.setAttribute("aria-hidden","true")
+    div_4.append(star)
+
+    // <p>26,443 Ratings</p>
+    const ratings = document.createElement("p")
+    ratings.innerText = "26,443 Ratings"
+    div_3.append(ratings)
+
+    // <div class="free rating-1">
+    const div_5 = document.createElement("div")
+    div_5.setAttribute("class","free rating-1")
+    div_2.append(div_5)
+
+    // <h5>Free delivery</h5>
+    const delivery = document.createElement("h5")
+    delivery.innerText = "Free delivery"
+    div_5.append(delivery)
+
+    // <div class="order rating-1">
+    const div_6 = document.createElement("div")
+    div_6.setAttribute("class","order rating-1")
+    div_2.append(div_6)
+
+    // <h5>order delivered within 1 hour</h5>
+    const duration = document.createElement("h5")
+    duration.innerText = "order delivered within 1 hour"
+    div_6.append(duration)
+
+    // <i class="fa-solid fa-truck-fast"></i>
+    const truck = document.createElement("i")
+    truck.setAttribute("class","fa-solid fa-truck-fast")
+    div_6.append(truck)
+
+    //<span class="quantity">
+    const span = document.createElement("span")
+    span.setAttribute("class","quantity")
+    main_div.append(span)
+
+    // <p><b>Qty</b></p>
+    const qty = document.createElement("p")
+    qty.innerText = "Qty"
+    span.append(qty)
+
+    // <input type="number">
+    const input = document.createElement("input")
+    input.setAttribute("type","number")
+    span.append(input)
+
+    // <a href="#">
+    const anker = document.createElement("a")
+    anker.setAttribute("href","#")
+    main_div.append(anker)
+
+    // <button class="btn-buy">
+    const btn = document.createElement("button")
+    btn.setAttribute("data-keyword",cart_obj[k]["cart_id"])
+    btn.setAttribute("class","btn-buy")
+    anker.append(btn)
+
+    // <p><b>Remove</b><i class="fa-solid fa-trash"></i></p>
+    const remove = document.createElement("p")
+    remove.innerText = "Remove"
+    btn.append(remove)
+
+    const trash = document.createElement("i")
+    trash.setAttribute("class","fa-solid fa-trash")
+    remove.append(trash)
+
+    document.querySelector(".main-product").append(main_div)
+
+    btn.addEventListener("click",function (obj) {
+
+        const data = btn.dataset.keyword
+        const detail = document.querySelector(".total")
+       const cart_array = cart_obj
+
+       console.log(cart_array);
+       
+       cart_array.find(function (obj) {
+            if (obj["cart_id"]+"" === data) {
+                main_div.remove();
+                
+                obj["cart"] = false
+                localStorage.setItem("cart",JSON.stringify(cart_array))
+            }
+       })
+       if (cart_obj.length === 1) {
+    detail.remove()
+    detail.style.display = "none"
+    empty.style.display = "block"
+
+
+}
+
+        
+        
+    })
+    
+    const list = document.createElement("li")
+    list.innerText = pr_array[k]["product_name"]
+    document.querySelector("#ul_1").append(list)
+
+    const list_2 = document.createElement("li")
+    list_2.innerText = pr_array[k]["product_price"]
+    document.querySelector("#ul_2").append(list_2)
+
+    
+    const product_pr = parseFloat(pr_array[k]["product_price"]);
+    product_total = product_total + product_pr;
+
+}
+//this logic for hide price details if products not there in cart page
+const main_div = document.querySelector(".product-container")
+const detail = document.querySelector(".total")
+const empty = document.getElementById("empty")
+ if (cart_obj.length == 0) {
+    detail.remove()
+    detail.style.display = "none"
+    empty.style.display = "block"
+
+}
+
+    const total = document.getElementById("total_amount")
+
+    total.innerText =  product_total
+
     
    </script> 
 </body>

@@ -39,11 +39,11 @@
             <li><a aria-label="seller" href="pages/Seller/Seller.html">
                     <p class="seller">Seller</p>
                 </a></li>
-            <li><a aria-label="cart" href="./pages/buyer/cart.html"><i class="home-icon fa fa-shopping-cart"
+            <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
                         aria-hidden="true"></i></a></li>
             <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
                         class="home-icon fa-solid fa-location-dot"></i></a></li>
-                        <li><a href="/pages/buyer/my_orders.html"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
+                        <li><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
 
         </ul>
         <i id="bar" class="fa-solid fa-bars"></i>
@@ -569,7 +569,35 @@ accessories containers
     else{
         window.location.href ="/pages/sign-in/real-profile.html"
     }
+   });
+
+   //this logic for user going to orders page
+   const orders = document.getElementById("order")
+   const cart = document.getElementById("cart")
+   const user_obj = JSON.parse(localStorage.getItem("profile"))
+   orders.addEventListener("click",function(){
+    if (profile == false) {
+        window.location.href ="/pages/sign-in/login.html"
+    }
+    else if (profile == null) {
+        window.location.href ="/pages/sign-in/login.html"
+    }
+    else{
+        window.location.href ="/pages/buyer/my_orders.html?user_id="+user_obj["user_id"]
+    }
    })
+   cart.addEventListener("click",function(){
+    if (profile == false) {
+        window.location.href ="/pages/sign-in/login.html"
+    }
+    else if (profile == null) {
+        window.location.href ="/pages/sign-in/login.html"
+    }
+    else{
+        window.location.href ="./pages/buyer/cart.html?user_id="+user_obj["user_id"]
+    }
+   })
+
 
    //produucts display from object
    const product_array = JSON.parse(localStorage.getItem("products"))
@@ -622,7 +650,7 @@ accessories containers
 
             //product price
             const h2 = document.createElement("h2");
-            h2.innerHTML = pr_array[j]["product_price"]
+            h2.innerHTML = pr_array[j]["product_price"]+" "
             div_3.append(h2)
 
             //product price

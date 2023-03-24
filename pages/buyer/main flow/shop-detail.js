@@ -141,10 +141,32 @@ if (productname === name) {
 const order = document.getElementById("buy")
 const cart = document.getElementById("cart")
 
+const user_array = JSON.parse(localStorage.getItem("profile"))
+
+
 //this function for add to cart
 cart.addEventListener("click",function(){
-    search["cart"] = true
-    localStorage.setItem("products",JSON.stringify(product_array))
+
+if (user_array === false || user_array === null) {
+
+    window.location.href = "../../sign-in/login.html"
+}
+else{
+    let cart_arr = JSON.parse(localStorage.getItem("cart"))?JSON.parse(localStorage.getItem("cart")):[]
+
+    //creating unique id
+    let uid = Math.floor(Math.random() * 1000)
+    cart_arr.push(
+        {
+            "cart_id" : uid,
+            "user_id" : user_array["user_id"],
+            "product_id" : search["user_id"]
+        }
+    )
+
+    localStorage.setItem("cart",JSON.stringify(cart_arr));
+
+    window.location.href = "../cart.html?user_id="+user_array["user_id"]}
 })
 
 order.addEventListener("click",function(){
@@ -163,7 +185,6 @@ const pro_price = document.getElementById("pr_price")
 
 pro_name.innerText = search["product_name"]
 pro_price.innerText = search["product_price"]
-
 pro_image.setAttribute("src",search["product_img_1"])
 
 
