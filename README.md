@@ -19,7 +19,7 @@ Wireframe:
   Side flow:https://drive.google.com/file/d/1-5oYQCEtval2QF9xDBO6xgrZRMC561qj/view?usp=sharing
   
   
-### Feautures list
+# Feautures list
 
 ## customer
 User registration   Finished
@@ -29,20 +29,20 @@ profile read        Finished
 profile_update      Finished
 profile_delete      Finished
 
-# Product
+### Product
 Create Product      Finished
 Product Read        Finished
 Product Update      Finished
 product delete      Fineshed
 
-# cart
+### cart
 cart create         Finished
 cart update         Finished
 cart delete         Finished
 cart count          Finished
 cart full amount    Finished
 
-# order
+### order
 Create Order        Finished
 order place         Finished
 order cancel        Finished
