@@ -22,35 +22,36 @@ Wireframe:
 # Feautures list
 
 ## customer
-User registration   Finished
-login               Finished
-profile create      Finished
-profile read        Finished
-profile_update      Finished
-profile_delete      Finished
+
+| User registration   Finished |
+| login               Finished |
+| profile create      Finished |
+| profile read        Finished |
+| profile_update      Finished |
+| profile_delete      Finished |
 
 ### Product
-Create Product      Finished
-Product Read        Finished
-Product Update      Finished
-product delete      Fineshed
+| Create Product      Finished |
+| Product Read        Finished |
+| Product Update      Finished |
+| product delete      Fineshed |
 
 ### cart
-cart create         Finished
-cart update         Finished
-cart delete         Finished
-cart count          Finished
-cart full amount    Finished
+| cart create         Finished |
+| cart update         Finished |
+| cart delete         Finished |
+| cart count          Finished |
+| cart full amount    Finished |
 
 ### order
-Create Order        Finished
-order place         Finished
-order cancel        Finished
+| Create Order        Finished | 
+| order place         Finished |
+|order cancel         Finished |
 
 ## seller
 
-shop update         yet to start
-shop edit           yet to start
+| shop update         yet to start |
+| shop edit           yet to start |
 
 
 
