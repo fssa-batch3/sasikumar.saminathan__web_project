@@ -21,46 +21,30 @@ Wireframe:
   
 # Feautures list
 
-## customer
-
-| User registration   Finished |
-| login               Finished |
-| profile create      Finished |
-| profile read        Finished |
-| profile_update      Finished |
-| profile_delete      Finished |
-
-### Product
-| Create Product      Finished |
-| Product Read        Finished |
-| Product Update      Finished |
-| product delete      Fineshed |
-
-### cart
-| cart create         Finished |
-| cart update         Finished |
-| cart delete         Finished |
-| cart count          Finished |
-| cart full amount    Finished |
-
-### order
-| Create Order        Finished | 
-| order place         Finished |
-|order cancel         Finished |
-
-## seller
-
-| shop update         yet to start |
-| shop edit           yet to start |
-
-
-
-
-
-
-
-
-
+|     Feauters       |     status    |
+| ------------------ | ------------- |
+| User registration  | Fineshed      |
+| login              | Fineshed      |
+| profile create     | Fineshed      |
+| profile read       | Fineshed      |
+| profile_update     | Fineshed      |
+| profile_delete     | Fineshed      |
+| Create Product     | Fineshed      |
+| Product Read       | Fineshed      |
+| Product Update     | Fineshed      |
+| Product Delete     | Fineshed      |
+| profile_update     | Fineshed      |
+| cart create        | Fineshed      |
+| cart update        | Fineshed      |
+| cart delete        | Fineshed      |
+| cart count         | Fineshed      |
+| cart full amount   | Fineshed      |
+| create Order       | Fineshed      |
+| order place        | Fineshed      |
+| order cancel       | Fineshed      |
+| shop create        | Yet to start  |
+| shop update        | Yet to start  |
+| shop edit          | Yet to start  |
   
 ### Create an account
 
@@ -73,7 +57,5 @@ Scenario 1: Successfully login in to account Steps: Navigate to the login page. 
 ### Your Profile: 
 Click My account There you can update your information except email. Click logout you can logout from your existing account
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+
+
