@@ -72,3 +72,8 @@ Scenario 1: Successfully login in to account Steps: Navigate to the login page. 
 
 ### Your Profile: 
 Click My account There you can update your information except email. Click logout you can logout from your existing account
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
