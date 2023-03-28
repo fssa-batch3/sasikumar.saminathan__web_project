@@ -85,3 +85,12 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+input:valid
+{
+  border-left: 4px solid var(--secondary);
+}
+input:invalid
+{
+    border-left: 4px solid red;
+}

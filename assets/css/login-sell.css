@@ -81,3 +81,11 @@ body{
     margin-left: 140px;
     margin-top: 30px;
 }
+input:valid
+{
+  border-left: 4px solid var(--secondary);
+}
+input:invalid
+{
+    border-left: 4px solid red;
+}

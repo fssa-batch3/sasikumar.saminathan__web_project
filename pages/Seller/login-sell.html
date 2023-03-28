@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../assets/css/login-sell.css">
+    <script src="../../assets/js/sweetalert.min.js"></script>
 </head>
 <body>
     <main>
@@ -17,9 +18,11 @@
        
         <!-- div class:contain-input contain inputs and button         -->
       <div class="contain-input">
-       <div> <input type="email" placeholder="Email" id="email" ></div>
-       <div> <input type="password" placeholder="Password" id="password"></div>
-        <a><button onclick = "getData()" type="button">LOGIN</button></a>
+     <form id="form">
+        <div> <input type="email" placeholder="Email" id="email" required></div>
+        <div> <input type="password" placeholder="Password" id="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required></div>
+         <a><button type="submit">LOGIN</button></a>
+     </form>
       </div>
       <!-- this anchor tag for redirect to signup page -->
       <p>New seller to Shopnow <a href="signup-sell.html"><b>sign-up</b></a></p>
@@ -29,23 +32,49 @@
  
 
     <script>
-        //this functiotion get value from inputs
-        function getData(){
-          const email = document.getElementById("email").value
-          const password= document.getElementById("password").value  
+    const form = document.querySelector("#form")
+    form.addEventListener('submit',function(event){
+    event.preventDefault();
+    getData();
+            });
+          //get values from inputs
+          const email = document.getElementById("email")
+          const password= document.getElementById("password")  
+
+          function getData() {
+            let array = JSON.parse(localStorage.getItem("sellers"));
+            console.log(array);
+            
+            let res;
+            array.find(element =>{
+                console.log(email);
+                if(element["email"] === email.value && element["password"] === password.value){
+                    let constant = element
+                    localStorage.setItem("profile",JSON.stringify (constant))
+
+
+                    return res = 1;
+                    
+                }
+                else{
+                    return res=0;
+                }
+            });
+            if(res==1){
+                swal("Yep!", "you logged in bruh!", "success");
+
+                 window.location.href="../sign-in/real-profile.html"
+            }
+            else{
+                swal("Oops!", "email or password is not correct!", "error");
+            }
+           
+          }
+
+
    
     
-          console.log(email)
-  console.log(password)
-    
-    
-        localStorage.setItem("user_email",email)
-    
-    
-        window.location.href = "../../index.html"
-        }
-
-    
     </script> 
+ 
 </body>
 </html>

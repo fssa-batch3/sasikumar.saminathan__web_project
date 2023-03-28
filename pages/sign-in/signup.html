@@ -20,7 +20,6 @@
 </div>
 <div class = "login-text">
 
-    <h2 ><b>SIGN UP</b> </h2>
     <!-- form for contain inputs and button -->
  <form id="forms">
     <input type="text" placeholder="Name" class="input-1" id="name" pattern="^[A-Za-z]+" title="use letters only" required>
@@ -80,10 +79,10 @@
 
         user_records.push ({
         "user_id" : user_id,
-        "user_name" : name,
-        "user_no" : num,
-        "user_email" : email,
-        "user_password" : create_password
+        "name" : name,
+        "phone_number" : num,
+        "email" : email,
+        "password" : create_password
     });
 
     //after check this conditons redirect to home page

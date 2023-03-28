@@ -101,8 +101,7 @@
     // console.log(order);
     const product_arr = JSON.parse(localStorage.getItem("products"))
     const pr_array = []
-    for(j = 0; j < order.length;j++ ){
-
+    for(j = 0; j < order.length;j++ ){       
     for(i = 0; i < product_arr.length;i++){
         if(order[j]["product_id"] ===  product_arr[i]["user_id"]){
             pr_array.push(product_arr[i])
