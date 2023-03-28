@@ -18,13 +18,56 @@ Wireframe:
   Main flow:https://drive.google.com/file/d/19DTWw9TXh6P_E0jqiQnwpuTUrl2XoRgC/view?usp=sharing
   Side flow:https://drive.google.com/file/d/1-5oYQCEtval2QF9xDBO6xgrZRMC561qj/view?usp=sharing
   
-Create an account
+  
+### Feautures list
+
+## customer
+User registration   Finished
+login               Finished
+profile create      Finished
+profile read        Finished
+profile_update      Finished
+profile_delete      Finished
+
+# Product
+Create Product      Finished
+Product Read        Finished
+Product Update      Finished
+product delete      Fineshed
+
+# cart
+cart create         Finished
+cart update         Finished
+cart delete         Finished
+cart count          Finished
+cart full amount    Finished
+
+# order
+Create Order        Finished
+order place         Finished
+order cancel        Finished
+
+## seller
+
+shop update         yet to start
+shop edit           yet to start
+
+
+
+
+
+
+
+
+
+  
+### Create an account
 
 Scenario 1: Successfully create an account Steps: Click the login buttton if your are a new user sign up in the given signup page. Enter the required information such as name, email,phone number and password. Click the "Register" button. Expected Result: The user is redirected to the login page.
 
-Login
+### Login
 
 Scenario 1: Successfully login in to account Steps: Navigate to the login page. Enter the required information such as email, and password. Click the "login" button. Expected Result : The user is redirected to the home page.
 
-Your Profile: 
+### Your Profile: 
 Click My account There you can update your information except email. Click logout you can logout from your existing account
