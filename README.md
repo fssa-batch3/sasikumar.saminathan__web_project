@@ -19,7 +19,7 @@ Wireframe:
   Side flow:https://drive.google.com/file/d/1-5oYQCEtval2QF9xDBO6xgrZRMC561qj/view?usp=sharing
   
   
-# Feautures list
+# Features list
 
 |     Feauters       |     status    |
 | ------------------ | ------------- |
@@ -48,16 +48,42 @@ Wireframe:
   
 ### Create an account
 
-Scenario 1:  
-Successfully create an account Steps: 
-Click the login buttton if your are a new user sign up in the given signup page. Enter the required information such as name, email,phone number and password. Click the "Register" button. Expected Result: The user is redirected to the login page.
+Scenario 1 :  
+Successfully create an account Steps :  
+Click the login buttton if your are a new user sign up in the given signup page.  
+Enter the required information such as name, email,phone number and password.  
+Click the "Register" button. Expected Result: The user is redirected to the login page.
 
 ### Login
 
-Scenario 1: Successfully login in to account Steps: Navigate to the login page. Enter the required information such as email, and password. Click the "login" button. Expected Result : The user is redirected to the home page.
+Scenario 1:  
+Successfully login in to account Steps: Navigate to the login page.  
+Enter the required information such as email, and password.  
+Click the "login" button.  
+Expected Result :  
+The user is redirected to the home page.
 
 ### Your Profile: 
-Click My account There you can update your information except email. Click logout you can logout from your existing account
+Scenario 1 :    
+Click My account There you can update your information except email.  
+Click logout you can logout from your existing account.  
+Click edit you can update your information except email and save button for save the edited information.  
+  
+### product create :  
+Scenario 1 :  
+steps    
+1. after you create seller account you see the create product option in banner in homepage.  
+2. if you click the button you can see the product creating page.  
+3. you want to fill the informations about the products in that inputs.  
+  
+ expected results :  
+ - you can see the product containers in homepage
+
+
+
+
+
+
 
 
 
