@@ -48,7 +48,9 @@ Wireframe:
   
 ### Create an account
 
-Scenario 1: Successfully create an account Steps: Click the login buttton if your are a new user sign up in the given signup page. Enter the required information such as name, email,phone number and password. Click the "Register" button. Expected Result: The user is redirected to the login page.
+Scenario 1: 
+Successfully create an account Steps: 
+Click the login buttton if your are a new user sign up in the given signup page. Enter the required information such as name, email,phone number and password. Click the "Register" button. Expected Result: The user is redirected to the login page.
 
 ### Login
 
