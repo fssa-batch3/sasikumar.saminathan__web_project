@@ -17,6 +17,7 @@ body{
     background-image: url(../../assets/image/circle-3.png);
     background-repeat: no-repeat;
     background-size: cover;
+    overflow-x: hidden;
     
 }
 header{
@@ -164,10 +165,10 @@ ul a{
 .shop-container{
     width: 1200px;
     height: 630px;
-    margin: auto;
-    margin-top: 4%;
+    margin-left: 310px;
     display: flex;
     border-radius: 20px;
+    margin-top: 4%;
  
 }
 .shop-input input{
@@ -188,10 +189,10 @@ ul a{
     border-radius: 20px;
     position: relative;
     right: 40px;
-
     background-color: #ffff;
     box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
     display: flex;
+    border:2px solid black;
 }
 .shop-detail{
     display: flex;
@@ -365,7 +366,60 @@ input::-webkit-inner-spin-button {
 #logout{
     margin-left: 23%;
 }
+#add_address{
+    display: flex;
+    text-align: center;
+    width: 130px;
+    border-radius: 10px;
+    border: none;
+    color: var(--primary);
+    background-color: var(--secondary);
+    position: relative;
+    left: 500px;
+    bottom: 70px;
+    scale: 1.1;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+}
+#add_address i{
+    margin-top: 15px;
+    margin-left: 15px;
+    font-weight: bolder;
+}
+#add_address:hover{
+    background-color:rgb(118, 238, 184);
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+.navigation{
+    width: 15%;
+    height: 135px;
+    position: absolute;
+    background-color: #fff;
+    text-align: center;
+    margin: 20px;
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1); */
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
+}
+.navigation li{
+    width:100%;
+    padding: 11px;
+    cursor: pointer;
+}
+.navigation li:hover{
+    background-color: rgb(232, 255, 245);
+    
+}.navigation li:nth-child(1){
+    border-bottom: 1px solid rgb(188, 188, 188);
+}
+.address_container{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    
 
-
+}
 
 

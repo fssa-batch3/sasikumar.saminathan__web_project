@@ -50,7 +50,10 @@
     <i id="bar" class="fa-solid fa-bars"></i>
   </header>
   <main>
-
+    <ul class="navigation">
+      <li id="profile_info"><p>Profile information</p></li>
+      <li id="address"><p>Manage address</p></li>
+    </ul>
     <div class="shop-container">
 
       <div class="shop-text-content">
@@ -77,14 +80,15 @@
           </div>
         </div>
         <div class="shop-text-content_1">
-          <h2>Profile</h2>
+          <div class="info_container">
+            <h2>Profile</h2>
           <div class="shop-input">
             <input type="text" placeholder="Name" id="shop_name" disabled>
             <input type="number" placeholder="Contact number" id="number" disabled>
           </div>
           <div class="shop-input">
             <input type="email" placeholder="Email" id="address" disabled>
-            <input type="number" placeholder="Pincode" id="number_2" disabled>
+            <button id="add_address"><i class="fa-solid fa-plus"></i><p>Add address</p>            </button>
           </div>
 
           <div class="shop-detail">
@@ -95,8 +99,13 @@
           </div>
           <a><button id="update" class="profile_btn">EDIT</button></a>
           <a><button id="logout" class="profile_btn">LOGOUT</button></a>
+          </div>
+        </div>
+        <div class="address_container">
+
         </div>
       </div>
+    
     </div>
   </main>
   <script>
@@ -140,7 +149,6 @@
     const user_name = document.querySelector("#shop_name")
     const number = document.querySelector("#number")
     const email = document.querySelector("#address")
-    const pincode = document.querySelector("#number_2")
 
     //get profile user info from localstorage
     const array = JSON.parse(localStorage.getItem("profile"))
@@ -158,7 +166,6 @@
     //disable inputs//
     user_name.setAttribute("disabled", "")
     number.setAttribute("disabled", "")
-    pincode.setAttribute("disabled", "")
     const up = document.querySelector("#update")
     //event listener for update
     up.addEventListener("click", function () {
@@ -169,7 +176,7 @@
         //disable inputs
         user_name.setAttribute("disabled", "")
         number.setAttribute("disabled", "")
-        pincode.setAttribute("disabled", "")
+
 
       } else {
         //change btn name
@@ -178,7 +185,7 @@
         //enable inputs 
         user_name.removeAttribute("disabled")
         number.removeAttribute("disabled")
-        pincode.removeAttribute("disabled")
+
 
       }
 
@@ -186,7 +193,7 @@
       const user_value = document.querySelector("#shop_name").value
       const number_value = document.querySelector("#number").value
       const email_value = document.querySelector("#address").value
-      const pincode_value = document.querySelector("#number_2").value
+
 
       //get user array from localstorage
       let user_array = JSON.parse(localStorage.getItem("users"))
@@ -202,8 +209,6 @@
           obj["name"] = user_value
 
           obj["phone_number"] = number_value;
-
-          obj["pincode"] = pincode_value;
           //console.log(obj);
           // user_array.push(obj)
           localStorage.setItem("users", JSON.stringify(user_array))
@@ -223,7 +228,7 @@
     logout.addEventListener("click", function () {
       let del = delete profile
       // console.log(del);
-
+    
       localStorage.setItem("profile", JSON.stringify(del))
       window.location.href = "../sign-in/login.html"
     })
@@ -266,6 +271,30 @@
 })
 
   order_count.innerText = order_arr.length
+
+  const profile_info = document.getElementById("profile_info")
+  const address = document.getElementById("address")
+  const profile1 = document.querySelector(".profile")
+  const info_div = document.querySelector(".info_container")
+  const nav = document.querySelector(".navigation")
+  const address_container = document.querySelector(".address_container")
+
+  address.addEventListener("click",function() {
+
+    profile1.style.display = "none"
+    info_div.style.display = "none"
+    address_container.style.display = "block"
+    nav.style.margin = "20px"
+
+
+  })
+  profile_info.addEventListener("click",function () {
+    profile1.style.display = "block"
+    info_div.style.display = "block"
+    address_container.style.display = "none"
+
+
+  })
 
 
 

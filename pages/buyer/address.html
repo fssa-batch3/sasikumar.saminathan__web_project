@@ -29,7 +29,7 @@
             <h3>Contact Details</h3>
         </div>
         <div class="address-1">
-            <div><input type="text" placeholder="Name" id="name"></div>
+            <div><input type="text" placeholder="Name" id="name"  required></div>
             <div><input type="number" placeholder="Phone number" id="number"></div>
         </div>
         <div class="location">
@@ -47,21 +47,42 @@
    </div>
 </main> 
 <script>
-
-      const name= document.getElementById("name").value
-      const number= document.getElementById("number.value")  
+      //get valuse from inputs 
+      const name1= document.getElementById("name").value
+      const number= document.getElementById("number").value  
       const house_no= document.getElementById("house_no").value
       const area= document.getElementById("area").value
       const pincode= document.getElementById("pincode").value
       const spd= document.getElementById("spd").value
 
-      
+
 
 
     const deliver = document.getElementById("deliver")
+    //get the profile for put the user id in object
+    const profile = JSON.parse(localStorage.getItem("profile"))
+
 
     deliver.addEventListener("click",function(){
-        //get url from search bar
+      
+        //creating new array for add address
+        let arr = new Array
+        arr = JSON.parse(localStorage.getItem("address")) ? JSON.parse(localStorage.getItem("address")) : []
+
+        //push the values in that object
+        arr.push({
+            "user_id" : profile["user_id"],
+            "name" : name1,
+            "phone_number" : number,
+            "house_number" : house_no,
+            "area" : area,
+            "pincode" : pincode,
+            "landmark" : spd
+        })
+
+        localStorage.setItem("address",JSON.stringify(arr))
+
+    //get url from search bar
     const url = window.location.search;
 
     const urlParams = new URLSearchParams(url);
