@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/fssa-batch3/sasikumar.saminathan__web_project#readme",
   "dependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
