@@ -291,7 +291,8 @@ for(k = 0;k < pr_array.length;k++){
     document.querySelector("#ul_2").append(list_2)
 
     
-    const product_pr = parseFloat(pr_array[k]["product_price"]);
+    const product_pr = parseFloat((pr_array[k]["product_price"]).slice(1));
+    
     product_total = product_total + product_pr;
 
 }
@@ -308,7 +309,7 @@ const empty = document.getElementById("empty")
 
     const total = document.getElementById("total_amount")
 
-    total.innerText =  product_total
+    total.innerText =  "₹ "+product_total
 
     
    </script> 

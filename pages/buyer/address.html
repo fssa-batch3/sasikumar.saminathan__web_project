@@ -21,7 +21,7 @@
     </div>
 </header>
 <main>
-<form action="payment.html">
+<form action="payment.html" id="add_form">
     <div class="container">
         <h2 class="head">Add address</h2><hr>
         <div class="phone">
@@ -29,55 +29,64 @@
             <h3>Contact Details</h3>
         </div>
         <div class="address-1">
-            <div><input type="text" placeholder="Name" id="name"  required></div>
-            <div><input type="number" placeholder="Phone number" id="number"></div>
+            <div><input type="text" placeholder="Name" id="name"  pattern="[a-zA-Z0-9]+" required ></div>
+            <div><input type="number" placeholder="Phone number" id="number" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" required></div>
         </div>
         <div class="location">
             <img src="../../assets/icon/location.gif" alt="" height="40px" width="40px">
             <h3>Address</h3>
         </div>
         <div class="address-2">
-           <div> <input type="text" placeholder="House no./buling name" id="house_no"></div>
-            <div><input type="text" placeholder="Road name/Area/Colany" id="area"></div>
-           <div> <input type="text" placeholder="Pincode"  id="pincode"></div>
-            <div><input type="text" placeholder="Nearby location(optional)" id="spd"></div>
+           <div> <input type="text" placeholder="House no./buling name" id="house_no"  required></div>
+            <div><input type="text" placeholder="Road name/Area/Colany" id="area" required></div>
+           <div> <input type="number" placeholder="Pincode"  id="pincode" required></div>
+            <div><input type="text" placeholder="Nearby location" id="spd" required></div>
         </div>
-        <a><button class="but-1" id="deliver" type="button"><b>Deliver here</b></button></a>
+        <a><button class="but-1" id="deliver" type="submit"><b>Deliver here</b></button></a>
 </form>
    </div>
 </main> 
 <script>
+
+        // submit function for this form
+        const formValue=document.getElementById("add_form")
+    formValue.addEventListener('submit',e=>{
+        e.preventDefault();
+        getData();
+
+    });
       //get valuse from inputs 
-      const name1= document.getElementById("name").value
-      const number= document.getElementById("number").value  
-      const house_no= document.getElementById("house_no").value
-      const area= document.getElementById("area").value
-      const pincode= document.getElementById("pincode").value
-      const spd= document.getElementById("spd").value
+      const name1 = document.getElementById("name")
+      const number = document.getElementById("number")  
+      const house_no = document.getElementById("house_no")
+      const area = document.getElementById("area")
+      const pincode = document.getElementById("pincode")
+      const spd = document.getElementById("spd")
 
 
 
 
-    const deliver = document.getElementById("deliver")
+    // const deliver = document.getElementById("deliver")
     //get the profile for put the user id in object
     const profile = JSON.parse(localStorage.getItem("profile"))
 
 
-    deliver.addEventListener("click",function(){
+    function getData(){
       
         //creating new array for add address
         let arr = new Array
         arr = JSON.parse(localStorage.getItem("address")) ? JSON.parse(localStorage.getItem("address")) : []
-
+        let uid = Math.floor(Math.random() * 1000)
         //push the values in that object
         arr.push({
+            "id" : uid,
             "user_id" : profile["user_id"],
-            "name" : name1,
-            "phone_number" : number,
-            "house_number" : house_no,
-            "area" : area,
-            "pincode" : pincode,
-            "landmark" : spd
+            "name" : name1.value,
+            "phone_number" : number.value,
+            "house_number" : house_no.value,
+            "area" : area.value,
+            "pincode" : pincode.value,
+            "landmark" : spd.value
         })
 
         localStorage.setItem("address",JSON.stringify(arr))
@@ -92,7 +101,8 @@
     window.location.href = "payment.html?id="+productname
 
 
-    })
+    }
+    
 
 </script>  
     
