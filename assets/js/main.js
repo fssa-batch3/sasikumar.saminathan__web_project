@@ -1,3 +1,42 @@
+// const array = [
+
+    
+//     {
+//         product_id : "1",
+//         product_img_1 : "https://iili.io/HVTwwCX.webp",
+//         product_img_2 : "https://iili.io/HVTwhQt.webp",
+//         product_img_3 : "https://iili.io/HVTwMpp.webp",
+//         product_img_4 : "https://iili.io/HVTwEYv.webp",
+//         product_name: "SAMSUNG Galaxy S21 FE 5G",
+//         product_price: "₹39,999",
+//         product_ram : "6",
+//         product_rom : "128",
+//         highlights : "50 mp front camera 108mp back camera 6000mah battery 4 years warranty Gorilla glass protection",
+//         status : true
+
+//     },
+//     {
+//         product_id : "2",
+//         product_img_1 : "https://iili.io/HVTwSyl.webp",
+//         product_img_2 : "https://iili.io/HVTwEYv.webp",
+//         product_img_3 : "https://iili.io/HVTw13J.webp",
+//         product_img_4 : "https://iili.io/HVTwl4a.webp",
+//         product_name: "APPLE iPhone 14",
+//         product_price: "₹71,999",
+//         product_ram : "6",
+//         product_rom : "128",
+//         highlights : "128 GB ROM\n15.49 cm (6.1 inch) Super Retina XDR Display\n12MP + 12MP | 12MP Front Camera\nA15 Bionic Chip, 6 Core Processor Processor",
+//         status : true
+//     }
+
+
+
+// ]
+
+const array = [{"user_id":55,"product_name":"SAMSUNG Galaxy S21 FE 5G","product_price":"₹ 39,999","product_ram":"6","product_rom":"128","product_img_1":"https://iili.io/HVTwwCX.webp","product_img_2":"https://iili.io/HVTwhQt.webp","product_img_3":"https://iili.io/HVTwMpp.webp","product_img_4":"https://iili.io/HVTwEYv.webp","highlights":"50 mp front camera 108mp back camera 6000mah battery 4 years warranty Gorilla glass protection","status":true},{"user_id":91,"product_name":"APPLE iPhone 14","product_price":"₹ 71,999","product_ram":"6","product_rom":"128","product_img_1":"https://iili.io/HVTwSyl.webp","product_img_2":"https://iili.io/HVTwEYv.webp","product_img_3":"https://iili.io/HVTw13J.webp","product_img_4":"https://iili.io/HVTwl4a.webp","highlights":"128 GB ROM\\n15.49 cm (6.1 inch) Super Retina XDR Display\\n12MP + 12MP | 12MP Front Camera\\nA15 Bionic Chip, 6 Core Processor Processor","status":true}]
+
+localStorage.setItem("products",JSON.stringify(array))
+
 //product_list array created with contain 12 objects
 const product_list = [
 
@@ -425,43 +464,4 @@ pr_btn.innerText = "Create product"
 pr_btn.addEventListener("click",function(){
     window.location.href = "/pages/Seller/product_enter.html"
     })
-}
-
-if (localStorage.getItem("products")) {
-    
-}
-else{
-    localStorage.setItem("products",JSON.stringify([
-
-    
-        {
-            product_id : "1",
-            product_img_1 : "https://iili.io/HVTwwCX.webp",
-            product_img_2 : "https://iili.io/HVTwhQt.webp",
-            product_img_3 : "https://iili.io/HVTwMpp.webp",
-            product_img_4 : "https://iili.io/HVTwEYv.webp",
-            product_name: "SAMSUNG Galaxy S21 FE 5G",
-            product_price: "₹39,999",
-            product_ram : "6",
-            product_rom : "128",
-            highlights : "50 mp front camera 108mp back camera 6000mah battery 4 years warranty Gorilla glass protection"
-
-        },
-        {
-            product_id : "2",
-            product_img_1 : "https://iili.io/HVTwSyl.webp",
-            product_img_2 : "https://iili.io/HVTwEYv.webp",
-            product_img_3 : "https://iili.io/HVTw13J.webp",
-            product_img_4 : "https://iili.io/HVTwl4a.webp",
-            product_name: "APPLE iPhone 14",
-            product_price: "₹71,999",
-            product_ram : "6",
-            product_rom : "128",
-            highlights : "128 GB ROM\n15.49 cm (6.1 inch) Super Retina XDR Display\n12MP + 12MP | 12MP Front Camera\nA15 Bionic Chip, 6 Core Processor Processor"
-
-        }
-
-    
-    
-    ]))
 }

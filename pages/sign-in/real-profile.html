@@ -87,7 +87,7 @@
             <input type="number" placeholder="Contact number" id="number" disabled>
           </div>
           <div class="shop-input">
-            <input type="email" placeholder="Email" id="address" disabled>
+            <input type="email" placeholder="Email" id="email" disabled>
           </div>
 
           <div class="shop-detail">
@@ -195,10 +195,11 @@
     //for display name
     const user_name = document.querySelector("#shop_name")
     const number = document.querySelector("#number")
-    const email = document.querySelector("#address")
+    const email = document.getElementById("email")
 
     //get profile user info from localstorage
     const array = JSON.parse(localStorage.getItem("profile"))
+    
 
     user_name.value = array["name"]
     number.value = array["phone_number"]
@@ -239,7 +240,7 @@
       //get value from inputs
       const user_value = document.querySelector("#shop_name").value
       const number_value = document.querySelector("#number").value
-      const email_value = document.querySelector("#address").value
+      const email_value = email.value
 
 
       //get user array from localstorage
@@ -277,7 +278,7 @@
       // console.log(del);
     
       localStorage.setItem("profile", JSON.stringify(del))
-      window.location.href = "../sign-in/login.html"
+      window.location.href = "../../index.html"
     })
 
 
@@ -292,21 +293,24 @@
     const order_count = document.getElementById("order_count")
     const profile_obj = JSON.parse(localStorage.getItem("profile"))
 
-    //this filter function for showing cart count in profile 
-     const cart_arr = cart.filter(function (obj) {
+if (cart === true) {
+      //this filter function for showing cart count in profile 
+      const cart_arr = cart.filter(function (obj) {
 
-      if (obj["user_id"] === profile_obj["user_id"] && obj["cart"] !== false) {
-        return true
-      }
-      else{
-        return false
-      }
-    })
+if (obj["user_id"] === profile_obj["user_id"] && obj["cart"] !== false) {
+  return true
+}
+else{
+  return false
+}
+})
 
-    const cart_count = document.getElementById("cart_count")
+const cart_count = document.getElementById("cart_count")
 
-    cart_count.innerText = cart_arr.length
+cart_count.innerText = cart_arr.length
+}
 
+if (order === true) {
     const order_arr = order.filter(function (obj) {
 
     if (obj["user_id"] === profile_obj["user_id"] && obj["order"] !== false) {
@@ -318,6 +322,7 @@
 })
 
   order_count.innerText = order_arr.length
+}
 
   const profile_info = document.getElementById("profile_info")
   const address = document.getElementById("address")
@@ -425,7 +430,17 @@
 addAddress();
 function addAddress(params) {
    //get array from localstorage for creating elements
- const add_arr = JSON.parse(localStorage.getItem("address"))
+   const add_array = JSON.parse(localStorage.getItem("address"))
+
+   //filtering specfic users address from address array
+   const add_arr = add_array.filter(function (obj) {
+      if (obj["user_id"] == profile2["user_id"]) {
+        return true
+      }  
+      else{
+        return false
+      }
+ })
 
 for(let i = 0; i < add_arr.length;i++){
   //create elements for adding address
@@ -601,3 +616,4 @@ p_delete.addEventListener("click",function () {
 </body>
 
 </html>
+
