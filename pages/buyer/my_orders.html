@@ -98,12 +98,13 @@
             return false
         }
     });
+    
     // console.log(order);
     const product_arr = JSON.parse(localStorage.getItem("products"))
     const pr_array = []
     for(j = 0; j < order.length;j++ ){       
     for(i = 0; i < product_arr.length;i++){
-        if(order[j]["product_id"] ===  product_arr[i]["user_id"]){
+        if(order[j]["product_id"] ===  product_arr[i]["user_id"]+""){
             pr_array.push(product_arr[i])
         }
     }
@@ -114,7 +115,7 @@
 
 
     for(let j = 0; j < pr_array.length;j++){
-
+console.log(pr_array[j]["quantity"]);
     //ordered products main container  
     const main_div = document.createElement("div")
     main_div.setAttribute("class","main_container")

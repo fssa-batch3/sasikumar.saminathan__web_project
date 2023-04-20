@@ -19,74 +19,174 @@
     </div>
 </header>
 <main>
-    <div class="container">
-        <h2 class="head">Payment options</h2><hr>
-     <form action="order.html">
-        <div class="payment">
-            <div class="radio radio-1"><input type="radio" name="radio"><img src="../../assets/icon/UPI.gif" alt="" width="30px" height="30px"><p>UPI</p></div>
-            <div class="radio radio-2"><input type="radio" name="radio"><img src="../../assets/icon/UPI.gif" alt="" width="30px" height="30px"><p>wallets</p></div>
-            <div class="radio radio-3"><input type="radio" name="radio"><img src="../../assets/icon/icons8-credit-card-64.png" alt="" width="30px" height="30px"><p>Credit/Debit/Atm card </p></div>
-            <div class="radio radio-4"><input type="radio" name="radio"><img src="../../assets/icon/icons8-merchant-account-50.png" alt="" width="30px" height="30px"><p>Net banking</p></div>
-            <div class="radio radio-5"><input type="radio" name="radio"><img src="../../assets/icon/icons8-cash-on-delivery-66.png" alt="" width="30px" height="30px"><p>Cash on delivery</p></div>
+    <div class="checkout">
+        <p class="address">Delivery address</p>
+        <div class="add_container">
+            <div id="person_info"><p id="add_person_name">Sasikumar</p><p id="add_number">6374523686</p></div>
+            <div id="location_info"><p id="location">ST Couriers, IT Corridor, Lakshman Nagar, Perungudi, Chennai, Tamil Nadu -</p><p id="add_pincode">600096</p></div>
         </div>
-        <a href="order.html"><button class="btn" id="order">CONFIRM ORDER</button></a>
-     </form>
+        <!-- product detatil -->
+        <p class="product">Product detail</p>
+         <div class="pro_container">
+
+                <img src="https://iili.io/HVTwSyl.webp" alt="apple" id="mob_img">
+
+            <div class="pro_info">
+                <p id="mob_name">APPLE iPhone 14</p>
+                <div id="rate">
+                <p id="mob_price">₹39,999</p>
+                <p >Qty  </p><p id="mob_qty">1</p>
+                </div>
+            </div>
+         </div>
+         <!-- payment method -->
+         <p class="product">Payment options</p>
+         <form action="" id="forms">
+            <div class="payment">
+                <div class="radio radio-1" ><input type="radio" class="radio_btn" name="radio" data-keyword = "UPI" checked = "checked" required><img src="../../assets/icon/UPI.gif" alt="" width="30px" height="30px"><p>UPI</p></div>
+                <div class="radio radio-2" ><input type="radio" class="radio_btn" name="radio" data-keyword = "wallets" required><img src="../../assets/icon/UPI.gif" alt="" width="30px" height="30px"><p>wallets</p></div>
+                <div class="radio radio-3"><input type="radio" class="radio_btn" name="radio" data-keyword = "Credit/Debit/Atm card" required><img src="../../assets/icon/icons8-credit-card-64.png" alt="" width="30px" height="30px"><p>Credit/Debit/Atm card </p></div>
+                <div class="radio radio-4"><input type="radio" class="radio_btn" name="radio" data-keyword = "Net banking" required><img src="../../assets/icon/icons8-merchant-account-50.png" alt="" width="30px" height="30px"><p>Net banking</p></div>
+                <div class="radio radio-5"><input type="radio" class="radio_btn" name="radio" data-keyword = "Cash on delivery" required><img src="../../assets/icon/icons8-cash-on-delivery-66.png" alt="" width="30px" height="30px"><p>Cash on delivery</p></div>
+            </div>
+            <button class="btn" id="order" type="submit">CONFIRM ORDER</button>
+         </form>
     </div>
+    <div class="summary_container navigation">
+        <h2>Product detail</h2>
+        <!-- <hr id="hr"> -->
+        <div class="pr_price"><p>Product Price</p><p class="price">₹34,999</p></div> 
+        <div class="pr_price" ><p>Delivery charges</p><p id="deliver">FREE</p></div>
+        <hr id="hr_2">
+        <div class="pr_price" id="total"><p>Order total</p><p class="price">₹34,999</p></div> 
+     </div>
+     <!-- <div class="container">
+        <img src="../../assets/icon/check.gif" alt="" width="140px" height="100px">
+        <h2 id="thanks">Thank you for your purchase</h2>
+        <p><b>We recived your purchase request <br>we'll be in touch shortly</b></p>
+    </div> -->
 </main> 
 <script>
- //get product details array from local storage
- const product_array = JSON.parse(localStorage.getItem("products"))
- //console.log(product_array)
+    //event for form submit
+    const form = document.getElementById("forms")
+    form.addEventListener("submit",function (e) {
+        e.preventDefault();
+        getData();
+    })
 
-//get url from search bar
-const url = window.location.search;
-//console.log(url);
-const urlParams = new URLSearchParams(url);
-//console.log(urlParams);
-const productname = urlParams.get("id")
-
-//console.log(productname);
-
-//console.log(productname);
-
-let user
-const search = product_array.find(function (userobj){
-
-    const name = userobj["user_id"]+"";
-    //console.log(name);
-    user = name
-    
-    //console.log(name);
-    if (productname === name) {
+//get address array from local storage
+ const address = JSON.parse(localStorage.getItem("address"))
+ //find the object which selected by user 
+ const address_obj = address.find(function (obj) {
+    if (obj["select"] == true) {
         return true
-
-    } else {
-
-        return false
-
     }
-})
+    else{
+        return false
+    }
+ })
 
-//get users id for idnefiying
-const user_array = JSON.parse(localStorage.getItem("profile"))
-console.log(user_array["user_id"]);
+ //get the address container elements
+ const address_name = document.getElementById("add_person_name")
+ const address_num = document.getElementById("add_number")
+ const address_info = document.getElementById("location")
+ const address_pincode = document.getElementById("add_pincode")
 
-const order_btn = document.getElementById("order")
+ //set the finded value in that container
+ address_name.innerText = address_obj["name"]
+ address_num.innerText = address_obj["phone_number"]
+ address_info.innerText = address_obj["house_number"]+", "+address_obj["area"]+", "+address_obj["landmark"]+" -"
+ address_pincode.innerText = address_obj["pincode"]
 
-order_btn.addEventListener("click",function(){
-    let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
+ const url = window.location.search
+ const search = new URLSearchParams(url)
+ const product_id = search.get("id")
 
-    let uid = Math.floor(Math.random() * 1000)
-    order_arr.push(
-        {
-            "order_id" : uid,
-            "user_id" : user_array["user_id"],
-            "product_id" : search["user_id"]
-        }
-    )
+ const pr_array = JSON.parse(localStorage.getItem("products"))
+ 
+ //find the specific object from the products array
+ const pr_obj = pr_array.find(function (obj) {
+    if (product_id == obj["user_id"]+"") {
+        return true
+    }
+    else{
+        return false
+    }
+ })
+ //get the elements from product container
+ const product_img = document.getElementById("mob_img")
+ const product_name = document.getElementById("mob_name")
+ const product_price = document.getElementById("mob_price")
+ const product_qty = document.getElementById("mob_qty")
 
-    localStorage.setItem("orders",JSON.stringify(order_arr));
-})
+ //set the values to product container
+ product_img.src = pr_obj["product_img_1"]
+ product_name.innerText = pr_obj["product_name"]
+ product_price.innerText = pr_obj["product_price"]
+ product_qty.innerText = pr_obj["quantity"]
+
+ //set the value in total container
+ const price = document.querySelectorAll(".price")
+ price[0].innerText = pr_obj["product_price"]
+price[1].innerText = pr_obj["product_price"]
+function getData() {
+     //get product details array from local storage
+ const product_array = JSON.parse(localStorage.getItem("products"))
+ 
+ //get url from search bar
+ const url = window.location.search;
+ const urlParams = new URLSearchParams(url);
+ const product_id = urlParams.get("id")
+ 
+ 
+ 
+ //get users id for idnefiying
+ const user_array = JSON.parse(localStorage.getItem("profile"))
+ 
+ const order_btn = document.getElementById("order")
+ 
+ order_btn.addEventListener("click",function(){
+ 
+ const radio_btn = document.querySelectorAll(".radio_btn")
+ //store the payment method
+ let payment_method = ""
+
+//  for loop for finding checked btn
+ for(let j = 0;j < radio_btn.length;j++){
+     if (radio_btn[j].checked === true) {
+          payment_method =  radio_btn[j].dataset.keyword
+          break;
+     }
+ }
+ 
+     let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
+ 
+     let uid = Math.floor(Math.random() * 1000)
+     order_arr.push(
+         {
+ 
+             "order_id" : uid,
+             "user_id" : user_array["user_id"],
+             "product_id" : product_id,
+             "payment_method" : payment_method,
+             "address_id" : address_obj["id"] 
+         }
+     )
+ 
+     localStorage.setItem("orders",JSON.stringify(order_arr));
+  
+     window.location.href = "order.html"
+
+
+
+     
+ })
+
+
+}
+
+
+
 
 </script>  
 </body>

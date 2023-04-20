@@ -81,26 +81,34 @@
             <a href="#"><button class="btn-buy"><p><b>Remove</b><i class="fa-solid fa-trash"></i></p></button></a>
     </div> -->
 </div>
-    <div class="total">
+    <!-- <div class="total">
      <h2>PRICE DETAILS</h2>
      <div class="list">
-        <ul id="ul_1">
+        <ul id="ul_1"> -->
             <!-- <li>Redmi Note 11</li>
             <li>Samsung galaxy S21 FE</li>
             <li>Delivery charges</li> -->
-        </ul>
-        <ul id="ul_2">
+        <!-- </ul>
+        <ul id="ul_2"> -->
             <!-- <li>₹14,690</li>
             <li>₹39,999</li>
             <li>FREE</li> -->
-        </ul>
+        <!-- </ul>
      </div>
      <hr id="hrtag">
      <div class="amount">
         <p><b>Total payment</b></p>
         <p id="total_amount"><b></b></p>
     </div>
-    </div>
+    </div> -->
+    <div class="summary_container navigation">
+        <h2>Product detail</h2>
+        <!-- <hr id="hr"> -->
+        <div class="pr_price"><p id="item_count">Price (5 items)</p><p class="deiver" id="item_price">₹34,999</p></div> 
+        <div class="pr_price" ><p>Delivery charges</p><p id="deliver">FREE</p></div>
+        <hr id="hr_2">
+        <div class="pr_price" id="total"><p>Order total</p><p class="deiver" id="total_amount">₹34,999</p></div> 
+     </div>
 </main>
    <script>
     //first step : get the id from url and filter the objects
@@ -135,6 +143,7 @@
 //console.log(pr_array);
 
 let product_total = 0;
+let items = 0;
 
 for(k = 0;k < pr_array.length;k++){
         //creating elements for read cart containers
@@ -260,7 +269,8 @@ for(k = 0;k < pr_array.length;k++){
         const detail = document.querySelector(".total")
        const cart_array = cart_obj
 
-       console.log(cart_array);
+       //this var for changing price when click remove
+       let product_price = 0;
        
        cart_array.find(function (obj) {
             if (obj["cart_id"]+"" === data) {
@@ -268,6 +278,10 @@ for(k = 0;k < pr_array.length;k++){
                 
                 obj["cart"] = false
                 localStorage.setItem("cart",JSON.stringify(cart_array))
+
+                let price = obj["product_price"].slice(1)
+                price = price.replace(",", "");
+                product_price = parseFloat(price);
             }
        })
        if (cart_obj.length === 1) {
@@ -282,18 +296,28 @@ for(k = 0;k < pr_array.length;k++){
         
     })
     
-    const list = document.createElement("li")
-    list.innerText = pr_array[k]["product_name"]
-    document.querySelector("#ul_1").append(list)
 
-    const list_2 = document.createElement("li")
-    list_2.innerText = pr_array[k]["product_price"]
-    document.querySelector("#ul_2").append(list_2)
 
+    let price = (pr_array[k]["product_price"]).slice(1)
+    console.log(price);
+    price = price.replace(",", "");
+    console.log(price);
     
-    const product_pr = parseFloat((pr_array[k]["product_price"]).slice(1));
+    const product_pr = parseFloat(price);
+    
+    
     
     product_total = product_total + product_pr;
+    items = items + 1
+    //this code for remove one item when click remove btn
+    btn.addEventListener("click",function () {
+        items = items - 1
+        product_total = product_total - product_price
+        count.innerText = `Price (${items} items)`
+        total.innerText =  "₹ "+product_total
+        itemprice.innerText =  "₹ "+product_total
+
+    })
 
 }
 //this logic for hide price details if products not there in cart page
@@ -308,8 +332,16 @@ const empty = document.getElementById("empty")
 }
 
     const total = document.getElementById("total_amount")
-
+    const itemprice = document.getElementById("item_price")
+    const count = document.getElementById("item_count")
+    
+    changeData();
+  function changeData() {
     total.innerText =  "₹ "+product_total
+    itemprice.innerText =  "₹ "+product_total
+    count.innerText = `Price (${items} items)`
+  }
+
 
     
    </script> 
