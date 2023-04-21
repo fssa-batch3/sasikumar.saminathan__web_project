@@ -154,22 +154,52 @@ if (user_array === false || user_array === null) {
 else{
     let cart_arr = JSON.parse(localStorage.getItem("cart"))?JSON.parse(localStorage.getItem("cart")):[]
 
+    const quantity = document.getElementById("quantity")
+
     //creating unique id
     let uid = Math.floor(Math.random() * 1000)
     cart_arr.push(
         {
             "cart_id" : uid,
             "user_id" : user_array["user_id"],
-            "product_id" : search["user_id"]
+            "product_id" : search["user_id"],
+            "quantity" : quantity.value
         }
     )
 
-    localStorage.setItem("cart",JSON.stringify(cart_arr));
+  
 
-    window.location.href = "../cart.html?user_id="+user_array["user_id"]}
+    //get cart array for make sure it's exsit
+    const cart_array = JSON.parse(localStorage.getItem("cart"))
+
+    
+
+    if (cart_array !== null) {
+        cart_array.find(function (obj) {
+               console.log(obj["product_id"],search["user_id"]);
+            if (obj["product_id"] === search["user_id"]) {
+                const qty = parseFloat(obj["quantity"]);
+                const qty_2 = parseFloat(quantity.value);
+                obj["quantity"] = qty + qty_2
+                localStorage.setItem("cart",JSON.stringify(cart_array)) 
+            
+            }
+            else{
+                localStorage.setItem("cart",JSON.stringify(cart_arr));
+            }
+        })
+    }
+    else{
+        localStorage.setItem("cart",JSON.stringify(cart_arr));
+    }
+
+
+    //window.location.href = "../cart.html?user_id="+user_array["user_id"]
+}
 })
 
 order.addEventListener("click",function(){
+
 const quantity = document.getElementById("quantity")
 search["quantity"] = quantity.value
 

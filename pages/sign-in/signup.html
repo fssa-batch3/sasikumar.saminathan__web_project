@@ -24,7 +24,7 @@
  <form id="forms">
     <input type="text" placeholder="Name" class="input-1" id="name" pattern="^[A-Za-z]+" title="use letters only" required>
     <input type="email" placeholder="Email" class="input-1" id="email" required >
-    <input type="number" placeholder="Phone number" class="input-1" id="phone_no" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" required>
+    <input type="text" placeholder="Phone number" pattern="[0-9]{10}" class="input-1" id="phone_no"  title="numbers only" required>
     <input type="password" placeholder="Create Password" class="input-2" id="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
     <input type="password" placeholder="Confirm Password" class="input-2" id="pass_2" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
      

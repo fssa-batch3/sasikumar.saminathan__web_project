@@ -101,7 +101,7 @@
         <p id="total_amount"><b></b></p>
     </div>
     </div> -->
-    <div class="summary_container navigation">
+    <div class="summary_container navigation total">
         <h2>Product detail</h2>
         <!-- <hr id="hr"> -->
         <div class="pr_price"><p id="item_count">Price (5 items)</p><p class="deiver" id="item_price">₹34,999</p></div> 
@@ -239,6 +239,8 @@ for(k = 0;k < pr_array.length;k++){
     // <input type="number">
     const input = document.createElement("input")
     input.setAttribute("type","number")
+    input.setAttribute("id","quantity")
+    input.setAttribute("value",cart_obj[k]["quantity"])
     span.append(input)
 
     // <a href="#">
@@ -272,25 +274,23 @@ for(k = 0;k < pr_array.length;k++){
        //this var for changing price when click remove
        let product_price = 0;
        
-       cart_array.find(function (obj) {
-            if (obj["cart_id"]+"" === data) {
+       const cart_main_arr = cart_array.filter(function (obj) {
+        console.log(obj["cart_id"]);
+        if (obj["cart_id"]+"" === data) {
                 main_div.remove();
                 
-                obj["cart"] = false
-                localStorage.setItem("cart",JSON.stringify(cart_array))
-
+                return false
+                
                 let price = obj["product_price"].slice(1)
                 price = price.replace(",", "");
                 product_price = parseFloat(price);
             }
+            else{
+                return true
+            }
        })
-       if (cart_obj.length === 1) {
-    detail.remove()
-    detail.style.display = "none"
-    empty.style.display = "block"
+       localStorage.setItem("cart",JSON.stringify(cart_main_arr))
 
-
-}
 
         
         
@@ -310,26 +310,26 @@ for(k = 0;k < pr_array.length;k++){
     product_total = product_total + product_pr;
     items = items + 1
     //this code for remove one item when click remove btn
-    btn.addEventListener("click",function () {
-        items = items - 1
-        product_total = product_total - product_price
-        count.innerText = `Price (${items} items)`
-        total.innerText =  "₹ "+product_total
-        itemprice.innerText =  "₹ "+product_total
+    // btn.addEventListener("click",function () {
+    //     items = items - 1
+    //     product_total = product_total - product_price
+    //     count.innerText = `Price (${items} items)`
+    //     total.innerText =  "₹ "+product_total
+    //     itemprice.innerText =  "₹ "+product_total
 
-    })
+    // })
 
 }
 //this logic for hide price details if products not there in cart page
 const main_div = document.querySelector(".product-container")
 const detail = document.querySelector(".total")
 const empty = document.getElementById("empty")
- if (cart_obj.length == 0) {
-    detail.remove()
-    detail.style.display = "none"
-    empty.style.display = "block"
+//  if (cart_obj.length == 0) {
+//     detail.remove()
+//     detail.style.display = "none"
+//     empty.style.display = "block"
 
-}
+// }
 
     const total = document.getElementById("total_amount")
     const itemprice = document.getElementById("item_price")
@@ -342,7 +342,13 @@ const empty = document.getElementById("empty")
     count.innerText = `Price (${items} items)`
   }
 
+  if (cart_arr.length == 0) {
+    localStorage.removeItem("cart")
+    detail.remove()
+    detail.style.display = "none"
+    empty.style.display = "block"
 
+  }
     
    </script> 
 </body>

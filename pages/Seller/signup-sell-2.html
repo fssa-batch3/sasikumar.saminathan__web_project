@@ -10,48 +10,104 @@
 <body>
  <main>
     <div class="shop-container">
-        <div class="shop-contain-img"><img src="../../assets/image/shop-sign.jpg" alt="shop-sign" width="400px" height="400px"></div>
-        <div class="shop-text-content">
-            <h2>Add shop details</h2>
-            <div class="shop-input">
-             <input type="text" placeholder="Shop name" id="shop_name">
-             <input type="number" placeholder="shop contact number" id="number">
-            </div>
-            <div class="shop-input">
-             <input type="text" placeholder="Shop address" id="address">
-             <input type="number" placeholder="Shop pincode" id="number_2">
-            </div>
-            <div class="shop-input">
-                <input type="text" placeholder="Shop license-id" id="shop_id">
-            </div>
-            <div class="shop-detail">
-                <div class="shop-img">
-                    <p>Add shop image:</p><input class="file-upload" type="file" id="file">
-                </div>
-                <textarea name="" id="area" cols="40" rows="10" placeholder="Type about your shop" ></textarea>
-            </div>
-            <a><button onclick="getData()" type="button">SIGNUP</button></a>
+
+    <div class="shop-contain-img"><img src="../../assets/image/shop-sign.jpg" alt="shop-sign" width="400px" height="400px"></div>
+    <div class="shop-text-content">
+        <h2>Add shop details</h2>
+        <div class="shop-input">
+            <form id="forms">
+         <input type="text" placeholder="Shop name" id="shop_name"  title="use letters only" value="" required>
+         <input type="tel" placeholder="shop contact number" id="number" value="" pattern="^(?:[0-9]|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" maxlength="10" title="Please give numbers only" required>
         </div>
+        <div class="shop-input">
+         <input type="text" placeholder="Shop address" id="address" required>
+         <input type="text" placeholder="Shop pincode" id="number_2" inputmode="numeric"  maxlength="6" title="Please give numbers only" required>
+        </div>
+        <div class="shop-input">
+            <input type="text" placeholder="Shop license-id" id="shop_id" required>
+        </div>
+        <div class="shop-detail">
+            <div class="shop-img">
+                <p>Add shop image:</p><input class="file-upload" type="file" id="file" required>
+            </div>
+            <textarea name="" id="area" cols="40" rows="10" placeholder="Type about your shop" required></textarea>
+        </div>
+        <button type="submit">SIGNUP</button>
+        </form>
+    </div>
+
     </div>
  </main>   
  <script>
+
+    const form = document.getElementById("forms")
+    form.addEventListener("submit",function (e) {
+        e.preventDefault();
+        getData();
+    })
     function getData(){
-     const shop_name = document.getElementById("shop_name").value
-     const number = document.getElementById("number").value
-     const address = document.getElementById("address").value
-     const number_2 = document.getElementById("number_2").value
-     const shop_id = document.getElementById("shop_id").value
-     const area = document.getElementById("area").value
+     let shop_name = document.getElementById("shop_name")
+     let number = document.getElementById("number")
+     let address = document.getElementById("address")
+     let pincode = document.getElementById("number_2")
+     let shop_id = document.getElementById("shop_id")
+     let area = document.getElementById("area")
+     let file = document.getElementById("shop_id")
+    //  const img_src = ""
 
-    console.log(shop_name);
-    console.log(number);
-    console.log(address);
-    console.log(number_2);
-    console.log(shop_id);
-    console.log(area);
+        //this function for change profile picture
+    // file.addEventListener('change', function () {
+    //   const choosedFile = this.files[0];
+
+    //   if (choosedFile) {
+    //     const reader = new FileReader();
+
+    //     reader.addEventListener('load', function () {
+
+    //       img_src += reader.result 
+
+    //     });
+
+    //     reader.readAsDataURL(choosedFile);
+    //   }})
+
+     //creating an array for storing those information about seller shop
+     let shop_arr = new Array();
+
+     //creating array if the array is not exsists
+     shop_arr = JSON.parse(localStorage.getItem("shop"))?JSON.parse(localStorage.getItem("shop")):[]
+
+    //creating id with math random
+    let user_id = Math.floor(Math.random() * 10000)
+
+//get url from search bar for get product id
+const url = window.location.search;
+
+const urlParams = new URLSearchParams(url);
+
+const selller_id = urlParams.get("id")
 
 
-    window.location.href ="../../index.html"
+
+    shop_arr.push({
+        "id" : user_id,
+        "name" : shop_name.value,
+        "phone_number" : number.value,
+        "address" : address.value,
+        "pincode" : pincode.value,
+        "shop_license" : shop_id.value,
+        "area" : area.value,
+        "seller_id" : selller_id,
+    
+    })
+
+    localStorage.setItem("shop",JSON.stringify(shop_arr))
+
+    window.location.href = "../../index.html"
+    
+
+    
+
     }
 
 

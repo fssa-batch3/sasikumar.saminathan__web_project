@@ -207,21 +207,6 @@ main{
 .fa-trash{
     margin-left: 5px;
 }
-.total{
-    border-radius: 30px;
-    width: 400px;
-    height:fit-content;
-    margin-top: 50px;
-    background-color:#ffff;
-
-}
-.total h2{
-    background-color: var(--secondary);
-    border-top-left-radius:30px;
-    border-top-right-radius:30px;
-    text-align: center;
-    padding: 15px;
-}
 .list{
     display: flex;
     justify-content: space-evenly;
@@ -322,6 +307,17 @@ main{
     font-size: 30px;
     height: 60px;
     width: fit-content;
+}
+#quantity::-webkit-outer-spin-button,
+#quantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#quantity{
+    outline: none;
+    border: 1px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    
 }
 
 
