@@ -194,18 +194,23 @@ else{
     }
 
 
-    //window.location.href = "../cart.html?user_id="+user_array["user_id"]
+    window.location.href = "../cart.html?user_id="+user_array["user_id"]
 }
 })
 
 order.addEventListener("click",function(){
 
-const quantity = document.getElementById("quantity")
+if (user_array === false || user_array === null) {
+    window.location.href = "../../sign-in/login.html"
+
+} else {
+    const quantity = document.getElementById("quantity")
 search["quantity"] = quantity.value
 
 localStorage.setItem("products",JSON.stringify(product_array))
 
 window.location.href = "../address.html?id="+productname
+}
 })
 
 
