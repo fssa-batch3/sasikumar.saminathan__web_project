@@ -81,25 +81,27 @@
           </div>
         </div>
         <div class="shop-text-content_1">
-          <div class="info_container">
-            <h2>Profile</h2>
-          <div class="shop-input">
-            <input type="text" placeholder="Name" id="shop_name" disabled>
-            <input type="number" placeholder="Contact number" id="number" disabled>
-          </div>
-          <div class="shop-input">
-            <input type="email" placeholder="Email" id="email" disabled>
-          </div>
+<form id="forms">
+  <div class="info_container">
+    <h2>Profile</h2>
+  <div class="shop-input">
+    <input type="text" placeholder="Name" id="shop_name" disabled pattern="^[A-Za-z]+" required>
+    <input type="number" placeholder="Contact number" id="number" pattern="[0-9]{10}" disabled required>
+  </div>
+  <div class="shop-input">
+    <input type="email" placeholder="Email" id="email" disabled>
+  </div>
 
-          <div class="shop-detail">
-            <div class="shop-img">
+  <div class="shop-detail">
+    <div class="shop-img">
 
-            </div>
-            <!-- <textarea name="" id="area" cols="40" rows="10" placeholder="Type about something you" ></textarea> -->
-          </div>
-          <a><button id="update" class="profile_btn">EDIT</button></a>
-          <a><button id="logout" class="profile_btn">LOGOUT</button></a>
-          </div>
+    </div>
+    <!-- <textarea name="" id="area" cols="40" rows="10" placeholder="Type about something you" ></textarea> -->
+  </div>
+  <a><button id="update" class="profile_btn" type="submit">EDIT</button></a>
+  <a><button id="logout" class="profile_btn">LOGOUT</button></a>
+  </div>
+</form>
         </div>
         <div class="address_container">
 <h2>Manage Address</h2>
@@ -153,9 +155,13 @@
     formValue.addEventListener('submit',e=>{
         e.preventDefault();
         getData();
-
     });
 
+    const first_form = document.getElementById("forms")
+    first_form.addEventListener("submit",function(e){
+      e.preventDefault();
+      upDate();
+    })
 
     //Getting elements by id
     const file = document.querySelector('#file')
@@ -180,6 +186,15 @@
           const profile = JSON.parse(localStorage.getItem("profile"))
           profile["profile_picture"] = reader.result
           localStorage.setItem("profile",JSON.stringify(profile))
+
+    const user_array = JSON.parse(localStorage.getItem("users"))
+    user_array.find(function (obj) {
+      if (profile["email"] == obj["email"]) {
+        obj["profile_picture"] = reader.result
+        localStorage.setItem("users",JSON.stringify(user_array))
+      }
+    })
+
         });
 
         reader.readAsDataURL(choosedFile);
@@ -190,12 +205,7 @@
     const pro = JSON.parse(localStorage.getItem("profile"))
     img.setAttribute("src",pro["profile_picture"])
 
-    const user_array = JSON.parse(localStorage.getItem("users"))
-    user_array.find(function (obj) {
-      if (pro["email"] == obj["email"]) {
-        obj["profile_picture"]
-      }
-    })
+
 
 
 
@@ -255,9 +265,9 @@
       }
 
       //get value from inputs
-      const user_value = document.querySelector("#shop_name").value
-      const number_value = document.querySelector("#number").value
-      const email_value = email.value
+      const user_value = document.querySelector("#shop_name").value.trim()
+      const number_value = document.querySelector("#number").value.trim()
+      const email_value = email.value.trim()
 
 
       //get user array from localstorage
@@ -266,8 +276,9 @@
       //console.log(user_array)
 
 
-      //this function for edit the value in input then update in localstorage
-      user_array.find(obj => {
+function upDate() {
+        //this function for edit the value in input then update in localstorage
+        user_array.find(obj => {
         if (email_value === obj["email"]) {
 
           //obj["user_name"] = user_value => change the specific obect value from input
@@ -283,6 +294,7 @@
         }
 
       })
+}
     })
 
 
@@ -422,12 +434,12 @@ if (order === true) {
         arr.push({
             "id" : uid,
             "user_id" : profile2["user_id"],
-            "name" : name1.value,
-            "phone_number" : number2.value,
-            "house_number" : house_no.value,
-            "area" : area.value,
-            "pincode" : pincode.value,
-            "landmark" : spd.value
+            "name" : name1.value.trim(),
+            "phone_number" : number2.value.trim(),
+            "house_number" : house_no.value.trim(),
+            "area" : area.value.trim(),
+            "pincode" : pincode.value.trim(),
+            "landmark" : spd.value.trim()
         })
 
         localStorage.setItem("address",JSON.stringify(arr))
@@ -572,12 +584,12 @@ document.querySelector(".added_address").append(main_div)
 
       add_arr.find(function (obj) {
         if (arr_obj["id"] === obj["id"]) {
-      obj["name"] = name1.value
-      obj["phone_number"] = number2.value
-      obj["house_number"] = house_no.value
-      obj["area"] = area.value
-      obj["pincode"] = pincode.value
-      obj["landmark"] = spd.value
+      obj["name"] = name1.value.trim()
+      obj["phone_number"] = number2.value.trim()
+      obj["house_number"] = house_no.value.trim()
+      obj["area"] = area.value.trim()
+      obj["pincode"] = pincode.value.trim()
+      obj["landmark"] = spd.value.trim()
 
       localStorage.setItem("address",JSON.stringify(add_arr))
         }

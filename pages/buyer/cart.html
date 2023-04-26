@@ -143,8 +143,8 @@
 }
 //console.log(pr_array);
 
-let product_total = 0;
-let items = 0;
+// let product_total = 0;
+// let items = 0;
 
 for(k = 0;k < pr_array.length;k++){
         //creating elements for read cart containers
@@ -174,6 +174,7 @@ for(k = 0;k < pr_array.length;k++){
     const pr_price = document.createElement("p")
     pr_price.setAttribute("class","price")
     pr_price.innerText = pr_array[k]["product_price"]
+    pr_price.setAttribute("data-keyword",pr_array[k]["product_price"])
     div_2.append(pr_price)
 
     // <div class="rating">
@@ -227,22 +228,40 @@ for(k = 0;k < pr_array.length;k++){
     truck.setAttribute("class","fa-solid fa-truck-fast")
     div_6.append(truck)
 
+
     //<span class="quantity">
     const span = document.createElement("span")
     span.setAttribute("class","quantity")
     main_div.append(span)
 
     // <p><b>Qty</b></p>
-    const qty = document.createElement("p")
-    qty.innerText = "Qty"
-    span.append(qty)
+    const minbtn = document.createElement("button")
+    minbtn.setAttribute("class","minus")
+    span.append(minbtn)
+
+    // <i class="fa-solid fa-plus"></i>
+    const minus = document.createElement("i")
+    minus.setAttribute("class","fa-solid fa-minus")
+    minbtn.append(minus)
 
     // <input type="number">
     const input = document.createElement("input")
     input.setAttribute("type","number")
+    input.setAttribute("disabled", "")
     input.setAttribute("id","quantity")
+    input.setAttribute("class","qty")
     input.setAttribute("value",cart_obj[k]["quantity"])
     span.append(input)
+
+    const maxbtn = document.createElement("button")
+    maxbtn.setAttribute("class","plus")
+    span.append(maxbtn)
+
+    // <i class="fa-solid fa-plus"></i>
+    const plus = document.createElement("i")
+    plus.setAttribute("class","fa-solid fa-plus")
+    maxbtn.append(plus)
+
 
     // <a href="#">
     const anker = document.createElement("a")
@@ -276,7 +295,6 @@ for(k = 0;k < pr_array.length;k++){
        let product_price = 0;
        
        const cart_main_arr = cart_array.filter(function (obj) {
-        console.log(obj["cart_id"]);
         if (obj["cart_id"]+"" === data) {
                 main_div.remove();
                 
@@ -299,49 +317,38 @@ for(k = 0;k < pr_array.length;k++){
     
 
 
-    let price = (pr_array[k]["product_price"]).slice(1)
-    console.log(price);
-    price = price.replace(",", "");
-    console.log(price);
+  
+  let index = k
     
-    const product_pr = parseFloat(price);
-    
-    
-    
-    product_total = product_total + product_pr;
-    items = items + 1
-    //this code for remove one item when click remove btn
-    // btn.addEventListener("click",function () {
-    //     items = items - 1
-    //     product_total = product_total - product_price
-    //     count.innerText = `Price (${items} items)`
-    //     total.innerText =  "₹ "+product_total
-    //     itemprice.innerText =  "₹ "+product_total
 
-    // })
+    //this event for increase quantity value
+    maxbtn.addEventListener("click",function () {
+        let qty = parseFloat(input.value);
+        qty = qty + 1
+        input.value = qty        
+    })
+
+        //this event for decrease quantity value
+        minbtn.addEventListener("click",function () {
+            if (input.value !== "1") {
+         let qty = parseFloat(input.value);
+         qty = qty - 1
+         input.value = qty        
+            }
+        })
+
+
 
 }
 //this logic for hide price details if products not there in cart page
 const main_div = document.querySelector(".product-container")
 const detail = document.querySelector(".total")
 const empty = document.getElementById("empty")
-//  if (cart_obj.length == 0) {
-//     detail.remove()
-//     detail.style.display = "none"
-//     empty.style.display = "block"
 
-// }
 
     const total = document.getElementById("total_amount")
     const itemprice = document.getElementById("item_price")
-    const count = document.getElementById("item_count")
-    
-    changeData();
-  function changeData() {
-    total.innerText =  "₹ "+product_total
-    itemprice.innerText =  "₹ "+product_total
-    count.innerText = `Price (${items} items)`
-  }
+
 
   if (cart_arr.length == 0) {
     localStorage.removeItem("cart")
@@ -350,6 +357,68 @@ const empty = document.getElementById("empty")
     empty.style.display = "block"
 
   }
+
+
+//increase rate by quantity
+const maxbtn = document.querySelectorAll(".plus")
+const minbtn = document.querySelectorAll(".minus")
+const qty_input = document.querySelectorAll(".qty")
+const price = document.querySelectorAll(".price")
+const count = document.getElementById("item_count")
+const item_price = document.getElementById("item_price")
+const total_price = document.getElementById("total_amount")
+
+
+for(let i = 0; i < maxbtn.length;i++){
+    //function for changing items count in summary container and mobile price
+    function getAddress(params) {
+        
+        //for changing product price
+        let default_price =  price[i].dataset.keyword.slice(1)
+        price[i].innerHTML = "₹ "+qty_input[i].value * parseFloat(default_price);
+        
+        //for changing quantity total in summary container
+
+        let product_count = 0;
+        let product_price = 0;
+
+        //this loop will add every value of quantity 
+        for(let j = 0;j < qty_input.length;j++){
+        product_count = parseFloat(qty_input[j].value) + product_count
+        
+            let pr_price = parseFloat(price[j].innerText.slice(1));
+            product_price = product_price + pr_price;
+        }
+       // console.log(product_price);
+
+        //show the updated total quantity and total price in summary container
+        count.innerText = `Price (${product_count} items)`
+        item_price.innerText = "₹ "+product_price
+        total_price.innerText = "₹ "+product_price
+
+        }
+
+
+        getAddress();
+
+    // whenever i clice increase and decrease btn getAddress function will work
+    maxbtn[i].addEventListener("click",function () {
+        getAddress();
+    })
+    minbtn[i].addEventListener("click",function () {
+        getAddress();
+    })
+
+}
+
+
+
+
+
+
+
+
+
     
    </script> 
 </body>

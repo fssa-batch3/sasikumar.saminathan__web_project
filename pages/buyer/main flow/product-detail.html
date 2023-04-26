@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="option-2">
-                <p><b>ROM:</b></p>
+                <p><b>Storage:</b></p>
                <div class="ram"> <input type="radio" id="gb" name="lie"><label for="gb"  name="lie">64</label></div>
                 <div class="ram"><input type="radio" id="fb"  name="lie"><label for="fb"  name="lie">128</label>
                 </div>
@@ -75,21 +75,9 @@
         </div>
         </div>
     </div>
-    <div class="shop_show"></div>
-    <h2 class="head">Available shop nearby you</h2>
-    <div class="shop-container">
-        <div class="visit-content">
-          <h3>Chennai - Madipakam</h3>
-          <p>69/70, Bazaar Road, Meenatchi Sundareswarar Koil, Sadasiva Nagar, Madipakkam, Chennai.
-              Tamil Nadu 600091
-              Ph: 8056788899
-          </p>
-        </div>
-          <div class="visit">
-            <button id="visit_btn">Visit store</button>
-            <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
-          </div>
-      </div>
+    <div class="shops"></div>
+    <!-- <h2 class="head">Available shop nearby you</h2> -->
+
       <footer>
         <ul>
             <li><a aria-label="contact" href="#">contact us</a></li>
@@ -270,21 +258,21 @@ img_1.setAttribute("src",search["product_img_2"])
 img_1.setAttribute("alt","image")
 img_1.setAttribute("width","60px")
 img_1.setAttribute("height","130px")
-img_1.setAttribute("class","img-2")
+img_1.setAttribute("class","img-2 image")
 document.querySelector(".span_3").append(img_1)
 
 
 const img_2 = document.createElement("img")
 img_2.setAttribute("src",search["product_img_3"])
 img_2.setAttribute("alt","image")
-img_2.setAttribute("class","img-3")
+img_2.setAttribute("class","img-3 image")
 document.querySelector(".span_2").append(img_2)
 
 
 const img_3 = document.createElement("img")
 img_3.setAttribute("src",search["product_img_4"])
 img_3.setAttribute("alt","image")
-img_3.setAttribute("class","img-4")
+img_3.setAttribute("class","img-4 image")
 document.querySelector(".span_1").append(img_3)
 
 // <!-- <div class="rate">
@@ -410,13 +398,45 @@ pr_but.addEventListener("click",function(){
     edit.setAttribute("href","../../Seller/product_enter.html?user_id="+user)
 })
 
-//getting elements for passing id in visit btn
 
-const visit = document.getElementById("visit_btn")
 
-visit.addEventListener("click",function(){
-    window.location.href = "shop-detail.html?id="+productname
-})
+//get shop array from localstorage
+let shop = JSON.parse(localStorage.getItem("shoper"))
+let shops=" ";
+for(let i = 0;i < shop.length;i++){
+    shops += `<div class="shop-container">
+        <div class="visit-content">
+          <h3>${shop[i]["city"]} - ${shop[i]["district"]}</h3>
+          <p>${shop[i]["full_address"]}</p>
+        </div>
+          <div class="visit">
+            <a href="shop-detail.html?id=${productname},${shop[i]["owner_id"]}"><button id="visit_btn">Visit store</button></a>
+            <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
+          </div>
+      </div>`
+
+     let each_shops= document.querySelector(".shops")
+     each_shops.innerHTML=shops
+
+     
+
+}
+
+//this var contain all three images
+const photo = document.querySelectorAll(".image")
+
+for(let k = 0;k < photo.length;k++){
+
+    //this event for showing img in main img 
+    photo[k].addEventListener("mouseenter",function () {
+         main_img.src = photo[k].currentSrc       
+    })
+
+    //this event for showing the default img in main img
+    photo[k].addEventListener("mouseleave",function () {
+         main_img.src = search["product_img_1"]    
+    })
+}
 
 </script>  
 </body>

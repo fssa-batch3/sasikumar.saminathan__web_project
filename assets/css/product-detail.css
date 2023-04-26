@@ -260,7 +260,7 @@ ul a{
     border-radius: 20px;
 }
 .visit-content{
-    height: 80%;
+    max-height: 80%;
     padding: 50px 40px;
     font-size: 19px;
     border-radius: 15px;
@@ -268,13 +268,15 @@ ul a{
 .visit{
     display: flex;
     justify-content: space-between;
-    height: 30%;
+    height: 50px;
+    padding-bottom: 50px;
     background-color: var(--secondary);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 .visit-content p{
     margin-top: 20px;
+    max-height: 80px;
 }
 .visit img{
     position: relative;
@@ -283,6 +285,7 @@ ul a{
 .visit button{
     border: 0px solid var(--secondary);
     padding: 11px;
+    height: 39px;
     background-color: var(--primary);
     color: var(--secondary);
     border-radius: 20px;
@@ -299,10 +302,6 @@ a,button{
     height: 40px;
     margin-top: 12px;
     margin-right: 40px;
-}
-.shop-container{
-    margin-top: 50px;
-    margin-left: 700px;
 }
 .fa-search{
     color: var(--primary);
@@ -336,6 +335,7 @@ footer ul{
     flex-direction: column;
     padding: 100px;
 }
+
 footer ul a{
     padding: 3px;
     color: var(--primary);
@@ -415,4 +415,8 @@ html{
     background-color: var(--primary);
     color: var(--secondary);
 
+}
+.shops{
+    display: flex;
+    justify-content: space-around;
 }

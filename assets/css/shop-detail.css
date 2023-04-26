@@ -138,8 +138,9 @@ ul a{
     padding: 5px;
 }
 .detail-2{
-    width: 160px;
-    margin-left: 10px;
+    width: max-content;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .details{
     display: flex;
@@ -481,4 +482,50 @@ ul{
     border: 1px solid white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     
+}
+
+#map_btn {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: rgb(190, 255, 226);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: var(--primary);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+  border-radius: 10px;
+}
+
+#map_btn:hover,
+#map_btn:focus {
+  background-color:rgb(160, 255, 212);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+#map_btn:hover {
+  transform: translateY(-1px);
+}
+
+#map_btn:active {
+  background-color: rgb(132, 255, 199);
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
 }

@@ -51,11 +51,11 @@
    function getData() {
 
     //get values from input
-    const name = document.getElementById("name").value
-    const num = document.getElementById("phone_no").value
-    const email = document.getElementById("email").value
-    const create_password = document.getElementById("password").value
-    const confirm_password = document.getElementById("pass_2").value
+    const name = document.getElementById("name").value.trim()
+    const num = document.getElementById("phone_no").value.trim()
+    const email = document.getElementById("email").value.trim()
+    const create_password = document.getElementById("password").value.trim()
+    const confirm_password = document.getElementById("pass_2").value.trim()
 
     //creating id with math random
     let user_id = Math.floor(Math.random() * 10000)

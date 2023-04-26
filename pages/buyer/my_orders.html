@@ -182,7 +182,10 @@ console.log(pr_array[j]["quantity"]);
 
     //expected date to order
     const date = document.createElement("p")
-    date.innerText = "7 March 2023"
+    //get today date for insert in the container
+    let today = new Date+""
+    let date_arr = today.split(" ");
+    date.innerText = date_arr[2]+" "+date_arr[1]+" "+date_arr[3]
     div_5.append(date)
 
     //btn_div contain with btn's 
@@ -259,7 +262,8 @@ console.log(pr_array[j]["quantity"]);
    profile["order_count"] = pr_array.length
    localStorage.setItem("profile",JSON.stringify(profile))
 
-   
+
+ 
 
 
     </script>

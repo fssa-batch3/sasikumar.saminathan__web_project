@@ -405,7 +405,7 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
     const a = document.createElement("a");
     a.setAttribute("aria-label", "redmi")
     a.setAttribute("class", "mob-link")
-    a.setAttribute("href", "/pages/buyer/main flow/product-detail.html?user_id="+ pr_array[j]["user_id"])
+    a.setAttribute("href", "/pages/buyer/main flow/location.html?user_id="+ pr_array[j]["user_id"])
     div_2.append(a)
 
     //product name

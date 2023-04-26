@@ -121,6 +121,8 @@ const url = window.location.search;
 const urlParams = new URLSearchParams(url);
 
 const productname = urlParams.get("id")
+let id_arr = productname.split(",");
+console.log(id_arr);
 
 const search = product_array.find(function (userobj){
 
@@ -128,7 +130,7 @@ const name = userobj["user_id"]+"";
 //console.log(name);
 
 //console.log(name);
-if (productname === name) {
+if (id_arr[0] === name) {
     return true
 
 } else {
@@ -140,10 +142,24 @@ if (productname === name) {
 //button elements
 const order = document.getElementById("buy")
 const cart = document.getElementById("cart")
+const cart_text = document.getElementById("cart_text")
 
 const user_array = JSON.parse(localStorage.getItem("profile"))
 
 
+const cart_arr = JSON.parse(localStorage.getItem("cart"))
+
+let already_in_cart = false
+
+if (cart_arr !== null) {
+    cart_arr.find(function (obj) {
+        if (user_array["user_id"] === obj["user_id"] && id_arr[0] === obj["product_id"]+"") {
+            already_in_cart = true
+            cart_text.innerText = "Go to cart"
+            cart_text.style.marginRight = "5px"
+        }
+    })
+}
 //this function for add to cart
 cart.addEventListener("click",function(){
 
@@ -167,31 +183,12 @@ else{
         }
     )
 
+if (already_in_cart == false) {
+    localStorage.setItem("cart",JSON.stringify(cart_arr)); 
+}
+
   
-
-    //get cart array for make sure it's exsit
-    const cart_array = JSON.parse(localStorage.getItem("cart"))
-
     
-
-    if (cart_array !== null) {
-        cart_array.find(function (obj) {
-               console.log(obj["product_id"],search["user_id"]);
-            if (obj["product_id"] === search["user_id"]) {
-                const qty = parseFloat(obj["quantity"]);
-                const qty_2 = parseFloat(quantity.value);
-                obj["quantity"] = qty + qty_2
-                localStorage.setItem("cart",JSON.stringify(cart_array)) 
-            
-            }
-            else{
-                localStorage.setItem("cart",JSON.stringify(cart_arr));
-            }
-        })
-    }
-    else{
-        localStorage.setItem("cart",JSON.stringify(cart_arr));
-    }
 
 
     window.location.href = "../cart.html?user_id="+user_array["user_id"]
@@ -209,18 +206,60 @@ search["quantity"] = quantity.value
 
 localStorage.setItem("products",JSON.stringify(product_array))
 
-window.location.href = "../address.html?id="+productname
+window.location.href = "../address.html?id="+id_arr[0]
 }
 })
 
-
+//get element for showing products 
 const pro_name = document.getElementById("pr_name")
 const pro_image = document.getElementById("pr_image")
 const pro_price = document.getElementById("pr_price")
 
+//insert the information which i got from array
 pro_name.innerText = search["product_name"]
 pro_price.innerText = search["product_price"]
 pro_image.setAttribute("src",search["product_img_1"])
+
+//owner id for finding shop
+//it's get from url params
+const owner_id = id_arr[1]
+
+//get the shop array from localstorage
+const shops_arr = JSON.parse(localStorage.getItem("shoper"))
+
+//find the shop with owner id
+const shop_obj = shops_arr.find(function (obj) {
+    if (owner_id === obj["owner_id"]) {
+        return true       
+    }
+    else{
+        return false
+    }
+})
+
+const shop_name = document.getElementById("shop_name")
+const shop_img = document.getElementById("shop_img")
+const shop_address = document.getElementById("shop_address")
+const shop_number = document.getElementById("shop_num")
+const work_days = document.getElementById("work_days")
+const work_hour = document.getElementById("work_hour")
+const shop_map = document.getElementById("map_link")
+
+shop_name.innerHTML = shop_obj["name"]
+shop_img.src = shop_obj["photos_sample"][0]["photo_url_large"]
+shop_address.innerHTML = shop_obj["address"]
+shop_number.innerHTML = "Phone: "+shop_obj["phone_number"]
+shop_map.href = shop_obj["place_link"]
+work_days.innerHTML = Object.keys(shop_obj["working_hours"]).length+" working days"
+work_hour.innerHTML = shop_obj["working_hours"]["Monday"]
+
+
+
+
+
+
+
+
 
 
 

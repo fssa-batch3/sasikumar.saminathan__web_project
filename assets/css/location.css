@@ -415,3 +415,7 @@ ul a{
     color: var(--secondary);
 }
 }
+#near{
+    background-color: #29e97e;
+    border: none;
+}

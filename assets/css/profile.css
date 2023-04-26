@@ -626,5 +626,13 @@ input::-webkit-inner-spin-button {
     color: var(--secondary);
 }
 
+input:valid
+{
+  border-left: 4px solid var(--secondary);
+}
+input:invalid
+{
+    border-left: 4px solid red;
+}
 
 
