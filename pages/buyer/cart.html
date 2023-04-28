@@ -102,6 +102,7 @@
         <p id="total_amount"><b></b></p>
     </div>
     </div> -->
+<div class="summary">
     <div class="summary_container navigation total">
         <h2>Product detail</h2>
         <!-- <hr id="hr"> -->
@@ -110,6 +111,9 @@
         <hr id="hr_2">
         <div class="pr_price" id="total"><p>Order total</p><p class="deiver" id="total_amount">₹34,999</p></div> 
      </div>
+<button class="button-9" id="place_order" role="button">Place order</button>
+</div>
+
 </main>
    <script>
     //first step : get the id from url and filter the objects
@@ -291,18 +295,12 @@ for(k = 0;k < pr_array.length;k++){
         const detail = document.querySelector(".total")
        const cart_array = cart_obj
 
-       //this var for changing price when click remove
-       let product_price = 0;
        
        const cart_main_arr = cart_array.filter(function (obj) {
         if (obj["cart_id"]+"" === data) {
                 main_div.remove();
                 
-                return false
-                
-                let price = obj["product_price"].slice(1)
-                price = price.replace(",", "");
-                product_price = parseFloat(price);
+                delete cart_array[obj]                           
             }
             else{
                 return true
@@ -325,39 +323,40 @@ for(k = 0;k < pr_array.length;k++){
     maxbtn.addEventListener("click",function () {
         let qty = parseFloat(input.value);
         qty = qty + 1
-        input.value = qty        
+        input.value = qty
+        let id = parseFloat(btn.dataset.keyword)
+        cart_arr.find(function (obj) {
+            if (id === obj["cart_id"]) {
+                console.log(obj);
+                obj["quantity"] = input.value
+                localStorage.setItem("cart",JSON.stringify(cart_arr))
+            }            
+        })
     })
 
-        //this event for decrease quantity value
+     //this event for decrease quantity value
         minbtn.addEventListener("click",function () {
             if (input.value !== "1") {
          let qty = parseFloat(input.value);
          qty = qty - 1
          input.value = qty        
-            }
+         let id = parseFloat(btn.dataset.keyword)
+
+         cart_arr.find(function (obj) {
+            if (id === obj["cart_id"]) {
+                obj["quantity"] = input.value
+                localStorage.setItem("cart",JSON.stringify(cart_arr))
+            }            
         })
+            }
+
+        })
+
+        
 
 
 
 }
-//this logic for hide price details if products not there in cart page
-const main_div = document.querySelector(".product-container")
-const detail = document.querySelector(".total")
-const empty = document.getElementById("empty")
-
-
-    const total = document.getElementById("total_amount")
-    const itemprice = document.getElementById("item_price")
-
-
-  if (cart_arr.length == 0) {
-    localStorage.removeItem("cart")
-    detail.remove()
-    detail.style.display = "none"
-    empty.style.display = "block"
-
-  }
-
 
 //increase rate by quantity
 const maxbtn = document.querySelectorAll(".plus")
@@ -367,6 +366,12 @@ const price = document.querySelectorAll(".price")
 const count = document.getElementById("item_count")
 const item_price = document.getElementById("item_price")
 const total_price = document.getElementById("total_amount")
+const remove_btn = document.querySelectorAll(".btn-buy")
+const main_div = document.querySelectorAll(".product-container")
+const detail = document.querySelector(".total")
+const empty = document.getElementById("empty")
+const place_order_btn = document.getElementById("place_order")
+// console.log(remove_btn);
 
 
 for(let i = 0; i < maxbtn.length;i++){
@@ -401,19 +406,75 @@ for(let i = 0; i < maxbtn.length;i++){
 
         getAddress();
 
-    // whenever i clice increase and decrease btn getAddress function will work
-    maxbtn[i].addEventListener("click",function () {
+    // whenever i click increase and decrease the btn getAddress function will work
+    maxbtn[i].addEventListener("click",function () { //for increase
         getAddress();
     })
-    minbtn[i].addEventListener("click",function () {
+    minbtn[i].addEventListener("click",function () { //for decrease
         getAddress();
     })
+    
+    remove_btn[i].addEventListener("click",function () {//when i remove element rate and qty will change
+
+        //when remove decrease the summary item count
+        let item_count = document.getElementById("item_count")
+        let pro_count = item_count.innerText.split(" ")
+        let counter = pro_count[1].replace("(","")
+        // console.log(counter);
+        let decreased_item= parseFloat(counter) - parseFloat(qty_input[i].value)
+        count.innerText = `Price (${decreased_item} items)`
+
+        //when remove the mobile decrease the total price
+        let minus_price =  parseFloat(price[i].innerText.slice(1))
+        // console.log(minus_price);
+        let decreased_value = parseFloat(item_price.innerText.slice(1)) - minus_price
+        // console.log(decreased_value);
+        item_price.innerText =  "₹ "+ decreased_value
+        total_price.innerText = "₹ "+ decreased_value
+
+
+
+        const main_div = document.querySelectorAll(".product-container")
+        if (main_div.length === 0) {
+        detail.remove()
+        detail.style.display = "none"
+        empty.style.display = "block"
+        place_order_btn.style.display = "none"
+
+        }
+                
+    })
+
+
+    //this lines for what want to happen when click place order
+    
+    place_order_btn.addEventListener("click",function(){
+
+        //for pass the item count in url
+        let item_count = document.getElementById("item_count")
+        let pro_count = item_count.innerText.split(" ")
+        let counter = pro_count[1].replace("(","")
+
+        let item_price = document.getElementById("item_price")
+        item_price = parseFloat(item_price.innerText.slice(1))
+
+
+        window.location.href = "address.html?id="+counter+","+item_price
+    })
+
+
 
 }
 
 
 
+if (main_div.length === 0) {
+        detail.remove()
+        detail.style.display = "none"
+        empty.style.display = "block"
+        place_order_btn.style.display = "none"
 
+        }
 
 
 

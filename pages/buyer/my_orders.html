@@ -48,8 +48,8 @@
     </header>
     <main>
         <div class="head"><p>My Orders</p><hr></div>
-        <input type="search" placeholder="search your orders here" class="search" id="search">
-        <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
+        <!-- <input type="search" placeholder="search your orders here" class="search" id="search">
+        <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label> -->
         <div class="order_container"></div>
         <div class="cancel">
             <p>Are you reallly going to cancel the order</p>
@@ -147,12 +147,12 @@ console.log(pr_array[j]["quantity"]);
 
     //p tag for quantity
     const pr_qty = document.createElement("p")
-    pr_qty.innerText = "Qty"+" "+pr_array[j]["quantity"]
+    pr_qty.innerText = "Qty"+" "+ order[j]["quantity"]
     div_3.append(pr_qty)
 
     //product price
     const pr_price = document.createElement("p")
-    pr_price.innerText = pr_array[j]["product_price"]
+    pr_price.innerText = "₹ "+parseFloat(pr_array[j]["product_price"].slice(2)) * parseFloat(order[j]["quantity"]) 
     div_3.append(pr_price)
 
     //div 4 contains status about product
@@ -242,7 +242,7 @@ console.log(pr_array[j]["quantity"]);
         
         if (data === order["order_id"]+"") {
             
-            order["order"] = false
+            order_arr.pop()
 
             localStorage.setItem("orders",JSON.stringify(order_arr))
 

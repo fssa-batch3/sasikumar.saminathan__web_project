@@ -28,18 +28,20 @@
         </div>
         <!-- product detatil -->
         <p class="product">Product detail</p>
-         <div class="pro_container">
+<div class="main_container">
+    <div class="pro_container">
 
-                <img src="https://iili.io/HVTwSyl.webp" alt="apple" id="mob_img">
+        <img src="https://iili.io/HVTwSyl.webp" alt="apple" id="mob_img">
 
-            <div class="pro_info">
-                <p id="mob_name">APPLE iPhone 14</p>
-                <div id="rate">
-                <p id="mob_price">₹39,999</p>
-                <p >Qty  </p><p id="mob_qty">1</p>
-                </div>
-            </div>
-         </div>
+    <div class="pro_info">
+        <p id="mob_name">APPLE iPhone 14</p>
+        <div id="rate">
+        <p id="mob_price">₹39,999</p>
+        <p >Qty  </p><p class="mob_qty">0</p>
+        </div>
+    </div>
+ </div>
+</div>
          <!-- payment method -->
          <p class="product">Payment options</p>
          <form action="" id="forms">
@@ -56,7 +58,7 @@
     <div class="summary_container navigation">
         <h2>Product detail</h2>
         <!-- <hr id="hr"> -->
-        <div class="pr_price"><p>Product Price</p><p class="price">₹34,999</p></div> 
+        <div class="pr_price"><p id="qty">Product Price</p><p class="price">₹34,999</p></div> 
         <div class="pr_price" ><p>Delivery charges</p><p id="deliver">FREE</p></div>
         <hr id="hr_2">
         <div class="pr_price" id="total"><p>Order total</p><p class="price">₹34,999</p></div> 
@@ -102,9 +104,71 @@
  const url = window.location.search
  const search = new URLSearchParams(url)
  const product_id = search.get("id")
+ //store the qty and total amount of mobile
+let summary_info = product_id.split(",")
+
+//cart paramms contains two numbers with "," special character so it's for verify 
+if (summary_info.length !== 1) {
+  let mobile_qty = document.getElementById("qty")
+let mobile_price = document.querySelectorAll(".price")
+
+mobile_qty.innerText = `Price (${summary_info[0]} items)`
+mobile_price[0].innerText = "₹"+summary_info[1]
+mobile_price[1].innerText = "₹"+summary_info[1]
+
+    let main_div = document.querySelector(".main_container")
+    main_div.innerHTML = " "
+
+    const cart_arr = JSON.parse(localStorage.getItem("cart"))
+    const profile = JSON.parse(localStorage.getItem("profile"))
+    const username = profile["user_id"]
+
+const cart_obj = cart_arr.filter(function (obj) {
+    if (username === obj["user_id"] && obj["cart"] !== false) {
+        return true
+    }
+    else{
+        return false
+    }
+})
+//console.log(cart_obj);
+//geting products array for match with cart objects
+const product_arr = JSON.parse(localStorage.getItem("products"))
+//pushing finded arraysin this array
+const product_array = []
+for(j = 0; j < cart_obj.length;j++ ){
+
+for(i = 0; i < product_arr.length;i++){
+if(cart_obj[j]["product_id"] ===  product_arr[i]["user_id"]){
+    product_array.push(product_arr[i])
+
+}
+}
+} 
+
+let pr_container = ""
+
+for (let i = 0; i < product_array.length; i++) {
+
+    pr_container += `<div class="pro_container">
+<img src="${product_array[i]["product_img_1"]}" alt="apple" id="mob_img">
+<div class="pro_info">
+<p id="mob_name">${product_array[i]["product_name"]}</p>
+<div id="rate">
+<p id="mob_price">${"₹ "+ parseFloat(product_array[i]["product_price"].slice(1)) * parseFloat(cart_obj[i]["quantity"])}</p>
+<p data-keyword="${product_array[i]["user_id"]}" class="qty_para">Qty  </p><p class="mob_qty">${cart_obj[i]["quantity"]}</p>
+</div></div></div>` 
+    
+}
+
+main_div.innerHTML = pr_container
+
+}
+
 
  const pr_array = JSON.parse(localStorage.getItem("products"))
- 
+if (summary_info.length == 1) {
+     
  //find the specific object from the products array
  const pr_obj = pr_array.find(function (obj) {
     if (product_id == obj["user_id"]+"") {
@@ -114,11 +178,12 @@
         return false
     }
  })
+ console.log(pr_obj);
  //get the elements from product container
  const product_img = document.getElementById("mob_img")
  const product_name = document.getElementById("mob_name")
  const product_price = document.getElementById("mob_price")
- const product_qty = document.getElementById("mob_qty")
+ const product_qty = document.querySelector(".mob_qty")
 
  //set the values to product container
  product_img.src = pr_obj["product_img_1"]
@@ -130,16 +195,10 @@
  const price = document.querySelectorAll(".price")
  price[0].innerText = pr_obj["product_price"]
 price[1].innerText = pr_obj["product_price"]
+}
 function getData() {
      //get product details array from local storage
  const product_array = JSON.parse(localStorage.getItem("products"))
- 
- //get url from search bar
- const url = window.location.search;
- const urlParams = new URLSearchParams(url);
- const product_id = urlParams.get("id")
- 
- 
  
  //get users id for idnefiying
  const user_array = JSON.parse(localStorage.getItem("profile"))
@@ -162,7 +221,11 @@ function getData() {
  
      let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
  
-     let uid = Math.floor(Math.random() * 1000)
+    if (summary_info.length == 1) {
+        let qty_digit = document.querySelector(".mob_qty")
+        let quantity = qty_digit.innerHTML
+
+        let uid = Math.floor(Math.random() * 1000)
      order_arr.push(
          {
  
@@ -170,15 +233,57 @@ function getData() {
              "user_id" : user_array["user_id"],
              "product_id" : product_id,
              "payment_method" : payment_method,
-             "address_id" : address_obj["id"] 
+             "address_id" : address_obj["id"],
+             "quantity" : quantity 
          }
      )
+    }
+    else{
+
+        let qty = document.querySelectorAll(".qty_para")
+        let qty_digit = document.querySelectorAll(".mob_qty")
+
+
+        for (let j = 0; j < qty.length; j++) {
+
+            let product_id = qty[j].dataset.keyword
+            let quantity = qty_digit[j].innerHTML
+            let uid = Math.floor(Math.random() * 1000)
+            
+     order_arr.push(
+         {
+ 
+             "order_id" : uid,
+             "user_id" : user_array["user_id"],
+             "product_id" : product_id,
+             "payment_method" : payment_method,
+             "address_id" : address_obj["id"],
+             "quantity" : quantity
+         }
+     )
+            
+        }
+
+        let cart_array = JSON.parse(localStorage.getItem("cart"))
+let updated_cart = cart_array.filter(function (obj) {
+    if (user_array["user_id"] === obj["user_id"]) {
+                return false
+            }
+            else{
+                return true
+            }    
+})
+
+
+
+
+        localStorage.setItem("cart",JSON.stringify(updated_cart))
+
+    }
  
      localStorage.setItem("orders",JSON.stringify(order_arr));
   
      window.location.href = "order.html"
-
-
 
      
  })

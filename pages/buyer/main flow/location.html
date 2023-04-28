@@ -40,36 +40,36 @@
     const btn = document.getElementById("near")
     btn.addEventListener("click",function () {
 
-//         if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   } else { 
-//     alert("Geolocation is not supported by this browser.")
-//   }
+        if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    alert("Geolocation is not supported by this browser.")
+  }
 
 
-//   function showPosition(position) {
-//    let latitude =  position.coords.latitude
-//    let longitude = position.coords.longitude
+  function showPosition(position) {
+   let latitude =  position.coords.latitude
+   let longitude = position.coords.longitude
 
-//          //get your nearby shops via latitude and longtitude
-//          const options2 = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': 'd42ae15a6emsh4b2edaed5491051p1650c7jsnf80a4f168a9e',
-// 		'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
-// 	}
-// };
+         //get your nearby shops via latitude and longtitude
+         const options2 = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '1653fc8406msh4c0c78350cb141ep1d5ad3jsn01eef7cce62b',
+		'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
+	}
+};
 
 
 
-// fetch(`https://local-business-data.p.rapidapi.com/search-nearby?query=mobile%20phone%20shop&lat=${latitude}&lng=${longitude}&limit=3&language=en&region=us`, options2)
-// 	.then(response => console.log(response.json()))
-//     .then(response => {
-//     //console.log(response["data"]);
-//    localStorage.setItem("shoper",JSON.stringify(response["data"]))
-//   })
-// 	.catch(err => console.error(err));
-// }
+fetch(`https://local-business-data.p.rapidapi.com/search-nearby?query=mobile%20phone%20shop&lat=${latitude}&lng=${longitude}&limit=3&language=en&region=us`, options2)
+	.then(response => response.json())
+    .then(response => {
+    //console.log(response["data"]);
+   localStorage.setItem("shoper",JSON.stringify(response["data"]))
+  })
+	.catch(err => console.error(err));
+}
 
 //get url from search bar
 const url = window.location.search;

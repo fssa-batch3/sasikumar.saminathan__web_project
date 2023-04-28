@@ -153,14 +153,16 @@ ul a{
 .checkout{
     background-color: #fff;
     width: 870px;
-    min-height: 1200px;
+    /* min-height: 1200px; */
+    height: max-content;
     margin: 50px;
     margin-top: 40px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding-bottom: 100px;
 }
 .add_container{
     border: 2px solid rgb(240, 240, 240);
-    width: 45%;
+    width: 50%;
     padding: 25px;
     border-radius: 7px;
     margin: 100px;
@@ -273,7 +275,7 @@ h2 {
     margin-left: 50px;
 
 }
-#mob_qty{
+.mob_qty{
     position: relative;
     top: 15px;
     left: 7px;

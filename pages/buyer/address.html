@@ -86,7 +86,7 @@
         <div class="summary_container navigation">
            <h2>Product detail</h2>
            <!-- <hr id="hr"> -->
-           <div class="pr_price"><p>Product Price</p><p class="price">₹34,999</p></div> 
+           <div class="pr_price"><p id="qty">Product Price</p><p class="price">₹34,999</p></div> 
            <div class="pr_price" ><p>Delivery charges</p><p id="deliver">FREE</p></div>
            <hr id="hr_2">
            <div class="pr_price" id="total"><p>Order total</p><p class="price">₹34,999</p></div> 
@@ -433,6 +433,19 @@ const deliver_btn = document.getElementById("deliver_btn")
 deliver_btn.addEventListener("click",function(){
 window.location.href = "payment.html?id="+product_id
 })
+
+//store the qty and total amount of mobile
+let summary_info = product_id.split(",")
+
+//cart paramms contains two numbers with "," special character so it's for verify 
+if (summary_info.length !== 1) {
+  let mobile_qty = document.getElementById("qty")
+let mobile_price = document.querySelectorAll(".price")
+
+mobile_qty.innerText = `Price (${summary_info[0]} items)`
+mobile_price[0].innerText = "₹"+summary_info[1]
+mobile_price[1].innerText = "₹"+summary_info[1]
+}
 
     
 
