@@ -36,7 +36,7 @@
                 </div>
                 <div class="shop-detail">
                     <div class="shop-img">
-                        <p>Add shop image:</p><input class="file-upload" type="file" id="file" required>
+                    <input class="file-upload" placeholder="Shop img URL" type="url" id="file" required>
                     </div>
                     <textarea name="" id="area" cols="40" rows="10" placeholder="Type about your shop"
                         required></textarea>
@@ -53,24 +53,30 @@
 
 
         //this function for change profile picture
-        let img_src = "";
+        // let img_src = "";
 
-        file.addEventListener('change', function () {
-            let choosedFile = this.files[0];
-            let reader = new FileReader();
-            if (choosedFile) {
+        // file.addEventListener('change', function () {
+        //     let choosedFile = this.files[0];
+        //     let reader = new FileReader();
+        //     if (choosedFile) {
 
-                reader.addEventListener('load', function () {
+        //         reader.addEventListener('load', function () {
 
-                    img_src = reader.result
-                    getData(img_src)
+        //             img_src = reader.result
+        //             getData(img_src)
 
    
-            });
-            }
-            reader.readAsDataURL(choosedFile);
+        //     });
+        //     }
+        //     reader.readAsDataURL(choosedFile);
+        // })
+        const form = document.getElementById("forms")
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            
+            window.location.href = "login-sell.html"
+            getData();
         })
-
         
 
 
@@ -78,7 +84,7 @@
 
 
 
-        function getData(img_src) {
+        function getData() {
             let shop_name = document.getElementById("shop_name")
             let number = document.getElementById("number")
             let address = document.getElementById("address")
@@ -86,6 +92,7 @@
             let shop_id = document.getElementById("shop_id")
             let area = document.getElementById("area").value
             let file = document.getElementById("shop_id")
+            let image = document.getElementById("file")
 
 
             //creating an array for storing those information about seller shop
@@ -113,11 +120,22 @@
     let latitude =  position.coords.latitude
    let longitude = position.coords.longitude
 console.log(latitude,longitude);
+
+let seller_array = JSON.parse(localStorage.getItem("sellers"))
+
+seller_array.find(function (obj) {
+    if (selller_id == obj["seller_id"]+"") {
+        obj["shop_id"] = user_id
+        
+    }
+})
+localStorage.setItem("sellers",JSON.stringify(seller_array))
+
    shop_arr.push({
                 "id": user_id,
                 "name": shop_name.value,
                 "phone_number": number.value,
-                "img": img_src,
+                "img": image.value,
                 "address": address.value,
                 "pincode": pincode.value,
                 "shop_license": shop_id.value,
@@ -127,16 +145,13 @@ console.log(latitude,longitude);
                 "seller_id": selller_id,
 
             })
+
+            localStorage.setItem("shop", JSON.stringify(shop_arr))
         }
 
 
+        
 
-        const form = document.getElementById("forms")
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-            localStorage.setItem("shop", JSON.stringify(shop_arr))
-            window.location.href = "login-sell.html"
-        })
 
 
 

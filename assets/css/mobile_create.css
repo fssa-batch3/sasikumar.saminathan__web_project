@@ -234,7 +234,7 @@ ul a{
         
         }
         form{
-            position: absolute;
+            position: fixed;
             top: 20%;
             left: 5%;
             display: none;
@@ -284,4 +284,80 @@ ul a{
             margin-left: 1080px;
             position: relative;
             top: 20px;
+            cursor: pointer;
         }
+        .mob{
+            width: 250px;
+            height: 350px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 7px rgb(0,0,0,0.1);
+            cursor: pointer;
+            margin: 4%;
+            background-color: #fff;
+        }
+        .mob img{
+            margin-top: 20px;
+            margin-left: 50px;
+            position: relative;
+            top: 0px;
+        
+        }
+        .mobile{
+           
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 40px;
+        }
+        .head-1{
+              margin-left: 50px;
+            margin-top: 40px;
+        }
+
+        .product_list{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            max-height: max-content;
+        }
+        .rate button{
+            margin: 20px;
+        }
+        .detail-1{
+            text-align: center;
+        }
+
+.button-38 {
+  background-color: #FFFFFF;
+  border: 0;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 80px;
+  
+}
+
+.button-38:hover {
+  background-color: rgb(249,250,251);
+}
+
+.button-38:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.button-38:focus-visible {
+  box-shadow: none;
+}

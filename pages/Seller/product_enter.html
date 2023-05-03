@@ -281,17 +281,17 @@ localStorage.setItem("products",JSON.stringify(pr_array))
     })
 
          
-    delete_btn.addEventListener("click",function(){
-        const product_array = JSON.parse(localStorage.getItem("products"))
+    // delete_btn.addEventListener("click",function(){
+    //     const product_array = JSON.parse(localStorage.getItem("products"))
 
-        product_array.find(function (erase) {
-            if (search["user_id"] === erase["user_id"]){
+    //     product_array.find(function (erase) {
+    //         if (search["user_id"] === erase["user_id"]){
 
-                erase["status"] = false
-                localStorage.setItem("products",JSON.stringify(product_array))
-            }
-        })
-    })
+    //             erase["status"] = false
+    //             localStorage.setItem("products",JSON.stringify(product_array))
+    //         }
+    //     })
+    // })
   
   
     

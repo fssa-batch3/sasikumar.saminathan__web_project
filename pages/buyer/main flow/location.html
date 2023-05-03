@@ -38,8 +38,8 @@
 <script>
     //if click the btn find your lat and long with ip address and find the nearby shops
     const btn = document.getElementById("near")
-    btn.addEventListener("click",function () {
-        console.log("why");
+
+       
         if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
@@ -80,7 +80,7 @@
 
 
 
-
+    btn.addEventListener("click",function () {
 
 //get url from search bar
 const url = window.location.search;

@@ -34,7 +34,7 @@ body{
     border-radius: 20px;
     margin-left: 180px;
 }
-.shop-input input{
+ input{
     padding: 20px;
     width: 300px;
     border: none;
@@ -101,7 +101,7 @@ button{
     box-shadow: 0px 0px 7px rgb(0,0,0,0.1);
     cursor: pointer;
 }
-.file-upload::-webkit-file-upload-button{
+/* .file-upload::-webkit-file-upload-button{
     background-color: var(--secondary);
     padding: 7px;
     box-shadow: 0px 0px 7px rgb(0,0,0,0.1);
@@ -117,4 +117,11 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+} */
+
+.shop-detail input{
+    height: 55px;
+    position: relative;
+    right: 60px;
+    
 }
