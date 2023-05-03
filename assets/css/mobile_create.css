@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Barlow:wght@300;400&family=Karla:wght@300;400&family=Michroma&family=Outfit:wght@100;500&family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Barlow+Condensed&family=Barlow:wght@300;400&family=Karla:wght@300;400&family=Michroma&family=Outfit:wght@100;500&family=Rubik:wght@300&display=swap');
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family:PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;;
+}
+
+/* variable declarations */
+:root{
+    --primary:#00203FFF;
+    --secondary:#ADEFD1FF;
+}
+body{
+    background-color:#ffffff;
+}
+header{
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    background-color:var(--primary);
+    position: sticky;
+    top: 0%; 
+    z-index: 1; 
+}
+.top-list{
+    display: flex;
+    width: 500px;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+.logo{
+    display: flex;
+    width: 250px;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-left: 50px;
+    color:var(--secondary);
+}
+.search{
+    width: 200px;
+    outline: none;
+    height: 35px;
+    margin-top: 40px;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    position: relative;
+    right: 200px;
+    bottom: 4px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
+}
+.login{
+    padding: 10px;
+    width: 110px;
+    border: 0px solid var(--secondary);
+    background-color: var(--secondary);
+    border-radius: 10px;
+    color:var(--primary);
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.logo-name{
+    margin-top: 6px;
+    margin-right: 80px;
+    font-size: 25px;
+}
+ul a{
+    text-decoration: none;   
+}
+.seller{
+    margin-top: 10px;
+    color:var(--secondary);
+}
+.home-icon{
+    padding: 10px;
+    height: 35px;
+    border: 0px solid var(--secondary);
+    background-color: var(--secondary);
+    border-radius: 5px;
+    color:var(--primary);
+}
+.fa-search{
+    color: var(--primary);
+    position: relative;
+    top:46px;
+    right:390px;
+    width: 25px;
+    height:25px;
+    text-align: center; 
+}
+#head{
+    
+    font-size: 40px;
+    font-weight: 100;
+    text-align: center;
+    position: relative;
+    top: 50px;
+    width: 500px;
+
+}
+#line{
+    width: 550px;
+    height: 3px;
+    margin-top: 80px;
+    background-color: var(--secondary);
+}
+#lines{
+    display: flex;
+}
+.model{
+    display: flex;
+    margin: 5%;
+}
+.model p{
+    margin-top: 10px;
+}
+.model input{
+    margin-left: 10px;
+    width: 300px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    outline: none;
+}
+
+/* CSS */
+.button-25 {
+  background-color: #36A9AE;
+  background-image: linear-gradient(#37ADB2, #329CA0);
+  border: 1px solid #2A8387;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  line-height: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 11px 15px 12px;
+  text-align: center;
+  transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 10%;
+  margin-left: 40px;
+}
+
+.button-25:hover {
+  box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset, rgba(0, 0, 0, 0.4) 0 1px 2px;
+  text-decoration: none;
+  transition-duration: .15s, .15s;
+}
+
+.button-25:active {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.4) 0 1px 1px;
+}
+
+.button-25:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.button-25:disabled:active {
+  pointer-events: none;
+}
+
+.button-25:disabled:hover {
+  box-shadow: none;
+}
+.product_list{
+    width: 90%;
+    height: 1000px;
+    background-color: rgba(241, 240, 240, 0.509);
+    margin: auto;
+    border-radius: 10px;
+}
+        .main_container{
+            width: 60%;
+            height: 700px;
+            background-color:lightblue;
+            border-radius: 10px;
+            margin: auto;
+            margin-top: 5%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .main_container div{
+            margin: 5%;
+        }
+        .inputs{
+            padding: 5%;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            --shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+        }
+        .pr_btn{
+            cursor: pointer;
+            margin: auto;
+            padding: 15px;
+            border: none;
+            background-color:violet;
+            color: white;
+            width: 200px;
+            border-radius: 10px;
+        }
+        #edit{
+            display: none;
+        }
+        #delete{
+            display: none;
+        }
+        #high{
+            height: 200px;
+            width: 250px;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+        }
+        /* info container css */
+        .main_container{
+            width: 80%;
+            height: 600px;
+            background-color:lightblue;
+            border-radius: 10px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            z-index: 3;
+        
+        }
+        form{
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            display: none;
+            
+        }
+        .main_container div{
+            margin: 5%;
+        }
+        .inputs{
+            padding: 5%;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+        }
+        .pr_btn{
+            cursor: pointer;
+            margin: auto;
+            padding: 15px;
+            border: none;
+            background-color:violet;
+            color: white;
+            width: 200px;
+            border-radius: 10px;
+        }
+        #edit{
+            display: none;
+        }
+        #delete{
+            display: none;
+        }
+        #high{
+            height: 200px;
+            width: 250px;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+        }
+        .product-img input{
+            width: 250px;
+        }
+        .main_container p{
+            margin-bottom: 5px;
+        }
+        .fa-xmark{
+            font-size: 23px;
+            margin-left: 1080px;
+            position: relative;
+            top: 20px;
+        }

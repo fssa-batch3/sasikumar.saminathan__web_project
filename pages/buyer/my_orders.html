@@ -55,7 +55,7 @@
             <p>Are you reallly going to cancel the order</p>
             <div class="sure_btn">
                 <button id="sure">YES</button>
-                <button>NO</button>
+                <button id="not">NO</button>
             </div>
         </div>
         <!-- <div class="main_container">
@@ -229,6 +229,8 @@ console.log(pr_array[j]["quantity"]);
         const confirm_pop = document.querySelector(".cancel")
         confirm_pop.classList.toggle('cancel_active');
         const sure = document.getElementById("sure")
+        const not_sure = document.getElementById("not")
+
 
                 sure.addEventListener("click",function(){
 
@@ -238,6 +240,7 @@ console.log(pr_array[j]["quantity"]);
 
     const order_arr = order
     
+    //find object from array for delete that order 
     order_arr.find(function(order){
         
         if (data === order["order_id"]+"") {
@@ -253,7 +256,12 @@ console.log(pr_array[j]["quantity"]);
 
         
          })
-       })   
+       })
+       
+       //if click no it will be work
+       not_sure.addEventListener("click",function () {
+        confirm_pop.classList.remove('cancel_active')
+       })
      }) 
    }
 

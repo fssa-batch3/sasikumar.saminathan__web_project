@@ -71,6 +71,12 @@
             reader.readAsDataURL(choosedFile);
         })
 
+        
+
+
+
+
+
 
         function getData(img_src) {
             let shop_name = document.getElementById("shop_name")
@@ -78,7 +84,7 @@
             let address = document.getElementById("address")
             let pincode = document.getElementById("number_2")
             let shop_id = document.getElementById("shop_id")
-            let area = document.getElementById("area")
+            let area = document.getElementById("area").value
             let file = document.getElementById("shop_id")
 
 
@@ -98,9 +104,16 @@
 
             const selller_id = urlParams.get("id")
 
-
-
-            shop_arr.push({
+            if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    alert("Geolocation is not supported by this browser.")
+  }
+            function showPosition(position) {
+    let latitude =  position.coords.latitude
+   let longitude = position.coords.longitude
+console.log(latitude,longitude);
+   shop_arr.push({
                 "id": user_id,
                 "name": shop_name.value,
                 "phone_number": number.value,
@@ -108,17 +121,21 @@
                 "address": address.value,
                 "pincode": pincode.value,
                 "shop_license": shop_id.value,
-                "area": area.value,
+                "area": area,
+                "latitude" : latitude,
+                "longitude" : longitude,
                 "seller_id": selller_id,
 
             })
+        }
+
 
 
         const form = document.getElementById("forms")
         form.addEventListener("submit", function (e) {
             e.preventDefault();
             localStorage.setItem("shop", JSON.stringify(shop_arr))
-            window.location.href = "../../index.html"
+            window.location.href = "login-sell.html"
         })
 
 

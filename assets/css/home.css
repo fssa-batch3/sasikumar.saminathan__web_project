@@ -44,9 +44,10 @@ ul{
 
 .top-list{
     display: flex;
-    width: 500px;
+    width: 400px;
     justify-content: space-evenly;
     margin-top: 30px;
+    cursor: pointer;
 }
 .logo{
     display: flex;

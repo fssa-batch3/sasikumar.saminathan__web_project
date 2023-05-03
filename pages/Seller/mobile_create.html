@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopnow</title>
+    <link rel="icon" type = "image/x-icon" href="../../assets/icon/shopping-bag.png">
+    <link rel="stylesheet" href="../../assets/css/mobile_create.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <header> 
+        <div class="logo">
+        <img src="../../assets/icon/shopping-bag.png" alt="shopping-bag" width="40px" height="40px">
+        <h5 class="logo-name"><b>Shopnow</b></h5>
+    </div>
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <ul class="top-list">
+        <a href="../sign-in/login.html"><button class="login"><b>Login</b></button></a>
+       <a href="../buyer/cart.html"><i class="home-icon fa fa-shopping-cart" aria-hidden="true"></i></a>
+       <a href="../buyer/side flow/pincode.html"> <i class="home-icon fa-solid fa-location-dot"></i></a>
+    </ul>
+</header>
+
+<div id="lines"><div id="line"></div><p id="head">Add products to your shop</p><div id="line" class="line2"></div></div>
+<div class="model"><p>Model name :</p><input id="search" type="search"><button class="button-25">Add product</button></div>
+<div class="product_list"></div>
+</div>
+<form>
+    <div class="main_container">
+        <i class="fa-solid fa-xmark"></i>
+        <div><p>Product Name</p><input type="text" class="inputs" id="pr_name"></div>
+      <div><p>Product price</p><input type="text" class="inputs" id="pr_price"></div>
+      <div><p>Ram</p><input type="number" class="inputs" id="pr_ram"></div>
+      <div><p>Rom</p><input type="number" class="inputs" id="pr_rom"></div>
+    <div class="product-img">
+        <div><p>Upload image urls</p><input type="url" class="inputs" id="pr_img_1"></div>
+        <div><input type="url" class="inputs" id="pr_img_2"></div>
+        <div><input type="url" class="inputs" id="pr_img_3"></div>
+        <div><input type="url" class="inputs" id="pr_img_4"></div>
+    </div>
+      <div><p>Highlights</p><input type="text" id="high"></div>
+      <button type="button" class="pr_btn" id="sub">SUBMIT</button>
+      <button type="button" class="pr_btn" id="edit">EDIT</button>
+      <button type="button" class="pr_btn" id="delete">DISABLE</button>
+    </div>
+      
+ </form>
+<script>
+
+    //get the search input element
+    const search = document.getElementById("search")
+    const btn = document.querySelector(".button-25")
+
+    //event for search the product
+    btn.addEventListener("click",function(){
+         
+        const searchvalue = search.value.trim().toLowerCase()
+        const url = `https://api.device-specs.io/api/fuzzy-search/search?query=${searchvalue}`
+        const apiToken = 'a70751a3781b8f8dbd3d98aceabc79eb0a55d781cbeca360ab9624d5b2f705f136d60c39405508a0d319c2447d074894e8401e71ba50da66db70f6b08c2261982764ab647d9842e48be3e4db4452ff064fad79641c9f24a43b9946a8f7b3eca0e6552dba726afe06bd3d9f283eb881dd65d450680aa2ea813cb2639e5c26eeb0';
+
+            fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${apiToken}`
+            }
+            })
+            .then(response => response.json())
+            .then(
+                response => {
+                    let mobile_id;
+                    
+                    
+                    for (let i = 0; i < response.smartphones.length; i++) {
+                        if (response.smartphones[i]["images"] === null) {
+                            continue;
+                        }
+                    else{
+                        let arr_length = response.smartphones[i]["images"].length
+                                    console.log(arr_length);     
+                        
+                        if (arr_length == 4) {
+                            
+                        mobile_id = response.smartphones[i]
+                        break;
+                        }
+                        else{
+                            mobile_id = response.smartphones[i]
+                        }
+                        
+                    }
+                    
+                     
+                        
+                    }
+                    console.log(mobile_id);
+                     
+                
+                }
+            )
+            .catch(error => {
+            console.log(error);
+            });
+            
+
+
+                })
+
+
+
+
+</script>
+    
+</body>
+</html>

@@ -39,7 +39,7 @@
     //if click the btn find your lat and long with ip address and find the nearby shops
     const btn = document.getElementById("near")
     btn.addEventListener("click",function () {
-
+        console.log("why");
         if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
@@ -48,28 +48,39 @@
 
 
   function showPosition(position) {
-   let latitude =  position.coords.latitude
-   let longitude = position.coords.longitude
+    console.log(position);
+    let lat1 =  position.coords.latitude
+    let lon1 = position.coords.longitude
+    console.log(lat1,lon1);
+   
+    let profile = JSON.parse(localStorage.getItem("profile"))
+    profile["lat"] = lat1
+    profile["lon"] = lon1
+    localStorage.setItem("profile",JSON.stringify(profile))
+   }
 
          //get your nearby shops via latitude and longtitude
-         const options2 = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '1653fc8406msh4c0c78350cb141ep1d5ad3jsn01eef7cce62b',
-		'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
-	}
-};
+//          const options2 = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': '1653fc8406msh4c0c78350cb141ep1d5ad3jsn01eef7cce62b',
+// 		'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
+// 	}
+// };
 
 
 
-fetch(`https://local-business-data.p.rapidapi.com/search-nearby?query=mobile%20phone%20shop&lat=${latitude}&lng=${longitude}&limit=3&language=en&region=us`, options2)
-	.then(response => response.json())
-    .then(response => {
-    //console.log(response["data"]);
-   localStorage.setItem("shoper",JSON.stringify(response["data"]))
-  })
-	.catch(err => console.error(err));
-}
+// fetch(`https://local-business-data.p.rapidapi.com/search-nearby?query=mobile%20phone%20shop&lat=${latitude}&lng=${longitude}&limit=3&language=en&region=us`, options2)
+// 	.then(response => response.json())
+//     .then(response => {
+//     //console.log(response["data"]);
+//    localStorage.setItem("shoper",JSON.stringify(response["data"]))
+//   })
+// 	.catch(err => console.error(err));
+
+
+
+
 
 //get url from search bar
 const url = window.location.search;

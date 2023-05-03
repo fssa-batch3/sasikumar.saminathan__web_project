@@ -33,7 +33,7 @@
 
 // ]
 
-const array = [{"user_id":55,"product_name":"SAMSUNG Galaxy S21 FE 5G","product_price":"₹ 39,999","product_ram":"6","product_rom":"128","product_img_1":"https://iili.io/HVTwwCX.webp","product_img_2":"https://iili.io/H86cfs9.webp","product_img_3":"https://iili.io/H86cKW7.webp","product_img_4":"https://iili.io/H86cBfe.webp","highlights":"50 mp front camera 108mp back camera 6000mah battery 4 years warranty Gorilla glass protection","status":true},{"user_id":91,"product_name":"APPLE iPhone 14","product_price":"₹ 71,999","product_ram":"6","product_rom":"128","product_img_1":"https://iili.io/HVTwSyl.webp","product_img_2":"https://iili.io/H86w17S.webp","product_img_3":"https://iili.io/H86w022.webp","product_img_4":"https://iili.io/H86wcrl.webp","highlights":"128 GB ROM\\n15.49 cm (6.1 inch) Super Retina XDR Display\\n12MP + 12MP | 12MP Front Camera\\nA15 Bionic Chip, 6 Core Processor Processor","status":true}]
+const array = [{"user_id":55,"product_name":"SAMSUNG Galaxy S21 FE 5G","product_price":"₹ 39999","product_ram":"6","product_rom":"128","product_img_1":"https://iili.io/HVTwwCX.webp","product_img_2":"https://iili.io/H86cfs9.webp","product_img_3":"https://iili.io/H86cKW7.webp","product_img_4":"https://iili.io/H86cBfe.webp","highlights":"50 mp front camera 108mp back camera 6000mah battery 4 years warranty Gorilla glass protection","status":true},{"user_id":91,"product_name":"APPLE iPhone 14","product_price":"₹ 71999","product_ram":"6","product_rom":"128","product_img_1":"https://iili.io/HVTwSyl.webp","product_img_2":"https://iili.io/H86w17S.webp","product_img_3":"https://iili.io/H86w022.webp","product_img_4":"https://iili.io/H86wcrl.webp","highlights":"128 GB ROM\\n15.49 cm (6.1 inch) Super Retina XDR Display\\n12MP + 12MP | 12MP Front Camera\\nA15 Bionic Chip, 6 Core Processor Processor","status":true}]
 
 const pro_array = localStorage.getItem("products")
 if (pro_array == null) {
@@ -347,32 +347,7 @@ window.location.href ="/pages/sign-in/real-profile.html"
 }
 });
 
-//this logic for user going to orders page
-const orders = document.getElementById("order")
-const cart = document.getElementById("cart")
-const user_obj = JSON.parse(localStorage.getItem("profile"))
-orders.addEventListener("click",function(){
-if (profile == false) {
-window.location.href ="/pages/sign-in/login.html"
-}
-else if (profile == null) {
-window.location.href ="/pages/sign-in/login.html"
-}
-else{
-window.location.href ="/pages/buyer/my_orders.html?user_id="+user_obj["user_id"]
-}
-})
-cart.addEventListener("click",function(){
-if (profile == false) {
-window.location.href ="/pages/sign-in/login.html"
-}
-else if (profile == null) {
-window.location.href ="/pages/sign-in/login.html"
-}
-else{
-window.location.href ="./pages/buyer/cart.html?user_id="+user_obj["user_id"]
-}
-})
+
 
 
 //produucts display from object
@@ -473,4 +448,52 @@ pr_btn.innerText = "Create product"
 pr_btn.addEventListener("click",function(){
     window.location.href = "/pages/Seller/product_enter.html"
     })
+}
+
+if (profile["seller_id"] !== undefined) {
+    const seller_nav = document.getElementById("seller")
+    const cart_nav = document.getElementById("order_hide")
+    const cart_icon = document.getElementById("cart_icon")
+    const location_icon = document.getElementById("order_icon")
+
+    
+    seller_nav.style.display = "none"
+    cart_nav.style.display = "none"
+    // cart_icon.removeAttribute("class")
+    cart_icon.setAttribute("class","home-icon fa-solid fa-calendar-plus")
+    location_icon.setAttribute("class","home-icon fa-solid fa-clipboard-list")
+
+    cart_icon.addEventListener("click",function () {
+        window.location.href = "/pages/Seller/mobile_create.html"
+    })
+
+
+}
+else{
+    //this logic for user going to orders page
+const orders = document.getElementById("order")
+const cart = document.getElementById("cart")
+const user_obj = JSON.parse(localStorage.getItem("profile"))
+orders.addEventListener("click",function(){
+if (profile == false) {
+window.location.href ="/pages/sign-in/login.html"
+}
+else if (profile == null) {
+window.location.href ="/pages/sign-in/login.html"
+}
+else{
+window.location.href ="/pages/buyer/my_orders.html?user_id="+user_obj["user_id"]
+}
+})
+cart.addEventListener("click",function(){
+if (profile == false) {
+window.location.href ="/pages/sign-in/login.html"
+}
+else if (profile == null) {
+window.location.href ="/pages/sign-in/login.html"
+}
+else{
+window.location.href ="./pages/buyer/cart.html?user_id="+user_obj["user_id"]
+}
+})
 }

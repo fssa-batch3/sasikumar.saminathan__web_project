@@ -8,6 +8,7 @@
     <link rel="icon" type = "image/x-icon" href="../../../assets/icon/shopping-bag.png">
     <link rel="stylesheet" href="../../../assets/css/product-detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/geolib/dist/geolib.min.js"></script>
 </head>
 <body>
 <header> 
@@ -105,7 +106,7 @@
     </footer>
 </main>
 <script>
-//product_detail array with contain page details
+    //product_detail array with contain page details
 //    const product_detail =[
 //     {
 //         id : "1",
@@ -399,32 +400,33 @@ pr_but.addEventListener("click",function(){
 })
 
 
-
 //get shop array from localstorage
-let shop = JSON.parse(localStorage.getItem("shoper"))
-let shops=" ";
-for(let i = 0;i < shop.length;i++){
-    shops += `<div class="shop-container">
-        <div class="visit-content">
-          <h3>${shop[i]["city"]} - ${shop[i]["district"]}</h3>
-          <p>${shop[i]["full_address"]}</p>
-        </div>
-          <div class="visit">
-            <a href="shop-detail.html?id=${productname},${shop[i]["owner_id"]}"><button id="visit_btn">Visit store</button></a>
-            <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
-          </div>
-      </div>`
+// let shop = JSON.parse(localStorage.getItem("shoper"))
+// let shops=" ";
+// for(let i = 0;i < shop.length;i++){
+//     shops += `<div class="shop-container">
+//         <div class="visit-content">
+//           <h3>${shop[i]["city"]} - ${shop[i]["district"]}</h3>
+//           <p>${shop[i]["full_address"]}</p>
+//         </div>
+//           <div class="visit">
+//             <a href="shop-detail.html?id=${productname},${shop[i]["owner_id"]}"><button id="visit_btn">Visit store</button></a>
+//             <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
+//           </div>
+//       </div>`
 
-     let each_shops= document.querySelector(".shops")
-     each_shops.innerHTML=shops
+//      let each_shops= document.querySelector(".shops")
+//      each_shops.innerHTML=shops
 
      
 
-}
+// }
+
+
 
 //this var contain all three images
 const photo = document.querySelectorAll(".image")
-
+let shops = ""
 for(let k = 0;k < photo.length;k++){
 
     //this event for showing img in main img 
@@ -438,6 +440,47 @@ for(let k = 0;k < photo.length;k++){
     })
 }
 
+
+let shop_arr = JSON.parse(localStorage.getItem("shop"))
+let profile = JSON.parse(localStorage.getItem("profile"))
+
+
+for(let i = 0; i < shop_arr.length;i++){
+
+ let lat1 = profile["lat"]
+ let lon1 = profile["lon"]
+ let lat2 = shop_arr[i]["latitude"]
+ let lon2 = shop_arr[i]["longitude"]
+//  console.log(lat1,lon1,lat2,lon2);
+
+const distanceInMeters = geolib.getDistance(
+  {latitude: lat1, longitude: lon1},
+  {latitude: lat2, longitude: lon2}
+);
+
+const distanceInKilometers = distanceInMeters / 1000;
+console.log(distanceInKilometers);
+// distanceInKilometers = 2
+
+if (distanceInKilometers < 20) {
+
+
+    shops += `<div class="shop-container">
+        <div class="visit-content">
+          <h3>${shop_arr[i]["name"]}</h3>
+          <p>${shop_arr[i]["address"]}</p>
+        </div>
+          <div class="visit">
+            <a href="shop-detail.html?id=${productname},${shop_arr[i]["id"]}"><button id="visit_btn">Visit store</button></a>
+            <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
+          </div>
+      </div>`
+
+
+}
+}
+let each_shops= document.querySelector(".shops")
+     each_shops.innerHTML = shops
 </script>  
 </body>
 </html>

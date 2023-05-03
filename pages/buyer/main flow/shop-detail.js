@@ -225,12 +225,12 @@ pro_image.setAttribute("src",search["product_img_1"])
 const owner_id = id_arr[1]
 
 //get the shop array from localstorage
-const shops_arr = JSON.parse(localStorage.getItem("shoper"))
+const shops_arr = JSON.parse(localStorage.getItem("shop"))
 
 //find the shop with owner id
 const shop_obj = shops_arr.find(function (obj) {
-    if (owner_id === obj["owner_id"]) {
-        return true       
+    if (owner_id === obj["id"]+"") {
+        return true  
     }
     else{
         return false
@@ -246,8 +246,8 @@ const work_hour = document.getElementById("work_hour")
 const shop_map = document.getElementById("map_link")
 
 shop_name.innerHTML = shop_obj["name"]
-shop_img.src = shop_obj["photos_sample"][0]["photo_url_large"]
-shop_address.innerHTML = shop_obj["address"]
+shop_img.src = shop_obj["img"]
+shop_address.innerHTML = shop_obj["address"]+`<b> - ${shop_obj["pincode"]}</b>`
 shop_number.innerHTML = "Phone: "+shop_obj["phone_number"]
 shop_map.href = shop_obj["place_link"]
 work_days.innerHTML = Object.keys(shop_obj["working_hours"]).length+" working days"

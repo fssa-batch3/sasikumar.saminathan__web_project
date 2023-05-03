@@ -53,7 +53,7 @@
   <main id="main">
     <ul class="navigation">
       <li id="profile_info"><p>Profile information</p></li>
-      <li id="address"><p>Manage address</p></li>
+      <li id="address"><p id="shop_info">Manage address</p></li>
     </ul>
     <div class="shop-container">
 
@@ -81,7 +81,7 @@
           </div>
         </div>
         <div class="shop-text-content_1">
-<form id="forms">
+<!-- <form id="forms"> -->
   <div class="info_container">
     <h2>Profile</h2>
   <div class="shop-input">
@@ -101,7 +101,7 @@
   <a><button id="update" class="profile_btn" type="submit">EDIT</button></a>
   <a><button id="logout" class="profile_btn">LOGOUT</button></a>
   </div>
-</form>
+<!-- </form> -->
         </div>
         <div class="address_container">
 <h2>Manage Address</h2>
@@ -138,7 +138,7 @@
    <div> <input type="text" placeholder="House no./buling name" id="add_house_no" required></div>
     <div><input type="text" placeholder="Road name/Area/Colany" id="add_area" required></div>
    <div> <input type="text" pattern="[0-9]{6}" placeholder="Pincode"  id="add_pincode"  title="Please enter a valid pincode" required></div>
-    <div><input type="text" placeholder="Nearby location(optional)" id="add_spd" required></div>
+    <div><input type="text" placeholder="Nearby location" id="add_spd" required></div>
 </div>
 <a><button class="but-1" id="deliver" type="submit"><b>Save</b></button></a>
 <a><button class="but-1" id="edit_save" type="button"><b>Save</b></button></a>
@@ -157,11 +157,14 @@
         getData();
     });
 
-    const first_form = document.getElementById("forms")
-    first_form.addEventListener("submit",function(e){
-      e.preventDefault();
-      upDate();
-    })
+    // const first_form = document.getElementById("forms")
+    // first_form.addEventListener("submit",function(f){
+    //   f.preventDefault();
+    //   update();
+    // })
+
+
+    
 
     //Getting elements by id
     const file = document.querySelector('#file')
@@ -188,12 +191,29 @@
           localStorage.setItem("profile",JSON.stringify(profile))
 
     const user_array = JSON.parse(localStorage.getItem("users"))
-    user_array.find(function (obj) {
+    let seller_array = JSON.parse(localStorage.getItem("sellers"))
+
+
+    if (profile["seller_id"] !== undefined) {
+
+      seller_array.find(function(obj){
+          if (profile["email"] === obj["email"]) {
+            
+            obj["profile_picture"] = reader.result
+            localStorage.setItem("sellers",JSON.stringify(seller_array))
+          }
+      })
+      
+    }
+    else{
+      console.log("why2");
+      user_array.find(function (obj) {
       if (profile["email"] == obj["email"]) {
         obj["profile_picture"] = reader.result
         localStorage.setItem("users",JSON.stringify(user_array))
       }
     })
+    }
 
         });
 
@@ -218,6 +238,8 @@
       add.style.scale = "1";
 
     })
+
+    
 
     //for display name
     const user_name = document.querySelector("#shop_name")
@@ -272,13 +294,34 @@
 
       //get user array from localstorage
       let user_array = JSON.parse(localStorage.getItem("users"))
+      let seller_array =JSON.parse(localStorage.getItem("sellers"))
 
       //console.log(user_array)
 
 
-function upDate() {
-        //this function for edit the value in input then update in localstorage
-        user_array.find(obj => {
+// function update() {
+if (profile["seller_id"] !== undefined) {
+             //this function for edit the value in input then update in localstorage
+             seller_array.find(obj => {
+        if (email_value === obj["email"]) {
+
+          //obj["user_name"] = user_value => change the specific obect value from input
+          obj["name"] = user_value
+
+          obj["phone_number"] = number_value;
+          //console.log(obj);
+          // user_array.push(obj)
+          localStorage.setItem("sellers", JSON.stringify(seller_array))
+          localStorage.setItem("profile", JSON.stringify(obj))
+
+         
+        }
+
+      })
+}
+else{
+          //this function for edit the value in input then update in localstorage
+          user_array.find(obj => {
         if (email_value === obj["email"]) {
 
           //obj["user_name"] = user_value => change the specific obect value from input
@@ -295,6 +338,7 @@ function upDate() {
 
       })
 }
+// }
     })
 
 
@@ -322,11 +366,12 @@ function upDate() {
     const order_count = document.getElementById("order_count")
     const profile_obj = JSON.parse(localStorage.getItem("profile"))
 
-if (cart === true) {
+if (cart.length > 0) {
+  console.log(cart);
       //this filter function for showing cart count in profile 
       const cart_arr = cart.filter(function (obj) {
 
-if (obj["user_id"] === profile_obj["user_id"] && obj["cart"] !== false) {
+if (obj["user_id"] === profile_obj["user_id"]) {
   return true
 }
 else{
@@ -339,7 +384,8 @@ const cart_count = document.getElementById("cart_count")
 cart_count.innerText = cart_arr.length
 }
 
-if (order === true) {
+if (order.length > 0) {
+
     const order_arr = order.filter(function (obj) {
 
     if (obj["user_id"] === profile_obj["user_id"] && obj["order"] !== false) {
@@ -353,6 +399,17 @@ if (order === true) {
   order_count.innerText = order_arr.length
 }
 
+const profile_verify = JSON.parse(localStorage.getItem("profile"))
+
+if (profile_verify["seller_id"] !== undefined) {
+    document.getElementById("shop_info").innerText = "Shop information"
+    const shop_info = document.getElementById("address")
+
+    shop_info.addEventListener("click",function () {
+      window.location.href = "../seller/shop_profile.html"
+    })
+}
+
   const profile_info = document.getElementById("profile_info")
   const address = document.getElementById("address")
   const profile1 = document.querySelector(".profile")
@@ -360,6 +417,7 @@ if (order === true) {
   const nav = document.querySelector(".navigation")
   const address_container = document.querySelector(".address_container")
 
+  if (profile_verify["seller_id"] === undefined) {
   address.addEventListener("click",function() {
 
     profile1.style.display = "none"
@@ -375,7 +433,7 @@ if (order === true) {
     address_container.style.display = "none"
 
 
-  })
+  })}
 
  
   //get elments from add address btn
@@ -456,7 +514,8 @@ if (order === true) {
 
 
 
-addAddress();
+// if (profile["seller_id"] === undefined) {
+  addAddress();
 function addAddress(params) {
    //get array from localstorage for creating elements
    const add_array = JSON.parse(localStorage.getItem("address"))
@@ -635,6 +694,9 @@ p_delete.addEventListener("click",function () {
 
 }
 }
+// }
+
+
 
 
 

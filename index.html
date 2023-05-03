@@ -8,9 +8,7 @@
     <title>Shopnow</title>
     <link rel="icon" type = "image/x-icon" href="assets/icon/shopping-bag.png">
     <link rel="stylesheet" href="./assets/css/home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -38,14 +36,14 @@
             <!-- <a href="pages/buyer/main flow/mobile_list.html"><li><button class="login" id="mobiles"><b>Mobiles</b></button></li></a> -->
             <li><button class="login" id="login"><b>My account</b></button>
             </li>
-            <li><a aria-label="seller" href="pages/Seller/Seller.html">
+            <li id="seller"><a aria-label="seller" href="pages/Seller/Seller.html">
                     <p class="seller">Seller</p>
                 </a></li>
-            <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
+            <li><a id="cart" aria-label="cart"><i id="cart_icon" class="home-icon fa fa-shopping-cart"
                         aria-hidden="true"></i></a></li>
-            <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
+            <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i id="order_icon"
                         class="home-icon fa-solid fa-location-dot"></i></a></li>
-                        <li><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
+                        <li id="order_hide"><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
 
         </ul>
         <i id="bar" class="fa-solid fa-bars"></i>
