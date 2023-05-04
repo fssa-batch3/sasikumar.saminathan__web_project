@@ -468,13 +468,15 @@ for(let i = 0; i < maxbtn.length;i++){
 
 
 
-if (main_div.length === 0) {
+if (main_div.length === 0 || cart_obj === null) {
         detail.remove()
         detail.style.display = "none"
         empty.style.display = "block"
         place_order_btn.style.display = "none"
 
         }
+
+        
 
 
 

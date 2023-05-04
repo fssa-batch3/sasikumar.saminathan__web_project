@@ -366,7 +366,7 @@ else{
     const order_count = document.getElementById("order_count")
     const profile_obj = JSON.parse(localStorage.getItem("profile"))
 
-if (cart.length > 0) {
+if (cart.length !== null) {
   console.log(cart);
       //this filter function for showing cart count in profile 
       const cart_arr = cart.filter(function (obj) {
@@ -384,7 +384,7 @@ const cart_count = document.getElementById("cart_count")
 cart_count.innerText = cart_arr.length
 }
 
-if (order.length > 0) {
+if (order.length !== null) {
 
     const order_arr = order.filter(function (obj) {
 
