@@ -399,9 +399,18 @@ return false
 
 for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 {
+
+        //anker tag for going next pages
+        const a = document.createElement("a");
+        a.setAttribute("aria-label", "redmi")
+        a.setAttribute("class", "mob-link")
+        a.setAttribute("href", "/pages/buyer/main flow/location.html?user_id="+ pr_array[j]["user_id"])
+        
+
     //div 1 class name: pack
     const div_2 = document.createElement("div");
     div_2.setAttribute("class", "mob")
+    a.append(div_2)
 
 
     //product img
@@ -412,18 +421,12 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
     img.setAttribute("height", "200px")
     div_2.append(img)
 
-    //anker tag for going next pages
-    const a = document.createElement("a");
-    a.setAttribute("aria-label", "redmi")
-    a.setAttribute("class", "mob-link")
-    a.setAttribute("href", "/pages/buyer/main flow/location.html?user_id="+ pr_array[j]["user_id"])
-    div_2.append(a)
 
     //product name
     const h4 = document.createElement("h4");
     h4.setAttribute("class", "detail-1")
     h4.innerHTML = pr_array[j]["product_name"]
-    a.append(h4)
+    div_2.append(h4)
 
     //div 2 class name: rate for show price
     const div_3 = document.createElement("div");
@@ -467,7 +470,7 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
     p_1.innerHTML = product_list[j].rating
     div_4.append(p_1)
 
-    document.querySelector(".pack").append(div_2)
+    document.querySelector(".pack").append(a)
 
 }
 

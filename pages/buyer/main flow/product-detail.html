@@ -28,7 +28,7 @@
     </ul>
 </header>
 <main>
-    <a id="edit_link"><button class="pr_btn">EDIT</button></a>
+    <!-- <a id="edit_link"><button class="pr_btn">EDIT</button></a> -->
     <div class="main-contain">
         <div class="images">
             <!-- this image appended on javascript -->
@@ -393,12 +393,6 @@ document.querySelector(".ul_highlights").prepend(list_1)
 // p_shop.innerHTML = search.shop_address
 // document.querySelector(".visit-content").append(p_shop)
 
-const pr_but = document.querySelector(".pr_btn")
-
-pr_but.addEventListener("click",function(){
-    const edit = document.getElementById("edit_link")
-    edit.setAttribute("href","../../Seller/product_enter.html?user_id="+user)
-})
 
 
 //get shop array from localstorage
@@ -428,6 +422,7 @@ pr_but.addEventListener("click",function(){
 //this var contain all three images
 const photo = document.querySelectorAll(".image")
 let shops = ""
+let count = 0
 for(let k = 0;k < photo.length;k++){
 
     //this event for showing img in main img 
@@ -463,6 +458,7 @@ const distanceInKilometers = distanceInMeters / 1000;
 console.log(distanceInKilometers);
 // distanceInKilometers = 2
 
+
 if (distanceInKilometers < 20) {
 
 
@@ -477,7 +473,10 @@ if (distanceInKilometers < 20) {
           </div>
       </div>`
 
-
+      count = count + 1
+}
+if (count === 3) {
+    break;
 }
 }
 let each_shops= document.querySelector(".shops")
