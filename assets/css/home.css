@@ -65,14 +65,13 @@ ul{
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-height: max-content;
-}
-.mob{
-    margin: 4%;
+    
 }
 .mob-link{
     text-decoration: none;
     color: black;
     font-size: large;
+    margin: 1%;
 }
 .search{
 

@@ -51,7 +51,7 @@
                 <div class="upi_container">
                 <label class="custom-field one">
                 
-                    <input type="text" placeholder=" " id="upi_input" required/>
+                    <input type="text" placeholder=" " id="upi_input" name="username" required/>
                     <span class="placeholder">Enter UPI ID</span>
                 </label>
                 <button class="button-39" type="submit">PAY</button>
@@ -62,11 +62,11 @@
                 <div class="radio radio-3"><input type="radio" class="radio_btn" name="radio" data-keyword = "Credit/Debit/Atm card" required><img src="../../assets/icon/icons8-credit-card-64.png" alt="" width="30px" height="30px"><p>Credit/Debit/Atm card </p></div>
                 <div class="card_container">
                     <label class="custom-field one">
-                        <input type="text" placeholder=" " id="card_input" required/>
+                        <input type="text" placeholder=" " id="card_input" name="username" required/>
                         <span class="placeholder">Enter Card Number</span>
                       </label>
                       <button class="button-39" type="submit">PAY</button>
-                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" id="date_input" required><input type="text" id="cvv" placeholder="CVV" required></div>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" id="date_input" required><input type="text" id="cvv" pname="username" laceholder="CVV" required></div>
                      <div class="success"></div>
                       
                 </div>
@@ -136,11 +136,12 @@
  const product_id = search.get("id")
  //store the qty and total amount of mobile
 let summary_info = product_id.split(",")
+let mobile_qty = document.getElementById("qty")
+let mobile_price = document.querySelectorAll(".price")
 
 //cart paramms contains two numbers with "," special character so it's for verify 
 if (summary_info.length !== 1) {
-  let mobile_qty = document.getElementById("qty")
-let mobile_price = document.querySelectorAll(".price")
+
 
 mobile_qty.innerText = `Price (${summary_info[0]} items)`
 mobile_price[0].innerText = "₹"+summary_info[1]
@@ -197,6 +198,11 @@ main_div.innerHTML = pr_container
 
 
  const pr_array = JSON.parse(localStorage.getItem("products"))
+//get the elements from product container
+const product_img = document.getElementById("mob_img")
+ const product_name = document.getElementById("mob_name")
+ const product_price = document.getElementById("mob_price")
+ const product_qty = document.querySelector(".mob_qty")
 if (summary_info.length == 1) {
      
  //find the specific object from the products array
@@ -209,11 +215,7 @@ if (summary_info.length == 1) {
     }
  })
  console.log(pr_obj);
- //get the elements from product container
- const product_img = document.getElementById("mob_img")
- const product_name = document.getElementById("mob_name")
- const product_price = document.getElementById("mob_price")
- const product_qty = document.querySelector(".mob_qty")
+
 
  //set the values to product container
  product_img.src = pr_obj["product_img_1"]
@@ -314,15 +316,17 @@ let updated_cart = cart_array.filter(function (obj) {
         localStorage.setItem("cart",JSON.stringify(updated_cart))
 
     }
+
+    window.location.href = "order.html"
  
      localStorage.setItem("orders",JSON.stringify(order_arr));
   
     
 
-     
+    
  })
-
- window.location.href = "order.html"
+ 
+ 
 }
 const radio_btn = document.querySelectorAll(".radio_btn")
  const upi_input = document.querySelector(".upi_container")
@@ -368,6 +372,12 @@ const radio_btn = document.querySelectorAll(".radio_btn")
             cvv_inp.removeAttribute("required")
         }
           
+     }
+     if (radio_btn[2].checked === true) {
+        upi_inp.removeAttribute("required")
+        card_inp.removeAttribute("required")
+        date_inp.removeAttribute("required")
+        cvv_inp.removeAttribute("required")
      }        
     })
 
@@ -398,6 +408,20 @@ function paymentSuccess() {
     }
 
     }
+
+    if(summary_info.length === 1){
+  pr_array.find(function (obj) {
+    
+    
+    if (product_id === obj["user_id"]+"") {
+      mobile_qty.innerText = `Price (${obj["quantity"]} items)`
+      mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
+      mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
+      product_price.innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
+    }
+  
+  })
+}
     // })
 //  }
 

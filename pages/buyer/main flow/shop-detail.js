@@ -249,9 +249,6 @@ shop_name.innerHTML = shop_obj["name"]
 shop_img.src = shop_obj["img"]
 shop_address.innerHTML = shop_obj["address"]+`<b> - ${shop_obj["pincode"]}</b>`
 shop_number.innerHTML = "Phone: "+shop_obj["phone_number"]
-shop_map.href = shop_obj["place_link"]
-work_days.innerHTML = Object.keys(shop_obj["working_hours"]).length+" working days"
-work_hour.innerHTML = shop_obj["working_hours"]["Monday"]
 
 
 
