@@ -75,6 +75,11 @@ a,button{
 /* buy btns here */
 .buy-btns{
     display: flex;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    right: 150px;
+    top: 260px;
 }
 ul a{
     text-decoration: none;   
@@ -250,7 +255,7 @@ margin-left: 5px;
 .product-container img{
     margin-top: 50px;
 }
-.quantity{
+/* .quantity{
     display: flex;
     position: relative;
     top: 180px;
@@ -263,22 +268,19 @@ margin-left: 5px;
     border: 1px solid var(--primary);
     border-radius: 10px;
     padding: 10px;
-}
+} */
 .order{
     width: 240px;
     margin-top: 15px;
 }
-.product-container button{
+.buy-btns button{
     height: 40px;
     width: 110px;
     border-radius: 10px;
     margin: 5px;
-    position: relative;
-    top: 260px;
     border: solid var(--secondary);
     background-color: var(--secondary);
     color: var(--primary);
-    right: 110px;
     box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
 }
 .lap-contain{
@@ -472,7 +474,7 @@ ul{
     color: black;
 }
 
-#quantity::-webkit-outer-spin-button,
+/* #quantity::-webkit-outer-spin-button,
 #quantity::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -482,7 +484,7 @@ ul{
     border: 1px solid white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     
-}
+} */
 
 #map_btn {
   align-items: center;
@@ -528,4 +530,50 @@ ul{
   background-color: rgb(132, 255, 199);
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
+}
+.quantity{
+    display: flex;
+    position: relative;
+    top: 190px;
+    left: 55px;
+    width: 300px;
+}
+.quantity input{
+    width: 50px;
+    height: 30px;
+    margin-left: 10px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    padding: 10px;
+}
+#quantity::-webkit-outer-spin-button,
+#quantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#quantity{
+    outline: none;
+    border: 1px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding-inline-start: 20px;
+    
+}
+.quantity button{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border: none;
+    background-color: #ADEFD1FF;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0%;
+}
+.plus{
+    position: relative;
+    left: 10px;
+
+}
+.quantity{
+    height: 50px;
+    width: 400px;
 }

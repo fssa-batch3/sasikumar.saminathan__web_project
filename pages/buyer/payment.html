@@ -140,7 +140,7 @@ let mobile_qty = document.getElementById("qty")
 let mobile_price = document.querySelectorAll(".price")
 
 //cart paramms contains two numbers with "," special character so it's for verify 
-if (summary_info.length !== 1) {
+if (summary_info.length === 3) {
 
 
 mobile_qty.innerText = `Price (${summary_info[0]} items)`
@@ -203,11 +203,11 @@ const product_img = document.getElementById("mob_img")
  const product_name = document.getElementById("mob_name")
  const product_price = document.getElementById("mob_price")
  const product_qty = document.querySelector(".mob_qty")
-if (summary_info.length == 1) {
+if (summary_info.length == 2) {
      
  //find the specific object from the products array
  const pr_obj = pr_array.find(function (obj) {
-    if (product_id == obj["user_id"]+"") {
+    if (summary_info[0] == obj["user_id"]+"") {
         return true
     }
     else{
@@ -257,7 +257,7 @@ function getData() {
  
      let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
  
-    if (summary_info.length == 1) {
+    if (summary_info.length == 2) {
         let qty_digit = document.querySelector(".mob_qty")
         let quantity = qty_digit.innerHTML
 
@@ -267,10 +267,11 @@ function getData() {
  
              "order_id" : uid,
              "user_id" : user_array["user_id"],
-             "product_id" : product_id,
+             "product_id" : summary_info[0],
              "payment_method" : payment_method,
              "address_id" : address_obj["id"],
-             "quantity" : quantity 
+             "quantity" : quantity,
+             "shop_id" : summary_info[1]
          }
      )
     }
@@ -294,7 +295,8 @@ function getData() {
              "product_id" : product_id,
              "payment_method" : payment_method,
              "address_id" : address_obj["id"],
-             "quantity" : quantity
+             "quantity" : quantity,
+             "shop_id" : summary_info[2]
          }
      )
             
@@ -409,11 +411,11 @@ function paymentSuccess() {
 
     }
 
-    if(summary_info.length === 1){
+    if(summary_info.length === 2){
   pr_array.find(function (obj) {
     
     
-    if (product_id === obj["user_id"]+"") {
+    if (summary_info[0] === obj["user_id"]+"") {
       mobile_qty.innerText = `Price (${obj["quantity"]} items)`
       mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
       mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))

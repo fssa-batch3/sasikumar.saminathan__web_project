@@ -116,6 +116,8 @@
   const main = document.getElementById("main")
   const address_input = document.querySelector(".address_input")
   const shop = document.querySelector(".shop-container")
+
+  
   add_address.addEventListener("click",function () {
     address_input.style.display = "block"
     shop.style.filter = `blur(${5}px)`;
@@ -439,18 +441,19 @@ let summary_info = product_id.split(",")
 let mobile_qty = document.getElementById("qty")
 let mobile_price = document.querySelectorAll(".price")
 //cart paramms contains two numbers with "," special character so it's for verify 
-if (summary_info.length !== 1) {
+if (summary_info.length === 3) {
 
 mobile_qty.innerText = `Price (${summary_info[0]} items)`
 mobile_price[0].innerText = "₹"+summary_info[1]
 mobile_price[1].innerText = "₹"+summary_info[1]
 }
 
-if(summary_info.length === 1){
+
+if(summary_info.length === 2){
   pr_array.find(function (obj) {
     
     
-    if (product_id === obj["user_id"]+"") {
+    if (summary_info[0] === obj["user_id"]+"") {
       mobile_qty.innerText = `Price (${obj["quantity"]} items)`
       mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
       mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))

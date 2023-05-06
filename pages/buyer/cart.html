@@ -119,7 +119,10 @@
     //first step : get the id from url and filter the objects
     const url = window.location.search
     const urlParams = new URLSearchParams(url)  
-    const username = JSON.parse(urlParams.get("user_id"))
+    const params = urlParams.get("user_id")
+    let splited_arr = params.split(",")
+    const username = parseFloat(splited_arr[0])
+
 
     const cart_arr = JSON.parse(localStorage.getItem("cart"))
 
@@ -459,7 +462,7 @@ for(let i = 0; i < maxbtn.length;i++){
         item_price = parseFloat(item_price.innerText.slice(1))
 
 
-        window.location.href = "address.html?id="+counter+","+item_price
+        window.location.href = "address.html?id="+counter+","+item_price+","+splited_arr[1]
     })
 
 

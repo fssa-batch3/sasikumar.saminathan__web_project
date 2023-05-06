@@ -187,11 +187,7 @@ if (already_in_cart == false) {
     localStorage.setItem("cart",JSON.stringify(cart_arr)); 
 }
 
-  
-    
-
-
-    window.location.href = "../cart.html?user_id="+user_array["user_id"]
+    window.location.href = "../cart.html?user_id="+user_array["user_id"]+","+id_arr[1]
 }
 })
 
@@ -206,7 +202,7 @@ search["quantity"] = quantity.value
 
 localStorage.setItem("products",JSON.stringify(product_array))
 
-window.location.href = "../address.html?id="+id_arr[0]
+window.location.href = "../address.html?id="+id_arr[0]+","+id_arr[1]
 }
 })
 
@@ -250,7 +246,27 @@ shop_img.src = shop_obj["img"]
 shop_address.innerHTML = shop_obj["address"]+`<b> - ${shop_obj["pincode"]}</b>`
 shop_number.innerHTML = "Phone: "+shop_obj["phone_number"]
 
+const maxbtn = document.querySelector(".plus")
+const minbtn = document.querySelector(".minus")
+const input = document.getElementById("quantity")
 
+
+
+maxbtn.addEventListener("click",function () {
+    let qty = parseFloat(input.value);
+    qty = qty + 1
+    input.value = qty
+})
+
+ //this event for decrease quantity value
+    minbtn.addEventListener("click",function () {
+        if (input.value !== "1") {
+     let qty = parseFloat(input.value);
+     qty = qty - 1
+     input.value = qty        
+        }
+
+    })
 
 
 

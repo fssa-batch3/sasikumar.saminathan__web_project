@@ -241,21 +241,24 @@ console.log(pr_array[j]["quantity"]);
     const order_arr = order
     
     //find object from array for delete that order 
-    order_arr.find(function(order){
+    let order_obj = order_arr.filter(function(order){
         
         if (data === order["order_id"]+"") {
             
-            order_arr.pop()
-
-            localStorage.setItem("orders",JSON.stringify(order_arr))
+            
 
             main_div.remove();
 
             confirm_pop.classList.remove('cancel_active');
+            return false
+        }
+        else{
+            return true
         }
 
         
          })
+         localStorage.setItem("orders",JSON.stringify(order_obj))
        })
        
        //if click no it will be work

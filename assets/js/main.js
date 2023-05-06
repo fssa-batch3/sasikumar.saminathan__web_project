@@ -500,6 +500,9 @@ if (profile["seller_id"] !== undefined) {
     cart_icon.addEventListener("click",function () {
         window.location.href = "/pages/Seller/mobile_create.html?id="+profile["shop_id"]
     })
+    location_icon.addEventListener("click",function () {
+        window.location.href = "/pages/Seller/order_request.html?id="+profile["shop_id"]
+    })
 
 
 }
