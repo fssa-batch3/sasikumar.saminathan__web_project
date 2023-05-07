@@ -12,7 +12,6 @@ const head = document.querySelector("h1")
 const requesst_bar = document.getElementById("request_orders")
 const delivered_history_bar = document.getElementById("delivered_history")
 
-// let shop_orders
 
 //get the shop id from params
 let url = window.location.search
@@ -23,26 +22,25 @@ const shop_id = params.get("id")
 const order_array = JSON.parse(localStorage.getItem("orders"))
 
 
+    delivered_history_bar.style.backgroundColor = "#ADEFD1FF"
+    requesst_bar.style.backgroundColor = "#fff"
 
+    head.innerText = "Delivered"
     let order_object =  order_array.filter(function (obj) {
         console.log(obj);
         if (obj["order_staus"] === "delivered") {
-            return false
+            return true
        }
        else{
-        return true
+        return false
        }        
     })
 
 
-delivered_history_bar.addEventListener("click",function () {
-    window.location.href = "order_delivered.html?id="+shop_id
-})
 
 
 
 
-// function productsCreate(order_obj) {
     //filltering specific shop orders
   let shop_orders = order_object.filter(function (obj) {
     if (shop_id === obj["shop_id"]) {
@@ -91,7 +89,7 @@ for (let i = 0; i < pr_array.length; i++) {
     
 }
 main_container.innerHTML = reuest_mobile
-// }
+
 
 
 //toggle option scripts are there
@@ -106,13 +104,11 @@ const landmark = document.getElementById("landmark")
 const pincode = document.getElementById("pincode")
 const payment = document.getElementById("payment")
 const delivered_btn = document.getElementById("delivered_btn")
-const main_div = document.querySelectorAll(".request_container")
 
 
 
 let address_arr = JSON.parse(localStorage.getItem("address"))
 let order_obj
-let request_div;
 for (let i = 0; i < more_info_btn.length; i++) {
     
     more_info_btn[i].addEventListener('click',function(){
@@ -146,8 +142,6 @@ for (let i = 0; i < more_info_btn.length; i++) {
         
         });
 
-        request_div = main_div[i]
-
 
 
 }
@@ -159,9 +153,6 @@ close_arrow.addEventListener("click",function () {
 
         //while click the deliverd btn
         delivered_btn.addEventListener("click",function deliveredHistory() {
-
-            request_div.remove();
-
             order_array.find(function(obj){
                 if (order_obj["order_id"] === obj["order_id"]) {
                     obj["order_staus"] = "delivered"
@@ -173,28 +164,34 @@ close_arrow.addEventListener("click",function () {
 
         })
 
+        requesst_bar.addEventListener("click",function(){
+            window.location.href = "order_request.html?id="+shop_id
+        })
 
-        const seller_nav = document.getElementById("seller")
-        const cart_nav = document.getElementById("order_hide")
-        const cart_icon = document.getElementById("cart_icon")
-        const location_icon = document.getElementById("order_icon")
-        const home_nav = document.querySelector(".logo")
-    
+ 
+            const seller_nav = document.getElementById("seller")
+            const cart_nav = document.getElementById("order_hide")
+            const cart_icon = document.getElementById("cart_icon")
+            const location_icon = document.getElementById("order_icon")
+            const home_nav = document.querySelector(".logo")
         
-        seller_nav.style.display = "none"
-        cart_nav.style.display = "none"
-        // cart_icon.removeAttribute("class")
-        cart_icon.setAttribute("class","home-icon fa-solid fa-calendar-plus")
-        location_icon.setAttribute("class","home-icon fa-solid fa-clipboard-list")
-    
-        cart_icon.addEventListener("click",function () {
-            window.location.href = "/pages/Seller/mobile_create.html?id="+profile["shop_id"]
-        })
-        location_icon.addEventListener("click",function () {
-            window.location.href = "/pages/Seller/order_request.html?id="+profile["shop_id"]
-        })
+            
+            seller_nav.style.display = "none"
+            cart_nav.style.display = "none"
+            // cart_icon.removeAttribute("class")
+            cart_icon.setAttribute("class","home-icon fa-solid fa-calendar-plus")
+            location_icon.setAttribute("class","home-icon fa-solid fa-clipboard-list")
+        
+            cart_icon.addEventListener("click",function () {
+                window.location.href = "/pages/Seller/mobile_create.html?id="+profile["shop_id"]
+            })
+            location_icon.addEventListener("click",function () {
+                window.location.href = "/pages/Seller/order_request.html?id="+profile["shop_id"]
+            })
 
-        home_nav.addEventListener("click",function () {
-            window.location.href = "../../index.html"
-        })
+            home_nav.addEventListener("click",function () {
+                window.location.href = "../../index.html"
+            })
+        
+
 

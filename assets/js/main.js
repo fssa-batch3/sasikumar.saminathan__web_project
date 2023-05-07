@@ -504,6 +504,9 @@ if (profile["seller_id"] !== undefined) {
         window.location.href = "/pages/Seller/order_request.html?id="+profile["shop_id"]
     })
 
+    document.querySelector(".pack").innerHTML = ""
+    document.querySelector(".our").innerHTML = ""
+    
 
 }
 else{

@@ -11,18 +11,33 @@
 
 </head>
 <body>
-    <header> 
+    <header>
+        <!-- div:logo  contain:logo img and name -->
         <div class="logo">
-        <img src="../../assets/icon/shopping-bag.png" alt="shopping-bag" width="40px" height="40px">
-        <h5 class="logo-name"><b>Shopnow</b></h5>
-    </div>
-    <i class="fa fa-search" aria-hidden="true"></i>
-    <ul class="top-list">
-        <a href="../sign-in/login.html"><button class="login"><b>Login</b></button></a>
-       <a href="../buyer/cart.html"><i class="home-icon fa fa-shopping-cart" aria-hidden="true"></i></a>
-       <a href="../buyer/side flow/pincode.html"> <i class="home-icon fa-solid fa-location-dot"></i></a>
-    </ul>
-</header>
+            <img src="../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
+            <h5 class="logo-name"><b>Shopnow</b></h5>
+        </div>
+
+        <!-- search bar -->
+   
+
+        <!-- header nav links -->
+        <ul class="top-list">
+            <!-- <a href="pages/buyer/main flow/mobile_list.html"><li><button class="login" id="mobiles"><b>Mobiles</b></button></li></a> -->
+            <li><button class="login" id="login"><b>My account</b></button>
+            </li>
+            <li id="seller"><a aria-label="seller" href="pages/Seller/Seller.html">
+                    <p class="seller">Seller</p>
+                </a></li>
+            <li><a id="cart" aria-label="cart"><i id="cart_icon" class="home-icon fa fa-shopping-cart"
+                        aria-hidden="true"></i></a></li>
+            <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i id="order_icon"
+                        class="home-icon fa-solid fa-location-dot"></i></a></li>
+                        <li id="order_hide"><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
+
+        </ul>
+        <i id="bar" class="fa-solid fa-bars"></i>
+    </header>
 
 <main>
     <div id="lines"><div id="line"></div><p id="head">Add products to your shop</p><div id="line" class="line2"></div></div>
@@ -339,6 +354,30 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 
        }
     }
+
+        const seller_nav = document.getElementById("seller")
+        const cart_nav = document.getElementById("order_hide")
+        const cart_icon = document.getElementById("cart_icon")
+        const location_icon = document.getElementById("order_icon")
+        const home_nav = document.querySelector(".logo")
+    
+        
+        seller_nav.style.display = "none"
+        cart_nav.style.display = "none"
+        // cart_icon.removeAttribute("class")
+        cart_icon.setAttribute("class","home-icon fa-solid fa-calendar-plus")
+        location_icon.setAttribute("class","home-icon fa-solid fa-clipboard-list")
+    
+        cart_icon.addEventListener("click",function () {
+            window.location.href = "/pages/Seller/mobile_create.html?id="+profile["shop_id"]
+        })
+        location_icon.addEventListener("click",function () {
+            window.location.href = "/pages/Seller/order_request.html?id="+profile["shop_id"]
+        })
+
+        home_nav.addEventListener("click",function () {
+            window.location.href = "../../index.html"
+        })
 
       
        

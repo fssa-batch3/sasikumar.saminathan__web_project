@@ -225,6 +225,13 @@ console.log(pr_array[j]["quantity"]);
 
     document.querySelector(".order_container").append(main_div)
 
+    console.log(order[j]);
+    if (order[j]["order_staus"] === "delivered") {
+        cancel_btn.style.display = "none"
+        track_btn.style.display = "none"
+        pr_status_info.innerText = "Delivered"
+    }
+
     cancel_btn.addEventListener("click",function remove(e){
         const confirm_pop = document.querySelector(".cancel")
         confirm_pop.classList.toggle('cancel_active');
