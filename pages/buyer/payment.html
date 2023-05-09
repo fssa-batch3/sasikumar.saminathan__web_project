@@ -7,6 +7,7 @@
     <title>Shopnow</title>
     <link rel="icon" type = "image/x-icon" href="../../assets/icon/shopping-bag.png">
     <link rel="stylesheet" href="../../assets/css/payment.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
     <header> 
@@ -51,7 +52,7 @@
                 <div class="upi_container">
                 <label class="custom-field one">
                 
-                    <input type="text" placeholder=" " id="upi_input" name="username" required/>
+                    <input type="text" placeholder=" " id="upi_input" name="userupi" required/>
                     <span class="placeholder">Enter UPI ID</span>
                 </label>
                 <button class="button-39" type="submit">PAY</button>
@@ -62,11 +63,11 @@
                 <div class="radio radio-3"><input type="radio" class="radio_btn" name="radio" data-keyword = "Credit/Debit/Atm card" required><img src="../../assets/icon/icons8-credit-card-64.png" alt="" width="30px" height="30px"><p>Credit/Debit/Atm card </p></div>
                 <div class="card_container">
                     <label class="custom-field one">
-                        <input type="text" placeholder=" " id="card_input" name="username" required/>
+                        <input type="text" placeholder=" " id="card_input" name="useremail" required/>
                         <span class="placeholder">Enter Card Number</span>
                       </label>
                       <button class="button-39" type="submit">PAY</button>
-                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" id="date_input" required><input type="text" id="cvv" pname="username" laceholder="CVV" required></div>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" id="date_input" required><input type="text" id="cvv" name="username" laceholder="CVV" required></div>
                      <div class="success"></div>
                       
                 </div>
@@ -100,13 +101,6 @@
         paymentSuccess();
     })
 
-    // const minform = document.querySelector(".mini_form")
-    // console.log(minform);
-    // minform.addEventListener("submit",function (f) {
-    //     f.preventDefault();
-        
-    // })
-
 //get address array from local storage
  const address = JSON.parse(localStorage.getItem("address"))
  //find the object which selected by user 
@@ -138,6 +132,30 @@
 let summary_info = product_id.split(",")
 let mobile_qty = document.getElementById("qty")
 let mobile_price = document.querySelectorAll(".price")
+
+//get seller info from shop id
+let seller_arr = JSON.parse(localStorage.getItem("sellers"))
+console.log(seller_arr);
+let seller_obj;
+seller_arr.find(function (obj) {
+
+//if order come directly
+if (summary_info.length === 2) {
+    if (summary_info[1] === obj["shop_id"]+"") {
+        
+       seller_obj = obj
+    }
+}
+
+//if come from cart
+if (summary_info.length === 3) {
+    if (summary_info[2] === obj["shop_id"]+"") {
+        
+       seller_obj = obj
+    }
+}
+})
+console.log(seller_obj);
 
 //cart paramms contains two numbers with "," special character so it's for verify 
 if (summary_info.length === 3) {
@@ -184,10 +202,10 @@ for (let i = 0; i < product_array.length; i++) {
     pr_container += `<div class="pro_container">
 <img src="${product_array[i]["product_img_1"]}" alt="apple" id="mob_img">
 <div class="pro_info">
-<p id="mob_name">${product_array[i]["product_name"]}</p>
+<p id="mob_name" class="name" >${product_array[i]["product_name"]}</p>
 <div id="rate">
-<p id="mob_price">${"₹ "+ parseFloat(product_array[i]["product_price"].slice(1)) * parseFloat(cart_obj[i]["quantity"])}</p>
-<p data-keyword="${product_array[i]["user_id"]}" class="qty_para">Qty  </p><p class="mob_qty">${cart_obj[i]["quantity"]}</p>
+<p id="mob_price" class="price" >${"₹ "+ parseFloat(product_array[i]["product_price"].slice(1)) * parseFloat(cart_obj[i]["quantity"])}</p>
+<p data-keyword="${product_array[i]["user_id"]}" class="qty_para">Qty  </p><p class="mob_qty" >${cart_obj[i]["quantity"]}</p>
 </div></div></div>` 
     
 }
@@ -202,6 +220,7 @@ main_div.innerHTML = pr_container
 const product_img = document.getElementById("mob_img")
  const product_name = document.getElementById("mob_name")
  const product_price = document.getElementById("mob_price")
+ console.log(product_price);
  const product_qty = document.querySelector(".mob_qty")
 if (summary_info.length == 2) {
      
@@ -228,6 +247,16 @@ if (summary_info.length == 2) {
  price[0].innerText = pr_obj["product_price"]
 price[1].innerText = pr_obj["product_price"]
 }
+
+//  let radio_btn = document.querySelectorAll(".radio_btn")
+//  const upi_input = document.querySelector(".upi_container")
+//  //store the payment method
+//  let payment_method = ""
+//  //  for loop for finding checked btn
+//  for(let j = 0;j < radio_btn.length;j++){
+//     // console.log(radio_btn[j]);
+
+//  }
 function getData() {
      //get product details array from local storage
  const product_array = JSON.parse(localStorage.getItem("products"))
@@ -236,24 +265,10 @@ function getData() {
  const user_array = JSON.parse(localStorage.getItem("profile"))
  
  const order_btn = document.getElementById("order")
+
+
  
  order_btn.addEventListener("click",function(){
- 
- const radio_btn = document.querySelectorAll(".radio_btn")
- const upi_input = document.querySelector(".upi_container")
- //store the payment method
- let payment_method = ""
-
-//  for loop for finding checked btn
- for(let j = 0;j < radio_btn.length;j++){
-
-    radio_btn[j].addEventListener("click",function () {
-        if (radio_btn[j].checked === true) {
-          payment_method =  radio_btn[j].dataset.keyword
-          
-     }        
-    })
- }
  
      let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
  
@@ -322,11 +337,118 @@ let updated_cart = cart_array.filter(function (obj) {
     window.location.href = "order.html"
  
      localStorage.setItem("orders",JSON.stringify(order_arr));
+
+
+
   
     
 
     
  })
+
+
+//sending order conformation email to customer 
+let profile = JSON.parse(localStorage.getItem("profile"))
+
+let email = profile["email"]
+// console.log(email);
+let name = profile["name"]
+let today = new Date+""
+let date_arr = today.split(" ");
+
+let email_body = `Dear ${name},<br>
+
+Thank you for placing an order with Shopnow. We are pleased to inform you that your order has been received and is being processed. This email is to confirm that your order has been successfully placed and is currently being processed.<br>
+<br>
+Order details:<br>
+Order number: 12998923<br>
+Order date: ${date_arr[2]+" "+date_arr[1]+" "+date_arr[3]}<br>
+Order total: ${product_price.innerText}<br>
+Payment method: ${payment_method}<br>
+<br>
+Please note that your order confirmation email serves as a receipt of your purchase. We will send you another email once your order has shipped with the tracking information.<br>
+<br>
+If you have any questions or concerns regarding your order, please do not hesitate to contact our customer support team at shopnow@gmail.com. We are always available to assist you.<br>
+<br>
+Thank you for choosing Shopnow for your purchase. We look forward to serving you again.<br>
+<br>
+Best regards,<br>
+<br>
+Shopnow<br>`
+Email.send({
+        
+        Host: "smtp.elasticemail.com", 
+        Username: "sasikumar.saminathan@fssa.freshworks.com",
+        Password: "99626D4C1367E3DFA672BF88864145E86A6C",
+        To: email,
+        From: "sasikumar.saminathan@fssa.freshworks.com",
+        Subject: `${name} Your order confirmed`,
+        Body: email_body,
+      }).then((success) => {
+       
+        alert("message sent successfully. Please check the spam folder in your mail.");
+      }).catch((error) => {
+          
+        alert("error sending message");
+      })
+
+//sending order request to seller
+
+let product_name2 = document.querySelectorAll(".name")
+// console.log(product_name2);
+let product_price2 = document.querySelectorAll(".price")
+// console.log(product_price2.innerHTML);
+let qty = document.querySelectorAll(".mob_qty")
+console.log(seller_obj["email"]);
+
+let product_total = "";
+
+for (let k = 0; k < qty.length; k++) {
+    
+    product_total += `Product Name : ${product_name2[k].innerText}<br>
+                      Product price : ${product_price2[k].innerText}<br>
+                      Product Qty : ${qty[k].innerText}<br><br>`
+    
+}
+let seller_email = `
+Dear ${seller_obj["name"]},<br>
+
+We are pleased to inform you that we have received an order request from ${name} for the following items:<br>
+<br>
+${product_total}
+<br>
+The order total, including shipping and taxes, comes to ${product_price.innerText}.<br>
+<br>
+We kindly request that you confirm the availability and pricing of these items as soon as possible. Please also provide us with an estimated date for shipment, including any tracking information if available.<br>
+
+We expect the highest level of professionalism and customer service from our vendors, and we trust that you will do everything in your power to ensure that this order is processed promptly and accurately.<br>
+
+If you have any questions or concerns, please do not hesitate to contact us at shopnow@gmail.com. We appreciate your prompt response to this order request.<br>
+<br>
+Thank you for your business and we look forward to continuing our partnership.<br>
+<br>
+Best regards,<br>
+<br>
+Shopnow <br>`
+
+Email.send({
+        
+        Host: "smtp.elasticemail.com", 
+        Username: "sasikumar.saminathan@fssa.freshworks.com",
+        Password: "99626D4C1367E3DFA672BF88864145E86A6C",
+        To: seller_obj["email"],
+        From: "sasikumar.saminathan@fssa.freshworks.com",
+        Subject: `Order Request Received`,
+        Body: seller_email,
+      }).then((success) => {
+       
+        alert("seller message sent successfully. Please check the spam folder in your mail.");
+      }).catch((error) => {
+          
+        alert("error sending message");
+      })
+
+
  
  
 }
@@ -384,6 +506,15 @@ const radio_btn = document.querySelectorAll(".radio_btn")
     })
 
 
+    radio_btn[j].addEventListener("click",function () {
+        if (radio_btn[j].checked === true) {
+          payment_method =  radio_btn[j].dataset.keyword
+          console.log(payment_method);
+          
+     }        
+    })
+
+
  }
 
  const payment_done_alert = document.querySelectorAll(".success")
@@ -426,7 +557,6 @@ function paymentSuccess() {
 }
     // })
 //  }
-
 
 
 

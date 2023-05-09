@@ -150,3 +150,100 @@ ul a{
 .logo img{
     margin-top: 40px;
 }
+nav{
+    width: 22rem;
+    height: 770px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    position: fixed;
+}
+#mobile_list{
+    width: 70%;
+    height: max-content;
+    position: relative;
+    left: 400px;
+    top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.mob{
+    width: 250px;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px rgb(0,0,0,0.1);
+    cursor: pointer;
+}
+.mob img{
+    margin-top: 20px;
+    margin-left: 50px;
+    position: relative;
+    top: 0px;
+
+}
+.mobile{
+   
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+}
+.head-1{
+      margin-left: 50px;
+    margin-top: 40px;
+}
+.mob:hover{
+    transition: 0.5s;
+    scale: 1.05;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
+}
+.laps .rate{
+    margin-top: 15px;
+}
+.laps .detail-1,.rating{
+    margin-top: 10px;
+}
+.lap{
+    position: relative;
+    right:30px;  
+}
+.detail-1{
+    text-align: center;
+}
+.rate{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+.onward{
+    margin-top: 8px;
+    margin-left: 2px;
+    font-weight:bolder;
+    font-size:medium;
+    color: gray;
+}
+.rating{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 170px;
+}
+.rating-1{
+    display: flex;
+    background-color:var(--primary);
+    color: var(--secondary);
+    width: 60px;
+    justify-content: space-evenly;
+    padding: 7px;
+    border-radius:15px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
+}
+.fa-star{
+    font-size:smaller;
+    margin-top: 2px;
+}
+.rating p{
+    margin-top:7px;
+    font-weight: 700;
+    font-size: small;
+    color: gray;
+}

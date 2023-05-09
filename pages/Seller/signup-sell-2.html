@@ -74,7 +74,7 @@
         form.addEventListener("submit", function (e) {
             e.preventDefault();
             
-            window.location.href = "login-sell.html"
+            
             getData();
         })
         
@@ -146,9 +146,10 @@ localStorage.setItem("sellers",JSON.stringify(seller_array))
 
             })
 
-            localStorage.setItem("shop", JSON.stringify(shop_arr))
+            localStorage.setItem("shop", JSON.stringify(shop_arr)) 
+            window.location.href = "login-sell.html"  
         }
-
+        
 
         
 

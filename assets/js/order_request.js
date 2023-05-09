@@ -139,7 +139,7 @@ for (let i = 0; i < more_info_btn.length; i++) {
                     house_number.innerText = obj["house_number"]
                     landmark.innerText = obj["landmark"]
                     pincode.innerText = obj["pincode"]
-                    payment.innerText = obj["payment_method"]
+                    payment.innerText = order_obj["payment_method"]
                 }
             })
         

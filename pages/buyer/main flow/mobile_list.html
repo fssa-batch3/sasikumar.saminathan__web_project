@@ -47,5 +47,202 @@
         </ul>
         <i id="bar" class="fa-solid fa-bars"></i>
     </header>
+    <nav>
+
+    </nav>
+    <main>
+        <input type="search" placeholder="search" class="search" id="search">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <div id="mobile_list"></div>
+    </main>
 </body>
+<script>
+    
+//produucts display from object
+const product_array = JSON.parse(localStorage.getItem("products"))
+//console.log(product_array);
+const pr_array = product_array.filter(function (e) {
+
+if (e["status"] === true) {
+return true
+}
+else{
+return false
+}
+
+})
+
+//    console.log(false);
+
+for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
+{
+
+        //anker tag for going next pages
+        const a = document.createElement("a");
+        a.setAttribute("aria-label", "redmi")
+        a.setAttribute("class", "mob-link")
+        a.setAttribute("href", "/pages/buyer/main flow/location.html?user_id="+ pr_array[j]["user_id"])
+        
+
+    //div 1 class name: pack
+    const div_2 = document.createElement("div");
+    div_2.setAttribute("class", "mob")
+    a.append(div_2)
+
+
+    //product img
+    const img = document.createElement("img");
+    img.setAttribute("src", pr_array[j]["product_img_1"])
+    img.setAttribute("alt", "redmi_note_11")
+    img.setAttribute("width", "150px")
+    img.setAttribute("height", "200px")
+    div_2.append(img)
+
+
+    //product name
+    const h4 = document.createElement("h4");
+    h4.setAttribute("class", "detail-1")
+    h4.innerHTML = pr_array[j]["product_name"]
+    div_2.append(h4)
+
+    //div 2 class name: rate for show price
+    const div_3 = document.createElement("div");
+    div_3.setAttribute("class", "rate")
+    div_2.append(div_3)
+
+    //product price
+    const h2 = document.createElement("h2");
+    h2.innerHTML = pr_array[j]["product_price"]+" "
+    div_3.append(h2)
+
+    //product price
+    const p = document.createElement("p");
+    p.setAttribute("class", "onward")
+    p.innerHTML = "onwards"
+    div_3.append(p)
+
+    //div 2 class name: rate for show rating
+    const div_4 = document.createElement("div");
+    div_4.setAttribute("class", "rating")
+    div_2.append(div_4)
+
+    //div 2 class name: rate for show rating
+    const div_5 = document.createElement("div");
+    div_5.setAttribute("class", "rating-1")
+    div_4.append(div_5)
+
+    //product rating
+    const h5 = document.createElement("h5");
+    h5.innerHTML = "4.3"
+    div_5.append(h5)
+
+    //product rating star icon
+    const i = document.createElement("i");
+    i.setAttribute("class", "fa fa-star")
+    i.setAttribute("aria-hidden", "true")
+    div_5.append(i)
+
+    //product rating count
+    const p_1 = document.createElement("p");
+    p_1.innerHTML = "233847 Ratings"
+    div_4.append(p_1)
+
+    document.getElementById("mobile_list").append(a)
+
+}
+
+
+    //get element by id from search input
+    const search = document.getElementById("search")
+    
+    search.addEventListener("input",function () {
+      const searchvalue = search.value.trim().toLowerCase()
+      const filter = pr_array.filter(function(item){
+        return item.product_name.toLowerCase().includes(searchvalue)
+      })
+
+      const parent = document.getElementById("mobile_list")
+      parent.innerHTML = "";
+
+    filter.forEach((item) => {
+
+    //anker tag for going next pages
+    const a = document.createElement("a");
+    a.setAttribute("aria-label", "redmi")
+    a.setAttribute("class", "mob-link")
+    a.setAttribute("href", "/pages/buyer/main flow/location.html?user_id="+ item["user_id"])
+        
+
+    //div 1 class name: pack
+    const div_2 = document.createElement("div");
+    div_2.setAttribute("class", "mob")
+    a.append(div_2)
+
+
+    //product img
+    const img = document.createElement("img");
+    img.setAttribute("src", item["product_img_1"])
+    img.setAttribute("alt", "redmi_note_11")
+    img.setAttribute("width", "150px")
+    img.setAttribute("height", "200px")
+    div_2.append(img)
+
+
+    //product name
+    const h4 = document.createElement("h4");
+    h4.setAttribute("class", "detail-1")
+    h4.innerHTML = item["product_name"]
+    div_2.append(h4)
+
+    //div 2 class name: rate for show price
+    const div_3 = document.createElement("div");
+    div_3.setAttribute("class", "rate")
+    div_2.append(div_3)
+
+    //product price
+    const h2 = document.createElement("h2");
+    h2.innerHTML = item["product_price"]+" "
+    div_3.append(h2)
+
+    //product price
+    const p = document.createElement("p");
+    p.setAttribute("class", "onward")
+    p.innerHTML = "onwards"
+    div_3.append(p)
+
+    //div 2 class name: rate for show rating
+    const div_4 = document.createElement("div");
+    div_4.setAttribute("class", "rating")
+    div_2.append(div_4)
+
+    //div 2 class name: rate for show rating
+    const div_5 = document.createElement("div");
+    div_5.setAttribute("class", "rating-1")
+    div_4.append(div_5)
+
+    //product rating
+    const h5 = document.createElement("h5");
+    h5.innerHTML = "4.3"
+    div_5.append(h5)
+
+    //product rating star icon
+    const i = document.createElement("i");
+    i.setAttribute("class", "fa fa-star")
+    i.setAttribute("aria-hidden", "true")
+    div_5.append(i)
+
+    //product rating count
+    const p_1 = document.createElement("p");
+    p_1.innerHTML = "233847 Ratings"
+    div_4.append(p_1)
+
+    document.getElementById("mobile_list").append(a)
+      })
+    })
+
+    const home_nav = document.querySelector(".logo")
+    home_nav.addEventListener("click",function () {
+        window.location.href = "../../../index.html"        
+    })
+</script>
 </html>
