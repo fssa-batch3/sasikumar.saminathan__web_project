@@ -65,19 +65,19 @@
           <label for="file" id="profile_btn"><img src="../../assets/icon/icons8-add-48.png" alt="" srcset=""></label>
           <p id="profile_name">Stella</p>
           <div class="profile_info" id="info">
-            <img src="../../assets/icon/icons8-shopping-bag-64.png" alt="shopping_bag">
-            <p>Orders</p>
+            <img src="../../assets/icon/icons8-shopping-bag-64.png" alt="shopping_bag" id="data_img_1"> 
+            <p id="data_name_1">Orders</p>
             <p id="order_count">0</p>
           </div>
           <div class="profile_info" id="info">
-            <img src="../../assets/icon/icons8-shopping-cart-64.png" alt="cart_picture">
-            <p>Cart list</p>
+            <img src="../../assets/icon/icons8-shopping-cart-64.png" alt="cart_picture" id="data_img_2">
+            <p id="data_name_2">Cart list</p>
             <p id="cart_count">0</p>
           </div>
           <div class="profile_info" id="info">
-            <img src="../../assets/icon/icons8-favorite-64.png" alt="favourite_heart">
-            <p>Favorites</p>
-            <p>0</p>
+            <img src="../../assets/icon/icons8-favorite-64.png" alt="favourite_heart" id="data_img_3">
+            <p id="data_name_3">Favorites</p>
+            <p id="fav_count">0</p>
           </div>
         </div>
         <div class="shop-text-content_1">
@@ -696,7 +696,95 @@ p_delete.addEventListener("click",function () {
 }
 // }
 
+if (profile_verify["seller_id"] !== undefined) {
+  // const data_img_1 = document.getElementById("data_img_1")
+  // const data_img_2 = document.getElementById("data_img_2")
+  // const data_img_3 = document.getElementById("data_img_3")
+  // const data_name_1 = document.getElementById("data_name_1")
+  // const data_name_2 = document.getElementById("data_name_2")
+  // const data_name_3 = document.getElementById("data_name_3")
+  // const order_count = document.getElementById("order_count")
+  // const cart_count = document.getElementById("cart_count")
+  // const fav_count = document.getElementById("fav_count")
 
+  //changing calculated data bar into user to seller
+  const data_bar = document.querySelectorAll(".profile_info")
+  const profile_container = document.querySelector(".profile")
+  
+ 
+  let data_bar_arr = [
+  {
+    "name" : "Products",
+    "img" : "../../assets/icon/icons8-mobile-order-64.png",
+  },
+  {
+    "name" : "Requests",
+    "img" : "../../assets/icon/icons8-package-48.png"
+  },
+  {
+    "name" : "Deliveries",
+    "img" : "../../assets/icon/icons8-delivered-48.png"
+  }
+]
+
+  let data_bar_containers = `<img src="../../assets/image/Park Hye Min Ulzzang - Pony makeup - Pony Beauty Diary.jpg" alt="" id="profile_picture">
+          <input type="file" id="file">
+          <label for="file" id="profile_btn"><img src="../../assets/icon/icons8-add-48.png" alt="" srcset=""></label>
+          <p id="profile_name">Stella</p>`
+  for(let i = 0; i < data_bar_arr.length;i++){
+    //remove user calculate bar
+      data_bar[i].remove();
+
+    data_bar_containers += ` <div class="profile_info" id="info">
+            <img src="${data_bar_arr[i]["img"]}" alt="shopping_bag" id="data_img_1"> 
+            <p id="data_name_1">${data_bar_arr[i]["name"]}</p>
+            <p class="count">0</p>
+          </div>` 
+  }
+  
+  profile_container.innerHTML = data_bar_containers
+
+  //show product count in page
+  let product_arr = JSON.parse(localStorage.getItem("products"))
+  //get count elements from class
+  let count = document.querySelectorAll(".count")
+  
+  let products_count = 0;
+  let request_count = 0;
+  let delivery_count = 0;
+  //filter products with seller id 
+  product_arr.filter(function (obj) {
+    
+    if (profile_verify["seller_id"] === obj["seller_id"]) {
+      
+       products_count = products_count + 1
+    }
+  })
+
+  //set the total products count in product_count
+  count[0].innerText = products_count
+
+
+  //show request and order count in page
+  let order_arr = JSON.parse(localStorage.getItem("orders"))
+
+  order_arr.filter(function (obj) {
+    console.log(profile_verify["shop_id"],obj["shop_id"]);
+    if (profile_verify["shop_id"]+"" === obj["shop_id"] && obj["order_staus"] !== "delivered") {
+      request_count = request_count + 1
+    }
+    if (profile_verify["shop_id"]+"" === obj["shop_id"] && obj["order_staus"] === "delivered"){
+      delivery_count = delivery_count + 1
+    }
+  })
+
+  count[1].innerText = request_count
+  count[2].innerText = delivery_count
+
+
+
+
+}
 
 
 

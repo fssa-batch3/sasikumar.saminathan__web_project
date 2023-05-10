@@ -97,8 +97,9 @@
     const form = document.getElementById("forms")
     form.addEventListener("submit",function (e) {
         e.preventDefault();
-        getData();
         paymentSuccess();
+        getData();
+        
     })
 
 //get address array from local storage
@@ -268,7 +269,7 @@ function getData() {
 
 
  
- order_btn.addEventListener("click",function(){
+//  order_btn.addEventListener("click",function(){
  
      let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
  
@@ -334,9 +335,11 @@ let updated_cart = cart_array.filter(function (obj) {
 
     }
 
-    window.location.href = "order.html"
+    
  
      localStorage.setItem("orders",JSON.stringify(order_arr));
+     
+    window.location.href = "order.html"
 
 
 
@@ -344,7 +347,7 @@ let updated_cart = cart_array.filter(function (obj) {
     
 
     
- })
+//  })
 
 
 //sending order conformation email to customer 
@@ -456,9 +459,9 @@ const radio_btn = document.querySelectorAll(".radio_btn")
  const upi_input = document.querySelector(".upi_container")
  const card_input = document.querySelector(".card_container")
  const upi_inp = document.getElementById("upi_input")
-        const card_inp = document.getElementById("card_input")
-        const date_inp = document.getElementById("date_input")
-        const cvv_inp = document.getElementById("cvv")
+const card_inp = document.getElementById("card_input")
+const date_inp = document.getElementById("date_input")
+const cvv_inp = document.getElementById("cvv")
  //store the payment method
  let payment_method = ""
 
@@ -539,7 +542,7 @@ function paymentSuccess() {
     if (card_input.style.display === "block") {
         payment_done_alert[1].innerHTML = "<p id=payment_done>Payment was successful</p>"
     }
-
+    
     }
 
     if(summary_info.length === 2){
@@ -555,6 +558,8 @@ function paymentSuccess() {
   
   })
 }
+
+
     // })
 //  }
 

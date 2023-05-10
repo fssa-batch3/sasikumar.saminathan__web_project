@@ -187,7 +187,7 @@ ul a{
 }
 .product_list{
     width: 90%;
-    height: 1000px;
+    height: max-content;
     background-color: rgba(241, 240, 240, 0.509);
     margin: auto;
     border-radius: 10px;
@@ -238,7 +238,7 @@ ul a{
         /* info container css */
         .main_container{
             width: 80%;
-            height: 600px;
+            height: max-content;
             background-color:lightblue;
             border-radius: 10px;
             margin: auto;

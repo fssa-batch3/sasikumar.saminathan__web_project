@@ -87,8 +87,9 @@
     const url = window.location.search
     const urlParams = new URLSearchParams(url)  
     const username = JSON.parse(urlParams.get("user_id"))
-
-    //get orders array from localstorage
+getData();
+    function getData() {
+        //get orders array from localstorage
     const orders_arr = JSON.parse(localStorage.getItem("orders"))
    const order =  orders_arr.filter(function (obj) {
         
@@ -266,6 +267,9 @@ console.log(pr_array[j]["quantity"]);
         
          })
          localStorage.setItem("orders",JSON.stringify(order_obj))
+
+         document.querySelector(".order_container").innerHTML = ""
+         getData();         
        })
        
        //if click no it will be work
@@ -281,6 +285,7 @@ console.log(pr_array[j]["quantity"]);
    localStorage.setItem("profile",JSON.stringify(profile))
 
 
+    }
  
 
 

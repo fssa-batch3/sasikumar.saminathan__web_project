@@ -441,7 +441,7 @@ let shop_arr = JSON.parse(localStorage.getItem("shop"))
 let profile = JSON.parse(localStorage.getItem("profile"))
 
 
-for(let i = 2; i < shop_arr.length;i++){
+for(let i = 0; i < shop_arr.length;i++){
 
  let lat1 = profile["lat"]
  let lon1 = profile["lon"]
@@ -459,7 +459,7 @@ console.log(distanceInKilometers);
 // distanceInKilometers = 2
 
 
-if (distanceInKilometers < 20) {
+if (distanceInKilometers < 2) {
 
 
     shops += `<div class="shop-container">
