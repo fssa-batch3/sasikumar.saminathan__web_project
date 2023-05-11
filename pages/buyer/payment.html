@@ -35,7 +35,7 @@
         <img src="https://iili.io/HVTwSyl.webp" alt="apple" id="mob_img">
 
     <div class="pro_info">
-        <p id="mob_name">APPLE iPhone 14</p>
+        <p id="mob_name" class="name">APPLE iPhone 14</p>
         <div id="rate">
         <p id="mob_price">₹39,999</p>
         <p >Qty  </p><p class="mob_qty">0</p>
@@ -63,15 +63,33 @@
                 <div class="radio radio-3"><input type="radio" class="radio_btn" name="radio" data-keyword = "Credit/Debit/Atm card" required><img src="../../assets/icon/icons8-credit-card-64.png" alt="" width="30px" height="30px"><p>Credit/Debit/Atm card </p></div>
                 <div class="card_container">
                     <label class="custom-field one">
-                        <input type="text" placeholder=" " id="card_input" name="useremail" required/>
+                        <input type="text" placeholder=" " class="card_input" name="useremail" required/>
                         <span class="placeholder">Enter Card Number</span>
                       </label>
                       <button class="button-39" type="submit">PAY</button>
-                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" id="date_input" required><input type="text" id="cvv" name="username" laceholder="CVV" required></div>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" class="date_input" required><input type="text" class="cvv" name="username" placeholder="CVV" required></div>
                      <div class="success"></div>
                       
                 </div>
-                <!-- <div class="radio radio-4"><input type="radio" class="radio_btn" name="radio" data-keyword = "Net banking" required><img src="../../assets/icon/icons8-merchant-account-50.png" alt="" width="30px" height="30px"><p>Net banking</p></div> -->
+                <div class="radio radio-4"><input type="radio" class="radio_btn" name="radio" data-keyword = "EMI" required><img src="../../assets/icon/icons8-merchant-account-50.png" alt="" width="30px" height="30px"><p>No cost EMI</p></div>
+                <div id="emi_options">
+                    <div class="radio emi_radio-1"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "3" required><p class="emi_month">3000 for 3 months</p></div>
+                    <div class="radio emi_radio-2"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "6" required><p class="emi_month">6000 for 6 months</p></div>
+                    <div class="radio emi_radio-3"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "9" required><p class="emi_month">9000 for 9 months</p></div>
+                    <div class="radio emi_radio-4"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "12" required><p class="emi_month">12000 for 12 months</p></div>
+                    <button id="choose_emi" class="button-65" type="button">Choose this plan</button>
+                </div>
+                <div id="emi_card_container">
+                    <p id="emi_plan">Your plan is</p>
+                    <label class="custom-field one">
+                        <input type="text" placeholder=" " class="card_input" name="text" required/>
+                        <span class="placeholder">Enter Card Number</span>
+                      </label>
+                      <button class="button-39" type="submit">PAY</button>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" class="date_input" required><input type="text" class="cvv" name="cvv" placeholder="CVV" required></div>
+                     <div class="success"></div>
+                      
+                </div>
                 <div class="radio radio-5"><input type="radio" class="radio_btn" name="radio" data-keyword = "Cash on delivery" required><img src="../../assets/icon/icons8-cash-on-delivery-66.png" alt="" width="30px" height="30px"><p>Cash on delivery</p></div>
             </div>
             <button class="btn" id="order" type="submit">CONFIRM ORDER</button>
@@ -339,7 +357,7 @@ let updated_cart = cart_array.filter(function (obj) {
  
      localStorage.setItem("orders",JSON.stringify(order_arr));
      
-    window.location.href = "order.html"
+    
 
 
 
@@ -452,16 +470,20 @@ Email.send({
       })
 
 
- 
+ //after complete this all functions it will redirect to the next page
+ window.location.href = "order.html"
  
 }
 const radio_btn = document.querySelectorAll(".radio_btn")
  const upi_input = document.querySelector(".upi_container")
  const card_input = document.querySelector(".card_container")
  const upi_inp = document.getElementById("upi_input")
-const card_inp = document.getElementById("card_input")
-const date_inp = document.getElementById("date_input")
-const cvv_inp = document.getElementById("cvv")
+const card_inp = document.querySelectorAll(".card_input")
+const date_inp = document.querySelectorAll(".date_input")
+const cvv_inp = document.querySelectorAll(".cvv")
+const emi_container = document.getElementById("emi_options")
+let emi_radio_input = document.querySelectorAll(".emi_radio_btn")
+let emi_card_container = document.getElementById("emi_card_container")
  //store the payment method
  let payment_method = ""
 
@@ -475,36 +497,86 @@ const cvv_inp = document.getElementById("cvv")
           if (payment_method === "UPI") {
             upi_input.style.display = "block"
             card_input.style.display = "none"
+            emi_container.style.display = "none"
+            emi_card_container.style.display = "none"
           }
           if (payment_method === "Credit/Debit/Atm card") {
             upi_input.style.display = "none"
             card_input.style.display = "block"
+            emi_card_container.style.display = "none"
+            emi_container.style.display = "none"
           }
           if (payment_method === "Cash on delivery") {
             upi_input.style.display = "none"
+            emi_container.style.display = "none"
             card_input.style.display = "none"
+            emi_card_container.style.display = "none"
+
           }
+          if (payment_method === "EMI") {
+            upi_input.style.display = "none"
+            emi_container.style.display = "block"
+            card_input.style.display = "none"
+            emi_card_container.style.display = "none"
+
+          }
+
+
 
           if (card_input.style.display === "block") {
             upi_inp.removeAttribute("required")
-            card_inp.setAttribute("required","")
-            date_inp.setAttribute("required","")
-            cvv_inp.setAttribute("required","")
+            card_inp[0].setAttribute("required","")
+            date_inp[0].setAttribute("required","")
+            cvv_inp[0].setAttribute("required","")
+            emi_radio_input[0].removeAttribute("required")
+            emi_radio_input[1].removeAttribute("required")
+            emi_radio_input[2].removeAttribute("required")
+            emi_radio_input[3].removeAttribute("required")
+            card_inp[1].removeAttribute("required")
+            date_inp[1].removeAttribute("required")
+            cvv_inp[1].removeAttribute("required")
+
 
         }
         if (upi_input.style.display === "block") {
             upi_inp.setAttribute("required","")
-            card_inp.removeAttribute("required")
-            date_inp.removeAttribute("required")
-            cvv_inp.removeAttribute("required")
+            card_inp[0].removeAttribute("required")
+            date_inp[0].removeAttribute("required")
+            cvv_inp[0].removeAttribute("required")
+            card_inp[1].removeAttribute("required")
+            date_inp[1].removeAttribute("required")
+            cvv_inp[1].removeAttribute("required")
+            emi_radio_input[0].removeAttribute("required")
+            emi_radio_input[1].removeAttribute("required")
+            emi_radio_input[2].removeAttribute("required")
+            emi_radio_input[3].removeAttribute("required")
+
+        }
+        if (emi_container.style.display === "block") {
+            upi_inp.removeAttribute("required")
+            card_inp[0].removeAttribute("required")
+            date_inp[0].removeAttribute("required")
+            cvv_inp[0].removeAttribute("required")
+            emi_radio_input[j].setAttribute("required","")
+
+            
         }
           
      }
-     if (radio_btn[2].checked === true) {
+     if (radio_btn[3].checked === true) {
         upi_inp.removeAttribute("required")
-        card_inp.removeAttribute("required")
-        date_inp.removeAttribute("required")
-        cvv_inp.removeAttribute("required")
+            card_inp[0].removeAttribute("required")
+            date_inp[0].removeAttribute("required")
+            cvv_inp[0].removeAttribute("required")
+            card_inp[1].removeAttribute("required")
+            date_inp[1].removeAttribute("required")
+            cvv_inp[1].removeAttribute("required")
+        emi_radio_input[0].removeAttribute("required")
+        emi_radio_input[1].removeAttribute("required")
+        emi_radio_input[2].removeAttribute("required")
+        emi_radio_input[3].removeAttribute("required")
+        emi_card_container.style.display = "none"
+
      }        
     })
 
@@ -559,6 +631,44 @@ function paymentSuccess() {
   })
 }
 
+//get the price of total products
+let emi_price = parseFloat(product_price.innerText.slice(1))
+
+//get those emi plans text
+let emi_plans = document.querySelectorAll(".emi_month")
+
+//set the plans as per divieded by month
+emi_plans[0].innerText = "₹"+Math.round(emi_price/3) + " for 3 months"
+emi_plans[1].innerText = "₹"+Math.round(emi_price/6) + " for 6 months"
+emi_plans[2].innerText = "₹"+Math.round(emi_price/9) + " for 9 months"
+emi_plans[3].innerText = "₹"+Math.round(emi_price/12) + " for 12 months"
+
+
+// for choose emi options
+let emi_radio_btn = document.querySelectorAll(".emi_radio_btn")
+let emi_month;
+for (let i = 0; i < emi_radio_btn.length; i++) {
+    emi_radio_btn[i].addEventListener("click",function () {
+        if (emi_radio_btn[i].checked === true) {
+           emi_month = emi_plans[i].innerText
+        }        
+    })
+}
+
+let emi_choose_btn = document.getElementById("choose_emi")
+let emi_plan = document.getElementById("emi_plan")
+
+emi_choose_btn.addEventListener("click",function () {
+    emi_container.style.display = "none"
+            emi_radio_input[0].removeAttribute("required")
+            emi_radio_input[1].removeAttribute("required")
+            emi_radio_input[2].removeAttribute("required")
+            emi_radio_input[3].removeAttribute("required")
+
+    emi_card_container.style.display = "block"
+    emi_plan.innerText = "Your plan is "+ emi_month
+
+})
 
     // })
 //  }

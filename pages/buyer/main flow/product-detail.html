@@ -32,7 +32,7 @@
     <div class="main-contain">
         <div class="images">
             <!-- this image appended on javascript -->
-            <img  id="img_1" alt="images" width="500px" height="500px">
+            <!-- <img  id="img_1" alt="images" width="500px" height="500px"> -->
             <!-- <div class="img-1"> -->
                <!-- <span> <img src="../../../assets/image/redmi-1.webp" alt="image" width="60px" height="130px" class="img-2"></span> -->
                 <!-- <span><img src="../../../assets/image/redmi-2.webp" alt="image" class="img-3"></span> -->
@@ -77,7 +77,9 @@
         </div>
         </div>
     </div>
-    <div class="shops"></div>
+    
+    <div class="shops">
+    </div>
     <!-- <h2 class="head">Available shop nearby you</h2> -->
 
       <footer>
@@ -198,8 +200,10 @@ const url = window.location.search;
 //console.log(url);
 const urlParams = new URLSearchParams(url);
 //console.log(urlParams);
-const productname = urlParams.get("user_id")
+const params_id = urlParams.get("id")
 
+let split_arr = params_id.split(",")
+const productname = split_arr[0]
 //console.log(productname);
 
 //console.log(productname);
@@ -225,16 +229,23 @@ const search = product_array.find(function (userobj){
     //create elements those are want to change the content
 
 //<img src="../../../assets/image/redmi-main.webp" alt="images" width="500px" height="500px">
-const main_img = document.getElementById("img_1")
-main_img.setAttribute("src",search["product_img_1"])
-main_img.setAttribute("alt","redmi")
-main_img.setAttribute("width","400px")
-main_img.setAttribute("height", "500px")
-document.querySelector(".images").append(main_img)
+
 
 const div_2 = document.createElement("div")
 div_2.setAttribute("class","img-1")
 document.querySelector(".images").append(div_2)
+
+const main_div_img = document.createElement("div")
+main_div_img.setAttribute("class","main_div_img")
+document.querySelector(".images").append(main_div_img)
+
+// const main_img = document.getElementById("img_1")
+// main_img.setAttribute("src",search["product_img_1"])
+// main_img.setAttribute("alt","redmi")
+// main_img.setAttribute("width","400px")
+// main_img.setAttribute("height", "500px")
+// document.querySelector(".main_div_img").append(main_img)
+
 
 // <span> <img src="../../../assets/image/redmi-1.webp" alt="image" width="60px" height="130px" class="img-2"></span> 
 //<span><img src="../../../assets/image/redmi-2.webp" alt="image" class="img-3"></span> 
@@ -419,10 +430,75 @@ document.querySelector(".ul_highlights").prepend(list_1)
 
 
 
+
+
+
+let shop_arr = JSON.parse(localStorage.getItem("shop"))
+let profile = JSON.parse(localStorage.getItem("profile"))
+
+//find the shop which get from url params
+shop_arr.find(function (obj) {
+    if (split_arr[1] === obj["id"]+"") {
+       let shops = `
+        <h2>Sold by</h2>
+       <div class="shop-container">
+        <div class="visit-content">
+          <h3>${obj["name"]}</h3>
+          <p>${obj["address"]}</p>
+        </div>
+          <div class="visit">
+            <a href="shop-detail.html?id=${productname},${obj["id"]}"><button id="visit_btn">Visit store</button></a>
+            <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
+          </div>
+      </div>`
+
+    let each_shops= document.querySelector(".shops")
+     each_shops.innerHTML = shops
+    }
+})
+
+// for(let i = 0; i < shop_arr.length;i++){
+
+//  let lat1 = profile["lat"]
+//  let lon1 = profile["lon"]
+//  let lat2 = shop_arr[i]["latitude"]
+//  let lon2 = shop_arr[i]["longitude"]
+// //  console.log(lat1,lon1,lat2,lon2);
+
+// const distanceInMeters = geolib.getDistance(
+//   {latitude: lat1, longitude: lon1},
+//   {latitude: lat2, longitude: lon2}
+// );
+
+// const distanceInKilometers = distanceInMeters / 1000;
+// console.log(distanceInKilometers);
+// // distanceInKilometers = 2
+
+
+// if (distanceInKilometers < 2) {
+
+
+
+
+// }
+// if (count === 3) {
+//     break;
+// }
+// }
+
+
+    let main_div_img2 =  document.querySelector(".main_div_img")
+    main_div_img.innerHTML = ""
+    main_div_img.innerHTML = `<img id="img_1" alt="redmi" width="400px" height="500px" src="https://iili.io/HVTwSyl.webp">
+    <div class="buy-btns">
+            <a><button class="btn-buy" id="cart"><p><b id="cart_text">Add cart </b><i class="fa-solid fa-cart-shopping"></i></p></button></a>
+            <a><button class="btn-buy" id="buy"><p><b>Buy now </b> <i class="fa-solid fa-angles-right"></i></p></button></a>
+           </div>`
+
 //this var contain all three images
 const photo = document.querySelectorAll(".image")
-let shops = ""
-let count = 0
+
+const main_img = document.getElementById("img_1")
 for(let k = 0;k < photo.length;k++){
 
     //this event for showing img in main img 
@@ -431,56 +507,92 @@ for(let k = 0;k < photo.length;k++){
     })
 
     //this event for showing the default img in main img
-    photo[k].addEventListener("mouseleave",function () {
-         main_img.src = search["product_img_1"]    
+    // photo[k].addEventListener("mouseleave",function () {
+    //      main_img.src = search["product_img_1"]    
+    // })
+}
+
+const search2 = product_array.find(function (userobj){
+
+const name = userobj["user_id"]+"";
+//console.log(name);
+
+//console.log(name);
+if (split_arr[0] === name) {
+    return true
+
+} else {
+
+    return false
+}
+})
+
+//button elements
+const order = document.getElementById("buy")
+const cart = document.getElementById("cart")
+const cart_text = document.getElementById("cart_text")
+
+const user_array = JSON.parse(localStorage.getItem("profile"))
+
+
+const cart_arr = JSON.parse(localStorage.getItem("cart"))
+
+let already_in_cart = false
+
+if (cart_arr !== null) {
+    cart_arr.find(function (obj) {
+        if (user_array["user_id"] === obj["user_id"] && split_arr[0] === obj["product_id"]+"") {
+            already_in_cart = true
+            cart_text.innerText = "Go to cart"
+            cart_text.style.marginRight = "5px"
+        }
     })
 }
+//this function for add to cart
+cart.addEventListener("click",function(){
 
+if (user_array === false || user_array === null) {
 
-let shop_arr = JSON.parse(localStorage.getItem("shop"))
-let profile = JSON.parse(localStorage.getItem("profile"))
-
-
-for(let i = 0; i < shop_arr.length;i++){
-
- let lat1 = profile["lat"]
- let lon1 = profile["lon"]
- let lat2 = shop_arr[i]["latitude"]
- let lon2 = shop_arr[i]["longitude"]
-//  console.log(lat1,lon1,lat2,lon2);
-
-const distanceInMeters = geolib.getDistance(
-  {latitude: lat1, longitude: lon1},
-  {latitude: lat2, longitude: lon2}
-);
-
-const distanceInKilometers = distanceInMeters / 1000;
-console.log(distanceInKilometers);
-// distanceInKilometers = 2
-
-
-if (distanceInKilometers < 2) {
-
-
-    shops += `<div class="shop-container">
-        <div class="visit-content">
-          <h3>${shop_arr[i]["name"]}</h3>
-          <p>${shop_arr[i]["address"]}</p>
-        </div>
-          <div class="visit">
-            <a href="shop-detail.html?id=${productname},${shop_arr[i]["id"]}"><button id="visit_btn">Visit store</button></a>
-            <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
-          </div>
-      </div>`
-
-      count = count + 1
+    window.location.href = "../../sign-in/login.html"
 }
-// if (count === 3) {
-//     break;
-// }
+else{
+    let cart_arr = JSON.parse(localStorage.getItem("cart"))?JSON.parse(localStorage.getItem("cart")):[]
+
+    const quantity = document.getElementById("quantity")
+
+    //creating unique id
+    let uid = Math.floor(Math.random() * 1000)
+    cart_arr.push(
+        {
+            "cart_id" : uid,
+            "user_id" : user_array["user_id"],
+            "product_id" : search2["user_id"],
+            "quantity" : "1"
+        }
+    )
+
+if (already_in_cart == false) {
+    localStorage.setItem("cart",JSON.stringify(cart_arr)); 
 }
-let each_shops= document.querySelector(".shops")
-     each_shops.innerHTML = shops
+
+    window.location.href = "../cart.html?user_id="+user_array["user_id"]+","+split_arr[1]
+}
+})
+
+order.addEventListener("click",function(){
+
+if (user_array === false || user_array === null) {
+    window.location.href = "../../sign-in/login.html"
+
+} else {
+    const quantity = document.getElementById("quantity")
+search2["quantity"] = "1"
+
+localStorage.setItem("products",JSON.stringify(product_array))
+
+window.location.href = "../address.html?id="+split_arr[0]+","+split_arr[1]
+}
+})
 </script>  
 </body>
 </html>

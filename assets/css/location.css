@@ -418,4 +418,9 @@ ul a{
 #near{
     background-color: #29e97e;
     border: none;
+    cursor: pointer;
+}
+#near button{
+    background-color: #29e97e;
+    border: none;
 }

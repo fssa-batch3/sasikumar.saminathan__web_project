@@ -87,17 +87,20 @@ ul a{
     display: flex;
 }
 .img-1{
-    display:flex;
-    width: 600px;
+    
+    width: 100px;
+    height: max-content;
     justify-content: space-evenly;
-    margin-top: 40px;
+    margin-top: 0px;
     position: relative;
     right: 50px;
+    
 }
 .images{
     margin-left:70px;
     position: relative;
     top: 40px;
+    display: flex;
 }
 /* .img-2{
     margin-left: 35px;
@@ -108,28 +111,26 @@ ul a{
 .img-4{
     margin-left: 25px;
 } */
-.img-1 span{
-    border:none;
-    box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
-    width: 150px;
-    height: 150px;
-    background-color: rgba(240, 248, 255, 0.381);
-    /* padding: 10px 0px; */
+.main_div_img img{
+    width: 400px;
+    height: 500px;
+    margin-top: 12px;
 }
+
 .img-1 span img{
     width: 100%;
     height: 100%;
     scale: 0.95;
+    margin-top: 10px;
+    padding: 3px;
 }
-.img-1 span:hover{
-    transition: 0.5s;
-    scale: 1.1;
-    box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
-
+.img-1 span img:hover{
+    border: 1.5px solid var(--secondary);
 }
 .text-box{
    width: 100%;
    height: 800px;
+   margin-left: 50px;
 }
 .rate{
     width: 80%;
@@ -423,6 +424,46 @@ html{
 
 }
 .shops{
+    float: right;
+    position: relative;
+    right: 400px;
+    bottom: 90px;
+}
+.shops h2{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.buy-btns button{
+    height: 50px;
+    width: 180px;
+    border-radius: 10px;
+    border: solid var(--secondary);
+    background-color: var(--secondary);
+    color: var(--primary);
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.1);
+    margin: 15px;
+
+}
+.buy-btns button:nth-child(1){
+    margin-left: 10px;
+}
+.btn-buy:hover{
+    box-shadow: inset 3px 3px 3px var(--secondary);
+    box-shadow: inset -3px -3px -3px var(--secondary);
+    background-color: var(--primary);
+    color: var(--secondary);
+    transition: 0.4s;
+}
+.buy-btns{
     display: flex;
-    justify-content: space-around;
+    width: fit-content;
+    height: fit-content;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 20px 0px;
+    width: 400px;
+    padding-inline: 0px;
 }

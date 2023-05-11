@@ -509,14 +509,12 @@ if (seller_profile["seller_id"]) {
 
 if (profile["seller_id"] !== undefined) {
     const seller_nav = document.getElementById("seller")
-    const cart_nav = document.getElementById("order_hide")
     const cart_icon = document.getElementById("cart_icon")
     const location_icon = document.getElementById("order_icon")
     const home_mobile = document.getElementById("mobiles")
 
     home_mobile.style.display = "none"
     seller_nav.style.display = "none"
-    cart_nav.style.display = "none"
     // cart_icon.removeAttribute("class")
     cart_icon.setAttribute("class", "home-icon fa-solid fa-calendar-plus")
     location_icon.setAttribute("class", "home-icon fa-solid fa-clipboard-list")

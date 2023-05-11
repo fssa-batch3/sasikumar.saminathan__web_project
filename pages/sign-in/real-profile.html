@@ -357,9 +357,7 @@ else{
 
    
 
-    //for changing the name innerhtml
-    const pro_name = document.getElementById("profile_name")
-    pro_name.innerHTML = profile["name"]
+
 
     const cart = JSON.parse(localStorage.getItem("cart"))
     const order = JSON.parse(localStorage.getItem("orders"))
@@ -781,15 +779,10 @@ if (profile_verify["seller_id"] !== undefined) {
   count[1].innerText = request_count
   count[2].innerText = delivery_count
 
-
-
-
 }
-
-
-
-
-
+    //for changing the name innerhtml
+    const pro_name = document.getElementById("profile_name")
+    pro_name.innerHTML = profile["name"]
 
   </script>
 </body>

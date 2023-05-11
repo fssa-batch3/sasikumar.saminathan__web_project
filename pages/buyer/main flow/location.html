@@ -28,9 +28,9 @@
 <main>
     <div class="contain">
         <h2>Allow access to find your nearby shop for this product</h2>
-        <div class="but">
+        <div class="but" id="near">
             <i class="fa-solid fa-location-crosshairs"></i>
-           <button id="near"><b><p>Nearby me</p></b></button>
+           <button><b><p>Nearby me</p></b></button>
         </div>
     </div>
     <img src="../../../assets/image/3WyW.gif" alt="gif" class="gif">
@@ -82,14 +82,21 @@
 
     btn.addEventListener("click",function () {
 
+let profile = JSON.parse(localStorage.getItem("profile"))
 //get url from search bar
 const url = window.location.search;
 //console.log(url);
 const urlParams = new URLSearchParams(url);
 //console.log(urlParams);
 const product_id = urlParams.get("user_id")
+if (profile !== false || null) {
+    window.location.href = "map.html?user_id="+product_id  
+}
+else{
+    window.location.href = "../../sign-in/login.html"
+}
     
-window.location.href = "product-detail.html?user_id="+product_id
+
 
     })
 

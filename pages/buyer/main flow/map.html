@@ -44,6 +44,9 @@
     <div id="my-map"></div>
 </body>
 <script>
+    const url = window.location.search
+    const search = new URLSearchParams(url)
+    const product_id = search.get("user_id")
     let profile = JSON.parse(localStorage.getItem("profile"))
     let shop_arr = JSON.parse(localStorage.getItem("shop"))
     console.log(shop_arr);
@@ -65,7 +68,7 @@ L.tileLayer(isRetina ? retinaUrl : baseUrl, {
     id: 'osm-bright',
 }).addTo(map);
 const markerIcon = L.icon({
-  iconUrl: `https://api.geoapify.com/v1/icon?size=xx-large&type=awesome&color=%233e9cfe&icon=paw&apiKey=${myAPIKey}`,
+  iconUrl: `https://api.geoapify.com/v1/icon/?type=material&color=%23adefd1&size=large&icon=storefront&scaleFactor=2&apiKey=002d636de5c4489a883a653e0a4b9268`,
   iconSize: [31, 46], // size of the icon
   iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
   popupAnchor: [0, -45] // point from which the popup should open relative to the iconAnchor
@@ -90,7 +93,7 @@ const distanceInKilometers = distanceInMeters / 1000;
 console.log(distanceInKilometers);
 
 if (distanceInKilometers < 3) {
-    const zooMarkerPopup = L.popup().setContent(`<a href="shop-detail.html?id=${shop_arr[i]["id"]}">${shop_arr[i]["name"]}</a>`);
+    const zooMarkerPopup = L.popup().setContent(`<a href="product-detail.html?id=${product_id},${shop_arr[i]["id"]}">${shop_arr[i]["name"]}</a>`);
     const zooMarker = L.marker([shop_arr[i]["latitude"],shop_arr[i]["longitude"]], {
   icon: markerIcon
 }).bindPopup(zooMarkerPopup).addTo(map);
