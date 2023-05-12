@@ -497,15 +497,15 @@ for (let j = 0; j < pr_array.length; j++) //loop for creating 12 product cards
 
 }
 
-const pr_btn = document.getElementById("pr_btn_create")
+// const pr_btn = document.getElementById("pr_btn_create")
 
-const seller_profile = JSON.parse(localStorage.getItem("profile"))
-if (seller_profile["seller_id"]) {
-    pr_btn.innerText = "Create product"
-    pr_btn.addEventListener("click", function () {
-        window.location.href = "/pages/Seller/product_enter.html"
-    })
-}
+// const seller_profile = JSON.parse(localStorage.getItem("profile"))
+// if (seller_profile["seller_id"]) {
+//     pr_btn.innerText = "Create product"
+//     pr_btn.addEventListener("click", function () {
+//         window.location.href = "/pages/Seller/product_enter.html"
+//     })
+// }
 
 if (profile["seller_id"] !== undefined) {
     const seller_nav = document.getElementById("seller")

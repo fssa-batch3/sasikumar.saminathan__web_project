@@ -464,14 +464,14 @@ Email.send({
       }).then((success) => {
        
         alert("seller message sent successfully. Please check the spam folder in your mail.");
+         //after complete this all functions it will redirect to the next page
+        window.location.href = "order.html"
       }).catch((error) => {
           
         alert("error sending message");
       })
 
 
- //after complete this all functions it will redirect to the next page
- window.location.href = "order.html"
  
 }
 const radio_btn = document.querySelectorAll(".radio_btn")

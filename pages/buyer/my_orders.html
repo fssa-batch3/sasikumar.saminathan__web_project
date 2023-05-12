@@ -48,6 +48,10 @@
     </header>
     <main>
         <div class="head"><p>Orders</p><hr></div>
+        <select class="filterby">
+            <option value="In-transit">In-transit</option>
+            <option value="Delivered">Delivered</option>
+          </select>
         <!-- <input type="search" placeholder="search your orders here" class="search" id="search">
         <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label> -->
         <div class="order_container"></div>
@@ -284,8 +288,9 @@ console.log(pr_array[j]["quantity"]);
    profile["order_count"] = pr_array.length
    localStorage.setItem("profile",JSON.stringify(profile))
 
-
     }
+
+
  
 
 
