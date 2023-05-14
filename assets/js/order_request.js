@@ -19,31 +19,34 @@ let url = window.location.search
 const params = new URLSearchParams(url)
 const shop_id = params.get("id")
 
-//get the order array from localstorage
+
+
+
+
+productsCreate();
+function productsCreate() {
+    //filltering specific shop orders
+
+    //get the order array from localstorage
 const order_array = JSON.parse(localStorage.getItem("orders"))
 
 
 
-    let order_object =  order_array.filter(function (obj) {
-        console.log(obj);
-        if (obj["order_staus"] === "delivered") {
-            return false
-       }
-       else{
-        return true
-       }        
-    })
-
-
-delivered_history_bar.addEventListener("click",function () {
-    window.location.href = "order_delivered.html?id="+shop_id
+let order_object =  order_array.filter(function (obj) {
+    console.log(obj);
+    if (obj["order_staus"] === "delivered") {
+        return false
+   }
+   else{
+    return true
+   }        
 })
 
 
+delivered_history_bar.addEventListener("click",function () {
+window.location.href = "order_delivered.html?id="+shop_id
+})
 
-
-// function productsCreate(order_obj) {
-    //filltering specific shop orders
   let shop_orders = order_object.filter(function (obj) {
     if (shop_id === obj["shop_id"]) {
         return true
@@ -68,6 +71,8 @@ delivered_history_bar.addEventListener("click",function () {
 let reuest_mobile = ""
 for (let i = 0; i < pr_array.length; i++) {
 
+    let type = shop_orders[i]["type"]
+
     reuest_mobile += `<div class="request_container">
     <div class="mobile_name">
         <div class="mobile_img">
@@ -81,10 +86,10 @@ for (let i = 0; i < pr_array.length; i++) {
         <p id="qty">${shop_orders[i]["quantity"]}</p>
     </div>
     <div class="price">
-        <p id="price">${"₹"+parseFloat(pr_array[i]["product_price"].slice(1)) * parseFloat(shop_orders[i]["quantity"])}</p>
+        <p id="price">${"₹"+parseFloat(pr_array[i]["types"][type]["price"].slice(1)) * parseFloat(shop_orders[i]["quantity"])}</p>
     </div>
     <div class="requested_date">
-        <p id="requested_time"><span id="requested_date">Nov 6, 2023</span> at 10:56</p>
+        <p id="requested_time"><span id="requested_date">${shop_orders[i]["date"]}</span> at ${shop_orders[i]["time"]}</p>
     </div>
     <button class="button-45" role="button" data-keyword="${shop_orders[i]["order_id"]}">More info</button>
 </div>`
@@ -153,9 +158,7 @@ for (let i = 0; i < more_info_btn.length; i++) {
 }
 
 
-close_arrow.addEventListener("click",function () {
-    menu.classList.toggle('showmenu')    
-})
+
 
         //while click the deliverd btn
         delivered_btn.addEventListener("click",function deliveredHistory() {
@@ -169,9 +172,11 @@ close_arrow.addEventListener("click",function () {
                 }
             })
             localStorage.setItem("orders",JSON.stringify(order_array))
-
-
+            // menu.classList.toggle('showmenu')
+            main_container.innerHTML = "" 
+            productsCreate();
         })
+    }
 
 
         const seller_nav = document.getElementById("seller")
@@ -198,3 +203,14 @@ close_arrow.addEventListener("click",function () {
             window.location.href = "../../index.html"
         })
 
+let menu = document.querySelector(".menu")
+let close_arrow = document.querySelector(".fa-circle-chevron-right")
+const delivered_btn = document.getElementById("delivered_btn")
+        close_arrow.addEventListener("click",function () {
+            menu.classList.toggle('showmenu')    
+        })
+       
+
+        delivered_btn.addEventListener("click",function () {
+            menu.classList.toggle('showmenu')
+        })

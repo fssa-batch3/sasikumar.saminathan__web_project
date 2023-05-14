@@ -139,7 +139,7 @@ ul a{
 }
 
 /* CSS */
-.button-25 {
+/* .button-25 {
   background-color: #36A9AE;
   background-image: linear-gradient(#37ADB2, #329CA0);
   border: 1px solid #2A8387;
@@ -184,7 +184,7 @@ ul a{
 
 .button-25:disabled:hover {
   box-shadow: none;
-}
+} */
 .product_list{
     width: 90%;
     height: max-content;
@@ -202,6 +202,9 @@ ul a{
             display: flex;
             flex-wrap: wrap;
         }
+        form{
+            display: block;
+        }
         .main_container div{
             margin: 5%;
         }
@@ -212,7 +215,7 @@ ul a{
             border-radius: 10px;
             --shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
         }
-        .pr_btn{
+        /* .pr_btn{
             cursor: pointer;
             margin: auto;
             padding: 15px;
@@ -221,7 +224,7 @@ ul a{
             color: white;
             width: 200px;
             border-radius: 10px;
-        }
+        } */
         #edit{
             display: none;
         }
@@ -237,22 +240,29 @@ ul a{
         }
         /* info container css */
         .main_container{
-            width: 80%;
+            width: 95%;
             height: max-content;
-            background-color:lightblue;
+            /* background-color:lightblue; */
             border-radius: 10px;
             margin: auto;
             display: flex;
             flex-wrap: wrap;
             z-index: 3;
+            background-color: var(--secondary);
         
         }
         form{
             position: fixed;
             top: 20%;
-            left: 5%;
+            left: 0%;
             display: none;
             
+        }
+        #pr_name{
+            width: 16rem;
+        }
+        #pr_name_div{
+            margin-left: 22px;
         }
         .main_container div{
             margin: 5%;
@@ -262,6 +272,7 @@ ul a{
             outline: none;
             border: none;
             border-radius: 10px;
+            border: 2px solid lightgray;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
         }
         .pr_btn{
@@ -286,16 +297,17 @@ ul a{
             outline: none;
             border: none;
             border-radius: 20px;
+            border: 2px solid lightgray;
         }
         .product-img input{
             width: 250px;
         }
         .main_container p{
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         .fa-xmark{
             font-size: 23px;
-            margin-left: 1080px;
+            margin-left: 1350px;
             position: relative;
             top: 20px;
             cursor: pointer;
@@ -374,4 +386,94 @@ ul a{
 
 .button-38:focus-visible {
   box-shadow: none;
+}
+
+/* CSS */
+.button-28 {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+  width: 13rem;
+  height: 1rem;
+  scale: 0.8;
+    position: relative;
+    left: 30rem;
+    bottom: 9rem;
+
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color:var(--primary);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+.type{
+    font-weight: 600;
+    margin-left: 10px;
+
+}
+#add_address{
+    display: flex;
+    text-align: center;
+    width: 140px;
+    height: 2.5rem;
+    border-radius: 10px;
+    border: none;
+    color: var(--primary);
+    background-color:rgb(174, 255, 217);
+    scale: 1.1;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    margin: 50px 70px;
+    cursor: pointer;
+    padding: 10px 10px;
+    padding-right: 0%;
+}
+#add_address i{
+    margin-top: 3px;
+    margin-left: 5px;
+    font-weight: bolder;
+}
+#add_address:hover{
+    background-color:rgb(118, 238, 184);
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+#add_address p{
+    position: relative;
+    left: 10px;
+    bottom: 10px;
 }

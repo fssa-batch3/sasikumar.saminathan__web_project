@@ -415,6 +415,8 @@ p_delete.addEventListener("click",function () {
 const url = window.location.search;
 const urlParams = new URLSearchParams(url);
 const product_id = urlParams.get("id")
+const product_type = parseFloat(urlParams.get("type"))
+// console.log(product_type);
 
 const pr_array = JSON.parse(localStorage.getItem("products"))
 
@@ -423,8 +425,8 @@ console.log(price);
 //find specific product with id
 pr_array.find(function (obj) {
   if (obj["user_id"]+"" == product_id) {
-    price[0].innerText = obj["product_price"]
-    price[1].innerText = obj["product_price"]
+    price[0].innerText = obj["types"][product_type]["price"]
+    price[1].innerText = obj["types"][product_type]["price"]
   }
   else{
     return false
@@ -433,7 +435,7 @@ pr_array.find(function (obj) {
 
 const deliver_btn = document.getElementById("deliver_btn")
 deliver_btn.addEventListener("click",function(){
-window.location.href = "payment.html?id="+product_id
+window.location.href = "payment.html?id="+product_id+"&type="+product_type
 })
 
 //store the qty and total amount of mobile
@@ -455,8 +457,8 @@ if(summary_info.length === 2){
     
     if (summary_info[0] === obj["user_id"]+"") {
       mobile_qty.innerText = `Price (${obj["quantity"]} items)`
-      mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
-      mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
+      mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
+      mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
     }
   
   })

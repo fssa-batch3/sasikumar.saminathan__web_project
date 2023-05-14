@@ -66,6 +66,8 @@ const order_array = JSON.parse(localStorage.getItem("orders"))
 let reuest_mobile = ""
 for (let i = 0; i < pr_array.length; i++) {
 
+    let type = shop_orders[i]["type"]
+
     reuest_mobile += `<div class="request_container">
     <div class="mobile_name">
         <div class="mobile_img">
@@ -79,10 +81,10 @@ for (let i = 0; i < pr_array.length; i++) {
         <p id="qty">${shop_orders[i]["quantity"]}</p>
     </div>
     <div class="price">
-        <p id="price">${"₹"+parseFloat(pr_array[i]["product_price"].slice(1)) * parseFloat(shop_orders[i]["quantity"])}</p>
+        <p id="price">${"₹"+parseFloat(pr_array[i]["types"][type]["price"].slice(1)) * parseFloat(shop_orders[i]["quantity"])}</p>
     </div>
     <div class="requested_date">
-        <p id="requested_time"><span id="requested_date">Nov 6, 2023</span> at 10:56</p>
+        <p id="requested_time"><span id="requested_date">${shop_orders[i]["date"]}</span> at ${shop_orders[i]["time"]}</p>
     </div>
     <button class="button-45" role="button" data-keyword="${shop_orders[i]["order_id"]}">More info</button>
 </div>`
@@ -152,17 +154,17 @@ close_arrow.addEventListener("click",function () {
 })
 
         //while click the deliverd btn
-        delivered_btn.addEventListener("click",function deliveredHistory() {
-            order_array.find(function(obj){
-                if (order_obj["order_id"] === obj["order_id"]) {
-                    obj["order_staus"] = "delivered"
+        // delivered_btn.addEventListener("click",function deliveredHistory() {
+        //     order_array.find(function(obj){
+        //         if (order_obj["order_id"] === obj["order_id"]) {
+        //             obj["order_staus"] = "delivered"
                      
-                }
-            })
-            localStorage.setItem("orders",JSON.stringify(order_array))
+        //         }
+        //     })
+        //     localStorage.setItem("orders",JSON.stringify(order_array))
 
 
-        })
+        // })
 
         requesst_bar.addEventListener("click",function(){
             window.location.href = "order_request.html?id="+shop_id
@@ -192,6 +194,3 @@ close_arrow.addEventListener("click",function () {
             home_nav.addEventListener("click",function () {
                 window.location.href = "../../index.html"
             })
-        
-
-

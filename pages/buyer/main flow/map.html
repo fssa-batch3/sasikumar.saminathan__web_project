@@ -92,7 +92,7 @@ const distanceInMeters = geolib.getDistance(
 const distanceInKilometers = distanceInMeters / 1000;
 console.log(distanceInKilometers);
 
-if (distanceInKilometers < 3) {
+if (distanceInKilometers < 30) {
     const zooMarkerPopup = L.popup().setContent(`<a href="product-detail.html?id=${product_id},${shop_arr[i]["id"]}">${shop_arr[i]["name"]}</a>`);
     const zooMarker = L.marker([shop_arr[i]["latitude"],shop_arr[i]["longitude"]], {
   icon: markerIcon

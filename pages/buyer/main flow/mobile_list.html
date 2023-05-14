@@ -112,7 +112,7 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 
     //product price
     const h2 = document.createElement("h2");
-    h2.innerHTML = pr_array[j]["product_price"]+" "
+    h2.innerHTML = pr_array[j]["types"][0]["price"]+" "
     div_3.append(h2)
 
     //product price
@@ -201,7 +201,7 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 
     //product price
     const h2 = document.createElement("h2");
-    h2.innerHTML = item["product_price"]+" "
+    h2.innerHTML = item["types"][0]["price"]+" "
     div_3.append(h2)
 
     //product price

@@ -53,7 +53,7 @@
             </div>
         </div> -->
         <div class="option">
-            <div class="option-1">
+            <!-- <div class="option-1">
                 <p><b>RAM:</b></p>
                <div class="ra ram"> <input type="radio" id="gb" name="64-128"><label for="gb"  name="64-128">4</label></div>
                 <div class="ra ram"><input type="radio" id="fb"  name="64-128"><label for="fb"  name="64-128">6</label>
@@ -64,16 +64,35 @@
                <div class="ram"> <input type="radio" id="gb" name="lie"><label for="gb"  name="lie">64</label></div>
                 <div class="ram"><input type="radio" id="fb"  name="lie"><label for="fb"  name="lie">128</label>
                 </div>
-            </div>
-            <div class="high">
-                <p><b>Highlights</b></p>
-                <ul class="ul_highlights">
-                    <!-- <li>6 GB RAM | 128 GB ROM</li>
-                    <li>16.33 cm (6.43 inch) Display</li>
-                    <li>50MP Rear Camera</li>
-                    <li>5000 mAh Battery</li> -->
-                </ul>
-            </div>
+            </div> -->
+            <div class="checkbox-wrapper-16">
+                <label class="checkbox-wrapper">
+                  <input type="radio" class="checkbox-input" name="type" checked/>
+                  <span class="checkbox-tile">
+                   <p class="ram">4 GB</p>
+                   <p class="rom">128 GB</p>
+                  </span>
+                </label>
+              </div>
+              <div class="checkbox-wrapper-16">
+                <label class="checkbox-wrapper">
+                  <input type="radio" class="checkbox-input" name="type" />
+                  <span class="checkbox-tile">
+                   <p class="ram">4 GB</p>
+                   <p class="rom">128 GB</p>
+                  </span>
+                </label>
+              </div>
+
+        </div>
+        <div class="high">
+            <p><b>Highlights</b></p>
+            <ul class="ul_highlights">
+                <!-- <li>6 GB RAM | 128 GB ROM</li>
+                <li>16.33 cm (6.43 inch) Display</li>
+                <li>50MP Rear Camera</li>
+                <li>5000 mAh Battery</li> -->
+            </ul>
         </div>
         </div>
     </div>
@@ -204,6 +223,7 @@ const params_id = urlParams.get("id")
 
 let split_arr = params_id.split(",")
 const productname = split_arr[0]
+
 //console.log(productname);
 
 //console.log(productname);
@@ -239,7 +259,7 @@ const main_div_img = document.createElement("div")
 main_div_img.setAttribute("class","main_div_img")
 document.querySelector(".images").append(main_div_img)
 
-// const main_img = document.getElementById("img_1")
+
 // main_img.setAttribute("src",search["product_img_1"])
 // main_img.setAttribute("alt","redmi")
 // main_img.setAttribute("width","400px")
@@ -320,7 +340,7 @@ document.querySelector(".higher").append(b_1)
 //product price
 const p_1 = document.createElement("p")
 p_1.setAttribute("class","price")
-p_1.innerHTML = search["product_price"] 
+p_1.innerHTML = search["types"][0]["price"] 
 document.querySelector(".rate").append(p_1)
 
 //b tag for bold price
@@ -435,6 +455,7 @@ document.querySelector(".ul_highlights").prepend(list_1)
 
 let shop_arr = JSON.parse(localStorage.getItem("shop"))
 let profile = JSON.parse(localStorage.getItem("profile"))
+let type_index;
 
 //find the shop which get from url params
 shop_arr.find(function (obj) {
@@ -447,7 +468,7 @@ shop_arr.find(function (obj) {
           <p>${obj["address"]}</p>
         </div>
           <div class="visit">
-            <a href="shop-detail.html?id=${productname},${obj["id"]}"><button id="visit_btn">Visit store</button></a>
+            <a><button id="visit_btn">Visit store</button></a>
             <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
           </div>
       </div>`
@@ -499,6 +520,8 @@ shop_arr.find(function (obj) {
 const photo = document.querySelectorAll(".image")
 
 const main_img = document.getElementById("img_1")
+//current src for first img
+main_img.setAttribute("src",search["product_img_1"])
 for(let k = 0;k < photo.length;k++){
 
     //this event for showing img in main img 
@@ -511,6 +534,7 @@ for(let k = 0;k < photo.length;k++){
     //      main_img.src = search["product_img_1"]    
     // })
 }
+
 
 const search2 = product_array.find(function (userobj){
 
@@ -549,6 +573,7 @@ if (cart_arr !== null) {
     })
 }
 //this function for add to cart
+
 cart.addEventListener("click",function(){
 
 if (user_array === false || user_array === null) {
@@ -560,6 +585,8 @@ else{
 
     const quantity = document.getElementById("quantity")
 
+    
+
     //creating unique id
     let uid = Math.floor(Math.random() * 1000)
     cart_arr.push(
@@ -567,7 +594,8 @@ else{
             "cart_id" : uid,
             "user_id" : user_array["user_id"],
             "product_id" : search2["user_id"],
-            "quantity" : "1"
+            "quantity" : "1",
+            "type" : type_index
         }
     )
 
@@ -590,8 +618,57 @@ search2["quantity"] = "1"
 
 localStorage.setItem("products",JSON.stringify(product_array))
 
-window.location.href = "../address.html?id="+split_arr[0]+","+split_arr[1]
+window.location.href = "../address.html?id="+split_arr[0]+","+split_arr[1]+"&type="+type_index
 }
+})
+
+
+//changing price by selecting ram and rom input
+let mobile_type_input = document.querySelectorAll(".checkbox-input")
+let ram = document.querySelectorAll(".ram")
+let rom = document.querySelectorAll(".rom")
+let check_div = document.querySelectorAll(".checkbox-wrapper-16")
+
+for (let i = 0; i < mobile_type_input.length; i++) {
+
+    if(search["types"][i]["ram"] === ""){
+        ram[i].remove();
+    }
+    else{
+        ram[i].innerText = search["types"][i]["ram"]+" GB"
+    }
+    rom[i].innerText = search["types"][i]["storage"]+" GB"
+
+    if (search["types"][i]["price"] === "") {
+        check_div[i].remove()
+    }
+
+    mobile_type_input[i].addEventListener("click",function(){
+
+        if (mobile_type_input[i].checked === true) {
+            p_1.innerText = search["types"][i]["price"]
+
+            product_array.find(function(obj){
+                if (productname === obj["user_id"]+"") {
+                    obj["product_price"] = p_1.innerText
+                    localStorage.setItem("products",JSON.stringify(product_array))
+                }
+            })
+            
+            return type_index = i
+            // console.log(type_index);
+        }
+    })
+
+    if (mobile_type_input[i].checked === true) {
+         type_index = i
+    }
+    }
+
+let visit_btn = document.getElementById("visit_btn")
+
+visit_btn.addEventListener("click",function(){
+    window.location.href = `shop-detail.html?id=${split_arr[0]},${split_arr[1]}&type=${type_index}`
 })
 </script>  
 </body>

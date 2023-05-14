@@ -414,6 +414,7 @@ if (profile_verify["seller_id"] !== undefined) {
   const info_div = document.querySelector(".info_container")
   const nav = document.querySelector(".navigation")
   const address_container = document.querySelector(".address_container")
+  const shop_container = document.querySelector(".shop-text-content")
 
   if (profile_verify["seller_id"] === undefined) {
   address.addEventListener("click",function() {
@@ -422,6 +423,7 @@ if (profile_verify["seller_id"] !== undefined) {
     info_div.style.display = "none"
     address_container.style.display = "block"
     nav.style.margin = "20px"
+    shop_container.style.paddingBottom = "40px"
 
 
   })
@@ -429,8 +431,7 @@ if (profile_verify["seller_id"] !== undefined) {
     profile1.style.display = "block"
     info_div.style.display = "block"
     address_container.style.display = "none"
-
-
+    shop_container.style.paddingBottom = "0px"
   })}
 
  

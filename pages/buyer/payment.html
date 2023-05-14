@@ -67,7 +67,7 @@
                         <span class="placeholder">Enter Card Number</span>
                       </label>
                       <button class="button-39" type="submit">PAY</button>
-                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" class="date_input" required><input type="text" class="cvv" name="username" placeholder="CVV" required></div>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" name="date" min="2023-06-01" max="2040-06-01" class="date_input" required><input type="password" class="cvv" name="username" placeholder="CVV" required></div>
                      <div class="success"></div>
                       
                 </div>
@@ -86,7 +86,7 @@
                         <span class="placeholder">Enter Card Number</span>
                       </label>
                       <button class="button-39" type="submit">PAY</button>
-                      <div id="date_label"><P>Expiry date : </P><input type="date" value="2017-01-01" min="2005-01-01" max="2019-01-01" class="date_input" required><input type="text" class="cvv" name="cvv" placeholder="CVV" required></div>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" name="userdate" max="2040-06-01" min="2023-06-01" class="date_input" required><input type="password" class="cvv" name="cvv" placeholder="CVV" required></div>
                      <div class="success"></div>
                       
                 </div>
@@ -147,6 +147,8 @@
  const url = window.location.search
  const search = new URLSearchParams(url)
  const product_id = search.get("id")
+ const product_type = parseFloat(search.get("type"))
+
  //store the qty and total amount of mobile
 let summary_info = product_id.split(",")
 let mobile_qty = document.getElementById("qty")
@@ -218,13 +220,15 @@ let pr_container = ""
 
 for (let i = 0; i < product_array.length; i++) {
 
+    let type = cart_obj[i]["type"]
+
     pr_container += `<div class="pro_container">
 <img src="${product_array[i]["product_img_1"]}" alt="apple" id="mob_img">
 <div class="pro_info">
 <p id="mob_name" class="name" >${product_array[i]["product_name"]}</p>
 <div id="rate">
-<p id="mob_price" class="price" >${"₹ "+ parseFloat(product_array[i]["product_price"].slice(1)) * parseFloat(cart_obj[i]["quantity"])}</p>
-<p data-keyword="${product_array[i]["user_id"]}" class="qty_para">Qty  </p><p class="mob_qty" >${cart_obj[i]["quantity"]}</p>
+<p id="mob_price" class="price" >${"₹ "+ parseFloat(product_array[i]["types"][type]["price"].slice(1)) * parseFloat(cart_obj[i]["quantity"])}</p>
+<p data-keyword="${product_array[i]["user_id"]}" class="qty_para">Qty  </p><p class="mob_qty" data-keyword = "${cart_obj[i]["type"]}">${cart_obj[i]["quantity"]}</p>
 </div></div></div>` 
     
 }
@@ -239,7 +243,7 @@ main_div.innerHTML = pr_container
 const product_img = document.getElementById("mob_img")
  const product_name = document.getElementById("mob_name")
  const product_price = document.getElementById("mob_price")
- console.log(product_price);
+//  console.log(product_price);
  const product_qty = document.querySelector(".mob_qty")
 if (summary_info.length == 2) {
      
@@ -258,13 +262,13 @@ if (summary_info.length == 2) {
  //set the values to product container
  product_img.src = pr_obj["product_img_1"]
  product_name.innerText = pr_obj["product_name"]
- product_price.innerText = pr_obj["product_price"]
+ product_price.innerText = pr_obj["types"][product_type]["price"]
  product_qty.innerText = pr_obj["quantity"]
 
  //set the value in total container
  const price = document.querySelectorAll(".price")
- price[0].innerText = pr_obj["product_price"]
-price[1].innerText = pr_obj["product_price"]
+ price[0].innerText = pr_obj["types"][product_type]["price"]
+price[1].innerText = pr_obj["types"][product_type]["price"]
 }
 
 //  let radio_btn = document.querySelectorAll(".radio_btn")
@@ -284,6 +288,39 @@ function getData() {
  const user_array = JSON.parse(localStorage.getItem("profile"))
  
  const order_btn = document.getElementById("order")
+
+       // JavaScript function to
+        // Display 12 hour format
+       
+        let time;
+        let day;
+        myFunction();
+        function myFunction() {
+            let date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+
+            let today = new Date+""
+            let date_arr = today.split(" ");
+            
+
+              
+            // Check whether AM or PM
+            let newformat = hours >= 12 ? 'PM' : 'AM';
+              
+            // Find current hour in AM-PM Format
+            hours = hours % 12;
+
+            // To display "0" as "12"
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+              
+            time = hours + ':' + minutes + ' ' + newformat;
+            
+            day = date_arr[2]+" "+date_arr[1]+" "+date_arr[3]
+            
+            
+        }
 
 
  
@@ -305,7 +342,10 @@ function getData() {
              "payment_method" : payment_method,
              "address_id" : address_obj["id"],
              "quantity" : quantity,
-             "shop_id" : summary_info[1]
+             "shop_id" : summary_info[1],
+             "type" : product_type,
+             "date" : day,
+             "time" : time
          }
      )
     }
@@ -319,6 +359,7 @@ function getData() {
 
             let product_id = qty[j].dataset.keyword
             let quantity = qty_digit[j].innerHTML
+            let type = qty_digit[j].dataset.keyword
             let uid = Math.floor(Math.random() * 1000)
             
      order_arr.push(
@@ -330,7 +371,10 @@ function getData() {
              "payment_method" : payment_method,
              "address_id" : address_obj["id"],
              "quantity" : quantity,
-             "shop_id" : summary_info[2]
+             "shop_id" : summary_info[2],
+             "type" : parseFloat(type),
+             "date" : day,
+             "time" : time
          }
      )
             
@@ -623,9 +667,9 @@ function paymentSuccess() {
     
     if (summary_info[0] === obj["user_id"]+"") {
       mobile_qty.innerText = `Price (${obj["quantity"]} items)`
-      mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
-      mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
-      product_price.innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["product_price"].slice(1))
+      mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
+      mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
+      product_price.innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
     }
   
   })
@@ -672,6 +716,7 @@ emi_choose_btn.addEventListener("click",function () {
 
     // })
 //  }
+
 
 
 

@@ -121,8 +121,11 @@ getData();
 
 
     for(let j = 0; j < pr_array.length;j++){
-console.log(pr_array[j]["quantity"]);
+// console.log(pr_array[j]["quantity"]);
     //ordered products main container  
+
+    let type = order[j]["type"]
+
     const main_div = document.createElement("div")
     main_div.setAttribute("class","main_container")
 
@@ -157,7 +160,7 @@ console.log(pr_array[j]["quantity"]);
 
     //product price
     const pr_price = document.createElement("p")
-    pr_price.innerText = "₹ "+parseFloat(pr_array[j]["product_price"].slice(2)) * parseFloat(order[j]["quantity"]) 
+    pr_price.innerText = "₹ "+parseFloat(pr_array[j]["types"][type]["price"].slice(2)) * parseFloat(order[j]["quantity"]) 
     div_3.append(pr_price)
 
     //div 4 contains status about product
@@ -172,6 +175,7 @@ console.log(pr_array[j]["quantity"]);
 
     //status progress
     const pr_status_info = document.createElement("p")
+    pr_status_info.setAttribute("class","pro_status")
     pr_status_info.innerText = "In-transit"
     div_4.append(pr_status_info)
 
@@ -187,10 +191,7 @@ console.log(pr_array[j]["quantity"]);
 
     //expected date to order
     const date = document.createElement("p")
-    //get today date for insert in the container
-    let today = new Date+""
-    let date_arr = today.split(" ");
-    date.innerText = date_arr[2]+" "+date_arr[1]+" "+date_arr[3]
+    date.innerText = order[j]["date"]
     div_5.append(date)
 
     //btn_div contain with btn's 
@@ -230,12 +231,13 @@ console.log(pr_array[j]["quantity"]);
 
     document.querySelector(".order_container").append(main_div)
 
-    console.log(order[j]);
+    // console.log(order[j]);
     if (order[j]["order_staus"] === "delivered") {
         cancel_btn.style.display = "none"
         track_btn.style.display = "none"
         pr_status_info.innerText = "Delivered"
     }
+    
 
     cancel_btn.addEventListener("click",function remove(e){
         const confirm_pop = document.querySelector(".cancel")
@@ -288,7 +290,35 @@ console.log(pr_array[j]["quantity"]);
    profile["order_count"] = pr_array.length
    localStorage.setItem("profile",JSON.stringify(profile))
 
+   let product_div = document.querySelectorAll(".main_container")
+    let product_name = document.querySelectorAll(".pro_status")
+    let select = document.querySelector("select")
+ 
+    function getStatus() {
+        for (let i = 0; i < product_div.length; i++) {
+
+            if (select.value !== product_name[i].innerText) {
+                
+                product_div[i].style.display = "none"
+            }
+            else{
+                product_div[i].style.display = "flex"
+
+            }
+         }
     }
+
+    getStatus();
+    select.addEventListener("change",function(){
+        getStatus();  
+    })
+
+    }
+
+
+
+
+
 
 
  

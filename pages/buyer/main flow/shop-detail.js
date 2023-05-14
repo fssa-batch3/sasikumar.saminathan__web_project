@@ -121,6 +121,7 @@ const url = window.location.search;
 const urlParams = new URLSearchParams(url);
 
 const productname = urlParams.get("id")
+const type = urlParams.get("type")
 let id_arr = productname.split(",");
 console.log(id_arr);
 
@@ -179,7 +180,8 @@ else{
             "cart_id" : uid,
             "user_id" : user_array["user_id"],
             "product_id" : search["user_id"],
-            "quantity" : quantity.value
+            "quantity" : quantity.value,
+            "type" : type
         }
     )
 
@@ -202,7 +204,7 @@ search["quantity"] = quantity.value
 
 localStorage.setItem("products",JSON.stringify(product_array))
 
-window.location.href = "../address.html?id="+id_arr[0]+","+id_arr[1]
+window.location.href = "../address.html?id="+id_arr[0]+","+id_arr[1]+"&type="+type
 }
 })
 
@@ -213,7 +215,7 @@ const pro_price = document.getElementById("pr_price")
 
 //insert the information which i got from array
 pro_name.innerText = search["product_name"]
-pro_price.innerText = search["product_price"]
+pro_price.innerText = search["types"][type]["price"]
 pro_image.setAttribute("src",search["product_img_1"])
 
 //owner id for finding shop

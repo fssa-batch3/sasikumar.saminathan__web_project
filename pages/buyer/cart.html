@@ -154,6 +154,8 @@
 // let items = 0;
 
 for(k = 0;k < pr_array.length;k++){
+
+    let type = cart_obj[k]["type"]
         //creating elements for read cart containers
     
     //main container with contain every elements
@@ -180,8 +182,8 @@ for(k = 0;k < pr_array.length;k++){
     // <p class="price"><b>₹14,690</b></p>
     const pr_price = document.createElement("p")
     pr_price.setAttribute("class","price")
-    pr_price.innerText = pr_array[k]["product_price"]
-    pr_price.setAttribute("data-keyword",pr_array[k]["product_price"])
+    pr_price.innerText = pr_array[k]["types"][type]["price"]
+    pr_price.setAttribute("data-keyword",pr_array[k]["types"][type]["price"])
     div_2.append(pr_price)
 
     // <div class="rating">
