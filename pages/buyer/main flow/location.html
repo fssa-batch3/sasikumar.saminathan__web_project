@@ -89,7 +89,7 @@ const url = window.location.search;
 const urlParams = new URLSearchParams(url);
 //console.log(urlParams);
 const product_id = urlParams.get("user_id")
-if (profile !== false || null) {
+if (profile !== false || profile !== null) {
     window.location.href = "map.html?user_id="+product_id  
 }
 else{

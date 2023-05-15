@@ -55,6 +55,7 @@
         <!-- <input type="search" placeholder="search your orders here" class="search" id="search">
         <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label> -->
         <div class="order_container"></div>
+        <img src="../../assets/image/order_something.jpg.jpg" id="order_img" alt="">
         <div class="cancel">
             <p>Are you reallly going to cancel the order</p>
             <div class="sure_btn">
@@ -91,6 +92,8 @@
     const url = window.location.search
     const urlParams = new URLSearchParams(url)  
     const username = JSON.parse(urlParams.get("user_id"))
+    let main_container = document.querySelectorAll(".main_container")
+    let order_img = document.getElementById("order_img")
 getData();
     function getData() {
         //get orders array from localstorage
@@ -245,7 +248,6 @@ getData();
         const sure = document.getElementById("sure")
         const not_sure = document.getElementById("not")
 
-
                 sure.addEventListener("click",function(){
 
         //get id from data keyword
@@ -275,7 +277,13 @@ getData();
          localStorage.setItem("orders",JSON.stringify(order_obj))
 
          document.querySelector(".order_container").innerHTML = ""
-         getData();         
+         getData();
+         
+
+
+        if (main_container.length === 0) {
+            order_img.style.display = "block"
+        }
        })
        
        //if click no it will be work
@@ -314,14 +322,9 @@ getData();
     })
 
     }
-
-
-
-
-
-
-
- 
+    if (main_container.length === 0) {
+            order_img.style.display = "block"
+        }
 
 
     </script>

@@ -320,3 +320,12 @@ select{
 .order_container{
     margin-top: 100px;
 }
+#order_img{
+    width: 30%;
+    height: 30rem;
+    margin-left: 35%;
+    display: none;
+}
+body{
+    background-color: white;
+}
