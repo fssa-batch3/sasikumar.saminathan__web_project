@@ -48,7 +48,12 @@
         <i id="bar" class="fa-solid fa-bars"></i>
     </header>
     <nav>
-
+        <p id="filter">Filters</p>
+        <div id="range">
+            <p>Price</p>
+            <input type="range" id="price_change">
+            <p id="price">₹7999</p>
+        </div>
     </nav>
     <main>
         <input type="search" placeholder="search" class="search" id="search">
@@ -159,9 +164,39 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
       const searchvalue = search.value.trim().toLowerCase()
       const filter = pr_array.filter(function(item){
         return item.product_name.toLowerCase().includes(searchvalue)
-      })
 
-      const parent = document.getElementById("mobile_list")
+        
+      })
+      getMobile(filter)
+    })
+
+    /*get the number of characters*/
+    let charlength
+    function charLength() {
+        
+        charlength = document.getElementById('price_change').value;
+        document.getElementById('price').innerHTML = "₹"+charlength * 1000;
+        return charlength;
+
+    }
+    charLength();
+    const range = document.getElementById('price_change').addEventListener('change', function () {
+        charLength();
+        const filter = pr_array.filter(function (obj) {
+            
+            let price = (obj["types"][0]["price"]).slice(1)
+            
+            if (parseFloat(charlength * 1000) >= parseFloat(price)) {
+                console.log("why");
+                return obj
+            }
+        })
+
+        getMobile(filter)
+    })
+
+      function getMobile(filter) {
+        const parent = document.getElementById("mobile_list")
       parent.innerHTML = "";
 
     filter.forEach((item) => {
@@ -238,11 +273,13 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 
     document.getElementById("mobile_list").append(a)
       })
-    })
+      }
+
 
     const home_nav = document.querySelector(".logo")
     home_nav.addEventListener("click",function () {
         window.location.href = "../../../index.html"        
     })
+
 </script>
 </html>

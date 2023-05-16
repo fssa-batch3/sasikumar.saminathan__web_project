@@ -92,7 +92,7 @@
     const url = window.location.search
     const urlParams = new URLSearchParams(url)  
     const username = JSON.parse(urlParams.get("user_id"))
-    let main_container = document.querySelectorAll(".main_container")
+
     let order_img = document.getElementById("order_img")
 getData();
     function getData() {
@@ -279,7 +279,7 @@ getData();
          document.querySelector(".order_container").innerHTML = ""
          getData();
          
-
+         let main_container = document.querySelectorAll(".main_container")
 
         if (main_container.length === 0) {
             order_img.style.display = "block"
@@ -322,6 +322,9 @@ getData();
     })
 
     }
+
+    let main_container = document.querySelectorAll(".main_container")
+
     if (main_container.length === 0) {
             order_img.style.display = "block"
         }

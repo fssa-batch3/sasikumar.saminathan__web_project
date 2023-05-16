@@ -247,3 +247,28 @@ nav{
     font-size: small;
     color: gray;
 }
+#filter{
+    font-size: 24px;
+    margin: 1.5rem;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+}
+#range{
+height: 9rem;
+}
+#range input{
+    margin: 2rem 3rem;
+    margin-bottom: 0%;
+    width: 15rem;
+}
+#price{
+    margin: 1rem 9rem;
+    font-weight: 500;
+}
+#range p:nth-child(1){
+    position: relative;
+    top: 1rem;
+    left: 3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
