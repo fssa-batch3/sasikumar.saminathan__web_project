@@ -364,7 +364,7 @@ else{
     const order_count = document.getElementById("order_count")
     const profile_obj = JSON.parse(localStorage.getItem("profile"))
 
-if (cart.length !== null && profile_obj["seller_id"] === undefined) {
+if (cart !== null && profile_obj["seller_id"] === undefined) {
   console.log(cart);
       //this filter function for showing cart count in profile 
       const cart_arr = cart.filter(function (obj) {

@@ -261,12 +261,11 @@ getData();
         
         if (data === order["order_id"]+"") {
             
-            
-
             main_div.remove();
 
             confirm_pop.classList.remove('cancel_active');
-            return false
+             order["order"] = false
+             return true
         }
         else{
             return true

@@ -54,6 +54,19 @@
             <input type="range" id="price_change">
             <p id="price">₹7999</p>
         </div>
+        <div class="ram_filter">
+            <p id="ram">Ram</p>
+            <div><input type="checkbox" class="ram_input"><p>4 GB</p></div>
+            <div><input type="checkbox" class="ram_input"><p>6 GB</p></div>
+            <div><input type="checkbox" class="ram_input"><p>8 GB</p></div>
+            <div><input type="checkbox" class="ram_input"><p>12 GB and above</p></div>
+        </div>
+        <div class="ram_filter rom">
+            <p id="ram">Storage</p>
+            <div><input type="checkbox" class="storage_input"><p>64 GB</p></div>
+            <div><input type="checkbox" class="storage_input"><p>128 GB</p></div>
+            <div><input type="checkbox" class="storage_input"><p>256 GB and above</p></div>
+        </div>
     </nav>
     <main>
         <input type="search" placeholder="search" class="search" id="search">
@@ -180,6 +193,8 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 
     }
     charLength();
+
+    //this event for filtering mobile with range value
     const range = document.getElementById('price_change').addEventListener('change', function () {
         charLength();
         const filter = pr_array.filter(function (obj) {
@@ -194,6 +209,89 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 
         getMobile(filter)
     })
+
+    
+    const ram_input = document.querySelectorAll(".ram_input")
+    const storage_input = document.querySelectorAll(".storage_input")
+
+    //this event for filter mobile with ram
+    for (let i = 0; i < ram_input.length; i++) {
+        ram_input[i].addEventListener("click",function () {
+           const filter = pr_array.filter(function (obj) {
+            let ram_1 = (obj["types"][0]["ram"])
+            let ram_2 = (obj["types"][1]["ram"])
+
+            //filter product ram = 4 gb 
+            if (ram_input[0].checked == true && parseFloat(ram_1) === 4) {
+                console.log(ram_1);
+                return obj
+            }
+            //filter product ram = 6 gb 
+            if (ram_input[1].checked == true && parseFloat(ram_1) === 6 || parseFloat(ram_2) === 6) {
+                return obj
+            }
+            //filter product ram = 8 gb 
+            if (ram_input[2].checked == true && parseFloat(ram_1) === 8 || parseFloat(ram_2) === 8) {
+                return obj
+            }
+            //filter product ram = 12 gb 
+            if (ram_input[3].checked == true && parseFloat(ram_1) >= 12 || parseFloat(ram_2) >= 12) {
+                return obj
+            }
+            
+            //if everything is not checked retun all objects
+            let count = 0;
+            for (let j = 0; j < ram_input.length; j++) {
+                if (ram_input[j].checked !== true) {
+                    count += 1
+                }
+                if (count === 4) {
+                    return obj
+                }
+                
+            }
+           })
+           
+           getMobile(filter)
+        })
+    }
+
+    //this event for filter mobile with storage
+    for (let i = 0; i < storage_input.length; i++) {
+        storage_input[i].addEventListener("click",function () {
+           const filter = pr_array.filter(function (obj) {
+            let storage_1 = (obj["types"][0]["storage"])
+            let storage_2 = (obj["types"][1]["storage"])
+
+            //filter product ram = 4 gb 
+            if (storage_input[0].checked == true && parseFloat(storage_1) === 64 || parseFloat(storage_2) === 64) {
+                return obj
+            }
+            //filter product ram = 6 gb 
+            if (storage_input[1].checked == true && parseFloat(storage_1) === 128 || parseFloat(storage_2) === 128) {
+                return obj
+            }
+            //filter product ram = 8 gb 
+            if (storage_input[2].checked == true && parseFloat(storage_1) >= 256 || parseFloat(storage_2) >= 256) {
+                return obj
+            }
+            
+            //if everything is not checked retun all objects
+            let count = 0;
+            for (let j = 0; j < storage_input.length; j++) {
+                if (storage_input[j].checked !== true) {
+                    count += 1
+                }
+                if (count === 3) {
+                    return obj
+                }
+                
+            }
+           })
+           
+           getMobile(filter)
+        })
+    }
 
       function getMobile(filter) {
         const parent = document.getElementById("mobile_list")

@@ -96,6 +96,19 @@ for (let i = 0; i < pr_array.length; i++) {
     
 }
 main_container.innerHTML = reuest_mobile
+
+let btn = document.querySelectorAll(".button-45")
+const order_btn = document.getElementById("delivered_btn")
+console.log(shop_orders);
+for(let i = 0; i < shop_orders.length; i++){
+      if (shop_orders[i]["order"] === false){
+        
+        btn[i].innerHTML = "Canceled"
+        btn[i].style.backgroundColor = "#FF6969"
+        order_btn.style.display = "none"
+
+      }  
+}
 // }
 
 
@@ -122,7 +135,13 @@ for (let i = 0; i < more_info_btn.length; i++) {
     
     more_info_btn[i].addEventListener('click',function(){
        
-        menu.classList.toggle('showmenu');
+        order_btn.style.display = "block"
+
+        
+        if (more_info_btn[i].innerHTML !== "Canceled") {
+            menu.classList.toggle('showmenu');
+        }
+
         let order_id = more_info_btn[i].dataset.keyword
 
          order_obj = shop_orders.find(function (obj) {
@@ -147,6 +166,8 @@ for (let i = 0; i < more_info_btn.length; i++) {
                     payment.innerText = order_obj["payment_method"]
                 }
             })
+
+
         
         
         });
