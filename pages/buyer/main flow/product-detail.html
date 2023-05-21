@@ -28,7 +28,7 @@
             <li><a aria-label="seller" href="../../../pages/Seller/Seller.html">
                     <p class="seller">Seller</p>
                 </a></li>
-            <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
+            <li><a id="cart_icon" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
                         aria-hidden="true"></i></a></li>
             <!-- <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
                         class="home-icon fa-solid fa-location-dot"></i></a></li> -->
@@ -417,9 +417,9 @@ if (cart_arr !== null) {
     })
 }
 //this function for add to cart
-
+console.log(cart);
 cart.addEventListener("click",function(){
-
+console.log("why");
 if (user_array === false || user_array === null) {
 
     window.location.href = "../../sign-in/login.html"
@@ -546,7 +546,7 @@ login.addEventListener("click", function () {
 
     //this logic for user going to orders page
     const orders = document.getElementById("order")
-    // const cart = document.getElementById("cart")
+    const cart_icon = document.getElementById("cart_icon")
     const user_obj = JSON.parse(localStorage.getItem("profile"))
     orders.addEventListener("click", function () {
         if (profile == false) {
