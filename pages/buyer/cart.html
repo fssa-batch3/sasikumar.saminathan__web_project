@@ -11,21 +11,31 @@
 
 </head>
 <body>
-    <header> 
+    <header>
         <div class="logo">
+            <img src="../../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
+            <h5 class="logo-name"><b>Shopnow</b></h5>
+        </div>
 
-        <img src="./../../assets/icon/shopping-bag.png" alt="shopping-bag" width="40px" height="40px">
-        <a href="../../index.html"><h5 class="logo-name"><b>Shopnow</b></h5></a>
-    </div>
-    <input type="search" placeholder="search " class="search">
-    <i class="fa fa-search" aria-hidden="true"></i>
-    <ul class="top-list">
-        <a href="./../../pages/sign-in/login.html"><button class="login"><b>Login</b></button></a>
-        <a href="#"><p class="seller">Seller</p></a>
-       <a href="./../../pages/buyer/side flow/pincode.html"><i class="home-icon fa-solid fa-location-dot"></i></i></a>
+        <!-- search bar -->
+   
 
-    </ul>
-</header>
+        <!-- header nav links -->
+        <ul class="top-list">
+            <li><button class="login" id="login"><b>My account</b></button>
+            </li>
+            <li><a aria-label="seller" href="../../../pages/Seller/Seller.html">
+                    <p class="seller">Seller</p>
+                </a></li>
+            <!-- <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
+                        aria-hidden="true"></i></a></li> -->
+            <!-- <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
+                        class="home-icon fa-solid fa-location-dot"></i></a></li> -->
+                        <li><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
+
+        </ul>
+        <i id="bar" class="fa-solid fa-bars"></i>
+    </header>
 <main>
     <div id="empty">
         <img src="../../assets/icon/shopping-basket-add.png"/>
@@ -481,13 +491,28 @@ if (main_div.length === 0 || cart_obj === null) {
 
         }
 
-        
+                    //get elements from my account btn for redirecting
+const login = document.getElementById("login")
+const profile = JSON.parse(localStorage.getItem("profile"))
 
+//this logic for decide which page want to go in diffrent situation
+login.addEventListener("click", function () {
 
+        window.location.href = "/pages/sign-in/real-profile.html"
 
+});
+    //this logic for user going to orders page
+    const orders = document.getElementById("order")
+    orders.addEventListener("click", function () {
 
+            window.location.href = "../../../pages/buyer/my_orders.html?user_id=" + profile["user_id"]
 
-    
+    })
+
+    document.querySelector(".logo").addEventListener("click",function(){
+        window.location.href = "../../../index.html"
+    })
+
    </script> 
 </body>
 </html>

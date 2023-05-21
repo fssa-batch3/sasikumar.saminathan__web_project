@@ -10,20 +10,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header> 
+    <header>
         <div class="logo">
-        <img src="../../../assets/icon/shopping-bag.png" alt="shop" width="40px" height="40px">
-        <a aria-label="shopnow" href="../../../index.html"><h5 class="logo-name"><b>Shopnow</b></h5></a>
-    </div>
-    <input type="search" placeholder="search " class="search">
-    <i class="fa fa-search" aria-hidden="true"></i>
-    <ul class="top-list">
-        <li><a aria-label="login" href="../../sign-in/login.html"><button class="login"><b>Login</b></button></a></li>
-        <li><a aria-label="Seller" href="../../Seller/Seller.html"><p class="seller">Seller</p></a></li>
-        <li><a aria-label="cart" href="../../../pages/buyer/cart.html"><i class="home-icon fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-        <li><a aria-label="pincode" href="../../../pages/buyer/side flow/pincode.html"><i class="home-icon fa-solid fa-location-dot"></i></a></li>
-    </ul>
-</header>
+            <img src="../../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
+            <h5 class="logo-name"><b>Shopnow</b></h5>
+        </div>
+
+        <!-- search bar -->
+   
+
+        <!-- header nav links -->
+        <ul class="top-list">
+            <li><button class="login" id="login"><b>My account</b></button>
+            </li>
+            <li><a aria-label="seller" href="../../../pages/Seller/Seller.html">
+                    <p class="seller">Seller</p>
+                </a></li>
+            <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
+                        aria-hidden="true"></i></a></li>
+            <!-- <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
+                        class="home-icon fa-solid fa-location-dot"></i></a></li> -->
+                        <li><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
+
+        </ul>
+        <i id="bar" class="fa-solid fa-bars"></i>
+    </header>
 
 <main>
     <div class="contain">
@@ -59,30 +70,10 @@
     localStorage.setItem("profile",JSON.stringify(profile))
    }
 
-         //get your nearby shops via latitude and longtitude
-//          const options2 = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '1653fc8406msh4c0c78350cb141ep1d5ad3jsn01eef7cce62b',
-// 		'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
-// 	}
-// };
-
-
-
-// fetch(`https://local-business-data.p.rapidapi.com/search-nearby?query=mobile%20phone%20shop&lat=${latitude}&lng=${longitude}&limit=3&language=en&region=us`, options2)
-// 	.then(response => response.json())
-//     .then(response => {
-//     //console.log(response["data"]);
-//    localStorage.setItem("shoper",JSON.stringify(response["data"]))
-//   })
-// 	.catch(err => console.error(err));
-
-
-
+let profile = JSON.parse(localStorage.getItem("profile"))
     btn.addEventListener("click",function () {
 
-let profile = JSON.parse(localStorage.getItem("profile"))
+
 //get url from search bar
 const url = window.location.search;
 //console.log(url);
@@ -100,6 +91,60 @@ else{
 
     })
 
+//get elements from my account btn for redirecting
+const login = document.getElementById("login")
+// const profile = JSON.parse(localStorage.getItem("profile"))
+
+//this condition for showing login text while there is no profile are logged out
+if (profile == false) {
+
+    login.innerText = "Login"
+}
+else if (profile == null) {
+
+    login.innerText = "Login"
+}
+//this logic for decide which page want to go in diffrent situation
+login.addEventListener("click", function () {
+    if (profile == false) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else if (profile == null) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else {
+        window.location.href = "/pages/sign-in/real-profile.html"
+    }
+});
+
+    //this logic for user going to orders page
+    const orders = document.getElementById("order")
+    const cart = document.getElementById("cart")
+    const user_obj = JSON.parse(localStorage.getItem("profile"))
+    orders.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/my_orders.html?user_id=" + user_obj["user_id"]
+        }
+    })
+    cart.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/cart.html?user_id=" + user_obj["user_id"]
+        }
+    })
 
 
     

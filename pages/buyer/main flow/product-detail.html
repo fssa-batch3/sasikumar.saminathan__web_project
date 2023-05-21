@@ -12,21 +12,31 @@
     
 </head>
 <body>
-<header> 
+    <header>
         <div class="logo">
-        <img src="../../../assets/icon/shopping-bag.png" alt="shop-detail" width="40px" height="40px">
-        <a aria-label="login" href="../../../index.html"><h5 class="logo-name"><b>Shopnow</b></h5></a>
-    </div>
-    <input type="search" placeholder="search " class="search">
-    <i class="fa fa-search" aria-hidden="true"></i>
-    <ul class="top-list">
-        <li><a aria-label="login" href="../../../pages/sign-in/login.html"><button class="login"><b>Login</b></button></a></li>
-        <li><a aria-label="seller" href="../../../pages/Seller/Seller.html"><p class="seller">Seller</p></a></li>
-        <li><a aria-label="cart" href="../../../pages/buyer/cart.html"><i class="home-icon fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-        <li><a aria-label="pincode" href="../../../pages/buyer/side flow/pincode.html"><i class="home-icon fa-solid fa-location-dot"></i></a></li>
+            <img src="../../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
+            <h5 class="logo-name"><b>Shopnow</b></h5>
+        </div>
 
-    </ul>
-</header>
+        <!-- search bar -->
+   
+
+        <!-- header nav links -->
+        <ul class="top-list">
+            <li><button class="login" id="login"><b>My account</b></button>
+            </li>
+            <li><a aria-label="seller" href="../../../pages/Seller/Seller.html">
+                    <p class="seller">Seller</p>
+                </a></li>
+            <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
+                        aria-hidden="true"></i></a></li>
+            <!-- <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
+                        class="home-icon fa-solid fa-location-dot"></i></a></li> -->
+                        <li><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
+
+        </ul>
+        <i id="bar" class="fa-solid fa-bars"></i>
+    </header>
 <main>
     <!-- <a id="edit_link"><button class="pr_btn">EDIT</button></a> -->
     <div class="main-contain">
@@ -128,87 +138,7 @@
     </footer>
 </main>
 <script>
-    //product_detail array with contain page details
-//    const product_detail =[
-//     {
-//         id : "1",
-//         images : {
-//             main_image :"../../../assets/image/redmi-main.webp",
-//             image_1  : "../../../assets/image/redmi-1.webp",
-//             image_2 : "../../../assets/image/redmi-2.webp",
-//             image_3 : "../../../assets/image/redmi-3.webp"
-//         },
 
-//         product_name : "Redmi Note 11 (Horizon Blue, 128 GB) (6 GB RAM)",
-//         product_price : "₹14,690",
-//         star : "4.3",
-//         ratings : "26,443 Ratings",
-
-//         highlights : {
-//             lists_1 : "5000 mAh Battery",
-//             lists_2 : "50MP Rear Camera",
-//             lists_3 : "16.33 cm (6.43 inch) Display",
-//             lists_4 : "6 GB RAM | 128 GB ROM",
-//         },
-//         shop_name : "Chennai - Madipakam",
-//         shop_address : "69/70, Bazaar Road, Meenatchi Sundareswarar Koil, Sadasiva Nagar, Madipakkam, Chennai. Tamil Nadu 600091 Ph: 805678889",
-//         width : "500px",
-//         height : "500px"
-
-//     },
-//     {
-//         id : "2",
-//         images : {
-//             main_image :"../../../../assets/image/samsung-galaxy/Resize_samsung-main.webp",
-//             image_1  : "../../../../assets/image/samsung-galaxy/samsung-2.webp",
-//             image_2 : "../../../../assets/image/samsung-galaxy/samsung-3.webp",
-//             image_3 : "../../../../assets/image/samsung-galaxy/samsung-4.webp"
-//         },
-
-//         product_name : "SAMSUNG Galaxy S21 FE 5G (Lavender, 128 GB)",
-//         product_price : "₹39,999",
-//         star : "4.3",
-//         ratings : "26,946 Ratings",
-
-//         highlights : {
-//             lists_1 : "8 GB RAM | 128 GB ROM",
-//             lists_2 : "16.26 cm (6.4 inch) Full HD+ Display",
-//             lists_3 : "12MP + 12MP + 8MP (OIS) | 32MP Front Camera",
-//             lists_4 : "4500 mAh Lithium-ion Battery",
-//         },
-//         shop_name : "Chennai - Koyambedu",
-//         shop_address : "No: 1, Kaliamman Koil Street, opp KFC Koyambedu, Chennai.Tamil Nadu 600107 Ph: 8428100000",
-//         width : "400px",
-//         height : "500px"
-//     },
-//     {
-//         id : "3",
-//         images : {
-//             main_image :"../../../../assets/image/iphone 14/iphone_main.webp",
-//             image_1  : "../../../../assets/image/iphone 14/iphone_1.webp",
-//             image_2 : "../../../../assets/image/iphone 14/iphone_2.webp",
-//             image_3 : "../../../../assets/image/iphone 14/iphone_3.webp"
-//         },
-
-//         product_name : "APPLE iPhone 14 (Blue, 128 GB)",
-//         product_price : "₹71,999",
-//         star : "4.7",
-//         ratings : "15,830 Ratings",
-
-//         highlights : {
-//             lists_1 : "15.49 cm (6.1 inch) Super Retina XDR Display",
-//             lists_2 : "12MP + 12MP | 12MP Front Camera",
-//             lists_3 : "A15 Bionic Chip, 6 Core Processor Processor",
-//             lists_4 : "128 GB ROM",
-//         },
-//         shop_name : "Chennai - Koyambedu",
-//         shop_address : "No: 1, Kaliamman Koil Street, opp KFC Koyambedu, Chennai.Tamil Nadu 600107 Ph: 8428100000",
-//         width : "400px",
-//         height : "500px"
-//     }
-
-
- //  ]
 
  //get product details array from local storage
  const product_array = JSON.parse(localStorage.getItem("products"))
@@ -396,61 +326,6 @@ const list_1 = document.createElement("li")
 list_1.innerHTML = search["highlights"] 
 document.querySelector(".ul_highlights").prepend(list_1)
 
-//list 2
-// const list_2 = document.createElement("li")
-// list_2.innerHTML = search.highlights.lists_2
-// document.querySelector(".ul_highlights").prepend(list_2)
-
-// //list 3
-// const list_3 = document.createElement("li")
-// list_3.innerHTML = search.highlights.lists_3
-// document.querySelector(".ul_highlights").prepend(list_3)
-
-// //list 4
-// const list_4 = document.createElement("li")
-// list_4.innerHTML = search.highlights.lists_4
-// document.querySelector(".ul_highlights").prepend(list_4)
-
-//-----------------------------------------------------------------------------------------------------
-// shop information here
-
-
-// const h3_shop = document.createElement("h3")
-// h3_shop.innerHTML = "Chennai - Madipakam"
-// document.querySelector(".visit-content").append(h3_shop)
-
-
-// const p_shop = document.createElement("p")
-// p_shop.innerHTML = search.shop_address
-// document.querySelector(".visit-content").append(p_shop)
-
-
-
-//get shop array from localstorage
-// let shop = JSON.parse(localStorage.getItem("shoper"))
-// let shops=" ";
-// for(let i = 0;i < shop.length;i++){
-//     shops += `<div class="shop-container">
-//         <div class="visit-content">
-//           <h3>${shop[i]["city"]} - ${shop[i]["district"]}</h3>
-//           <p>${shop[i]["full_address"]}</p>
-//         </div>
-//           <div class="visit">
-//             <a href="shop-detail.html?id=${productname},${shop[i]["owner_id"]}"><button id="visit_btn">Visit store</button></a>
-//             <img src="../../../assets/icon/icons8-shop-64.png" alt="assets" class="shop-icon">  
-//           </div>
-//       </div>`
-
-//      let each_shops= document.querySelector(".shops")
-//      each_shops.innerHTML=shops
-
-     
-
-// }
-
-
-
-
 
 
 let shop_arr = JSON.parse(localStorage.getItem("shop"))
@@ -478,34 +353,7 @@ shop_arr.find(function (obj) {
     }
 })
 
-// for(let i = 0; i < shop_arr.length;i++){
 
-//  let lat1 = profile["lat"]
-//  let lon1 = profile["lon"]
-//  let lat2 = shop_arr[i]["latitude"]
-//  let lon2 = shop_arr[i]["longitude"]
-// //  console.log(lat1,lon1,lat2,lon2);
-
-// const distanceInMeters = geolib.getDistance(
-//   {latitude: lat1, longitude: lon1},
-//   {latitude: lat2, longitude: lon2}
-// );
-
-// const distanceInKilometers = distanceInMeters / 1000;
-// console.log(distanceInKilometers);
-// // distanceInKilometers = 2
-
-
-// if (distanceInKilometers < 2) {
-
-
-
-
-// }
-// if (count === 3) {
-//     break;
-// }
-// }
 
 
     let main_div_img2 =  document.querySelector(".main_div_img")
@@ -529,10 +377,6 @@ for(let k = 0;k < photo.length;k++){
          main_img.src = photo[k].currentSrc       
     })
 
-    //this event for showing the default img in main img
-    // photo[k].addEventListener("mouseleave",function () {
-    //      main_img.src = search["product_img_1"]    
-    // })
 }
 
 
@@ -670,6 +514,62 @@ let visit_btn = document.getElementById("visit_btn")
 visit_btn.addEventListener("click",function(){
     window.location.href = `shop-detail.html?id=${split_arr[0]},${split_arr[1]}&type=${type_index}`
 })
+
+
+//get elements from my account btn for redirecting
+const login = document.getElementById("login")
+// const profile = JSON.parse(localStorage.getItem("profile"))
+
+//this condition for showing login text while there is no profile are logged out
+if (profile == false) {
+
+    login.innerText = "Login"
+}
+else if (profile == null) {
+
+    login.innerText = "Login"
+}
+//this logic for decide which page want to go in diffrent situation
+login.addEventListener("click", function () {
+    if (profile == false) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else if (profile == null) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else {
+        window.location.href = "/pages/sign-in/real-profile.html"
+    }
+});
+
+    //this logic for user going to orders page
+    const orders = document.getElementById("order")
+    // const cart = document.getElementById("cart")
+    const user_obj = JSON.parse(localStorage.getItem("profile"))
+    orders.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/my_orders.html?user_id=" + user_obj["user_id"]
+        }
+    })
+    cart.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/cart.html?user_id=" + user_obj["user_id"]
+        }
+    })
 </script>  
 </body>
 </html>

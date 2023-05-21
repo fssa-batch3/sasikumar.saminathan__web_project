@@ -88,6 +88,10 @@
     //get element from submit btn
     const submit_btn = document.getElementById("sub")
     const edit_btn = document.getElementById("edit")
+
+    let url = window.location.search
+    let params = new URLSearchParams(url)
+    let shop_id = params.get("id")
     
 
     //event for search the product
@@ -176,9 +180,9 @@
                 })
 
         //getting values for push
-        const pr_name =document.getElementById("pr_name")
-        const ram =document.getElementById("pr_ram")
-        const rom =document.getElementById("pr_rom")
+        const pr_name = document.getElementById("pr_name")
+        const ram = document.getElementById("pr_ram")
+        const rom = document.getElementById("pr_rom")
         const price = document.getElementById("pr_price")
         const img_1 = document.getElementById("pr_img_1")
         const img_2 = document.getElementById("pr_img_2")
@@ -280,7 +284,18 @@ x_mark.addEventListener("click",function () {
 
 mobData();
 function mobData(params) {
-const pr_array = JSON.parse(localStorage.getItem("products"))
+const pr_arr = JSON.parse(localStorage.getItem("products"))
+
+let pr_array = pr_arr.filter(function (obj) {
+    if (obj["shop_id"]+"" ===  shop_id) {
+        return true
+    }
+    else{
+        return false
+    }
+})
+
+
 for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
 {
     //div 1 class name: pack

@@ -272,6 +272,63 @@ maxbtn.addEventListener("click",function () {
 
 
 
+    //get elements from my account btn for redirecting
+const login = document.getElementById("login")
+const profile = JSON.parse(localStorage.getItem("profile"))
+// const profile = JSON.parse(localStorage.getItem("profile"))
+
+//this condition for showing login text while there is no profile are logged out
+if (profile == false) {
+
+    login.innerText = "Login"
+}
+else if (profile == null) {
+
+    login.innerText = "Login"
+}
+//this logic for decide which page want to go in diffrent situation
+login.addEventListener("click", function () {
+    if (profile == false) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else if (profile == null) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else {
+        window.location.href = "/pages/sign-in/real-profile.html"
+    }
+});
+
+    //this logic for user going to orders page
+    const orders = document.getElementById("order")
+
+    orders.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/my_orders.html?user_id=" + profile["user_id"]
+        }
+    })
+    cart.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/cart.html?user_id=" + profile["user_id"]
+        }
+    })
+
+
+
 
 
 

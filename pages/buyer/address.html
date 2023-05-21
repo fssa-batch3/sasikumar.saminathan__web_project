@@ -26,12 +26,13 @@
 </header>
 <main>
   <!-- container for select address -->
-<div class="shop-text-content shop-container">    
+<div class="shop-text-content shop-container">  
+  <form id="forms">
     <div class="address_container">
     <h2>Select Delivery Address</h2>
     <div class="btn_container">
-      <button id="add_address"><i class="fa-solid fa-plus"></i><p>Add address</p></button>
-      <button id="deliver_btn"><p>Deliver to this address</p></button>
+      <button id="add_address" type="button"><i class="fa-solid fa-plus"></i><p>Add address</p></button>
+      <button id="deliver_btn" type="submit"><p>Deliver to this address</p></button>
     </div>
     <!-- <div class="address_info">
       <input type="radio" name="" id="check">
@@ -46,6 +47,7 @@
     <!-- this container for append address containers -->
     <div class="added_address"></div>
             </div>
+          </form>
 
           </div>
          
@@ -102,6 +104,16 @@
         getData();
 
     });
+
+    const form = document.getElementById("forms")
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      redirect();
+
+    })
+
+
 
   const profile_info = document.getElementById("profile_info")
   const address = document.getElementById("address")
@@ -215,11 +227,12 @@ const input = document.createElement("input")
 input.setAttribute("type","radio")
 input.setAttribute("id","check")
 input.setAttribute("name","checked")
+input.setAttribute("required","")
 
 //set the value as a default
-if (add_arr[i]["select"] === true) {
-  input.setAttribute("checked","checked")
-}
+// if (add_arr[i]["select"] === true) {
+//   input.setAttribute("checked","checked")
+// }
 main_div.append(input)
 
 const div = document.createElement("div")
@@ -434,9 +447,20 @@ pr_array.find(function (obj) {
 })
 
 const deliver_btn = document.getElementById("deliver_btn")
-deliver_btn.addEventListener("click",function(){
-window.location.href = "payment.html?id="+product_id+"&type="+product_type
-})
+
+//this event for redirect to payment page
+function redirect() {
+
+  let main_container = document.querySelectorAll(".address_info")
+
+  if (main_container.length === 0) {
+
+     alert("Please add your address")
+  }
+  else{
+    window.location.href = "payment.html?id="+product_id+"&type="+product_type
+  }
+}
 
 //store the qty and total amount of mobile
 let summary_info = product_id.split(",")

@@ -13,16 +13,6 @@
 </head>
 <body>
     <header>
-        <!-- toggle bar -->
-        <!-- <ul class="menu">
-            <li><a href="./pages/sign-in/login.html">Login</a></li>
-            <li><a href="./pages/Seller/Seller.html">Seller</a></li>
-            <li><a href="./pages/buyer/cart.html">Cart</a></li>
-            <li><a href="./pages/buyer/side flow/pincode.html">Shops</a></li>
-            <li><a href="./pages/sign-in/real-profile.html">Profile</a></li>
-            <li><a href="#">Orders</a></li>
-        </ul> -->
-        <!-- div:logo  contain:logo img and name -->
         <div class="logo">
             <img src="../../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
             <h5 class="logo-name"><b>Shopnow</b></h5>
@@ -35,13 +25,13 @@
         <ul class="top-list">
             <li><button class="login" id="login"><b>My account</b></button>
             </li>
-            <li><a aria-label="seller" href="pages/Seller/Seller.html">
+            <li><a aria-label="seller" href="../../../pages/Seller/Seller.html">
                     <p class="seller">Seller</p>
                 </a></li>
             <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
                         aria-hidden="true"></i></a></li>
-            <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
-                        class="home-icon fa-solid fa-location-dot"></i></a></li>
+            <!-- <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
+                        class="home-icon fa-solid fa-location-dot"></i></a></li> -->
                         <li><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li>
 
         </ul>
@@ -77,7 +67,29 @@
 <script>
     
 //produucts display from object
-const product_array = JSON.parse(localStorage.getItem("products"))
+const products_array = JSON.parse(localStorage.getItem("products"))
+              
+            // Declare a new array
+            let product_array = [];
+              
+            // Declare an empty object
+            let uniqueObject = {};
+              
+            // Loop for the array elements
+            for (let i in products_array) {
+              
+                // Extract the title
+                objTitle = ((products_array[i]['product_name']).toLowerCase()).trim();
+              
+                // Use the title as the index
+                uniqueObject[objTitle] = products_array[i];
+            }
+              
+            // Loop to push unique object into array
+            for (i in uniqueObject) {
+                product_array.push(uniqueObject[i]);
+            }
+              
 //console.log(product_array);
 const pr_array = product_array.filter(function (e) {
 
@@ -218,26 +230,30 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
     for (let i = 0; i < ram_input.length; i++) {
         ram_input[i].addEventListener("click",function () {
            const filter = pr_array.filter(function (obj) {
-            let ram_1 = (obj["types"][0]["ram"])
-            let ram_2 = (obj["types"][1]["ram"])
 
+            for (let j = 0; j < obj["types"].length; j++) {
+               
+            let ram = obj["types"][j]["ram"]
             //filter product ram = 4 gb 
-            if (ram_input[0].checked == true && parseFloat(ram_1) === 4) {
-                console.log(ram_1);
+            if (ram_input[0].checked == true && parseFloat(ram) === 4) {
+
                 return obj
             }
             //filter product ram = 6 gb 
-            if (ram_input[1].checked == true && parseFloat(ram_1) === 6 || parseFloat(ram_2) === 6) {
+            if (ram_input[1].checked == true && parseFloat(ram) === 6) {
                 return obj
             }
             //filter product ram = 8 gb 
-            if (ram_input[2].checked == true && parseFloat(ram_1) === 8 || parseFloat(ram_2) === 8) {
+            if (ram_input[2].checked == true && parseFloat(ram) === 8) {
                 return obj
             }
             //filter product ram = 12 gb 
-            if (ram_input[3].checked == true && parseFloat(ram_1) >= 12 || parseFloat(ram_2) >= 12) {
+            if (ram_input[3].checked == true && parseFloat(ram) >= 12) {
                 return obj
             }
+                
+            }
+
             
             //if everything is not checked retun all objects
             let count = 0;
@@ -260,20 +276,23 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
     for (let i = 0; i < storage_input.length; i++) {
         storage_input[i].addEventListener("click",function () {
            const filter = pr_array.filter(function (obj) {
-            let storage_1 = (obj["types"][0]["storage"])
-            let storage_2 = (obj["types"][1]["storage"])
 
+            for (let j = 0; j < obj["types"].length; j++) {
+
+            let storage = (obj["types"][j]["storage"])
             //filter product ram = 4 gb 
-            if (storage_input[0].checked == true && parseFloat(storage_1) === 64 || parseFloat(storage_2) === 64) {
+            if (storage_input[0].checked == true && parseFloat(storage) === 64) {
                 return obj
             }
             //filter product ram = 6 gb 
-            if (storage_input[1].checked == true && parseFloat(storage_1) === 128 || parseFloat(storage_2) === 128) {
+            if (storage_input[1].checked == true && parseFloat(storage) === 128) {
                 return obj
             }
             //filter product ram = 8 gb 
-            if (storage_input[2].checked == true && parseFloat(storage_1) >= 256 || parseFloat(storage_2) >= 256) {
+            if (storage_input[2].checked == true && parseFloat(storage) >= 256) {
                 return obj
+            }
+                
             }
             
             //if everything is not checked retun all objects
@@ -379,5 +398,64 @@ for (let j=0; j< pr_array.length; j++) //loop for creating 12 product cards
         window.location.href = "../../../index.html"        
     })
 
+     document.querySelector(".logo").addEventListener("click",function(){
+        window.location.href = "../../../index.html"
+     })
+
+     //get elements from my account btn for redirecting
+const login = document.getElementById("login")
+const profile = JSON.parse(localStorage.getItem("profile"))
+
+//this condition for showing login text while there is no profile are logged out
+if (profile == false) {
+
+    login.innerText = "Login"
+}
+else if (profile == null) {
+
+    login.innerText = "Login"
+}
+
+//this logic for decide which page want to go in diffrent situation
+login.addEventListener("click", function () {
+    if (profile == false) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else if (profile == null) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else {
+        window.location.href = "/pages/sign-in/real-profile.html"
+    }
+});
+
+    //this logic for user going to orders page
+    const orders = document.getElementById("order")
+    const cart = document.getElementById("cart")
+    const user_obj = JSON.parse(localStorage.getItem("profile"))
+    orders.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/my_orders.html?user_id=" + user_obj["user_id"]
+        }
+    })
+    cart.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/cart.html?user_id=" + user_obj["user_id"]
+        }
+    })
 </script>
 </html>

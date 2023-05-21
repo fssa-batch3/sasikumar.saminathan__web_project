@@ -122,9 +122,10 @@
 
 //get address array from local storage
  const address = JSON.parse(localStorage.getItem("address"))
+ const profile = JSON.parse(localStorage.getItem("profile"))
  //find the object which selected by user 
  const address_obj = address.find(function (obj) {
-    if (obj["select"] == true) {
+    if (obj["select"] == true && profile["user_id"] === obj["user_id"]) {
         return true
     }
     else{
@@ -190,7 +191,7 @@ mobile_price[1].innerText = "₹"+summary_info[1]
     main_div.innerHTML = " "
 
     const cart_arr = JSON.parse(localStorage.getItem("cart"))
-    const profile = JSON.parse(localStorage.getItem("profile"))
+
     const username = profile["user_id"]
 
 const cart_obj = cart_arr.filter(function (obj) {
