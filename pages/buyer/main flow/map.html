@@ -84,7 +84,7 @@
 
 // Leaflet has native support for raster maps, So you can create a map with a few commands only!
 // The Leaflet map Object
-var map = L.map('my-map').setView([profile["lat"],profile["lon"]], 25);
+var map = L.map('my-map').setView([profile["lat"],profile["lon"]], 15);
 // The API Key provided is restricted to JSFiddle website
 // Get your own API Key on https://myprojects.geoapify.com
 var myAPIKey = "002d636de5c4489a883a653e0a4b9268";
@@ -173,6 +173,9 @@ login.addEventListener("click", function () {
 });
 
     //this logic for user going to orders page
+
+    //this logic for user going to orders page
+    
     const orders = document.getElementById("order")
     const cart = document.getElementById("cart")
     const user_obj = JSON.parse(localStorage.getItem("profile"))
