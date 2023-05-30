@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shopnow</title>
+    <link rel="icon" type = "image/x-icon" href="../../assets/icon/shopping-bag.png">
     <link rel="stylesheet" href="../../assets/css/user_login.css">
     <script src="../../assets/js/sweetalert.min.js"></script>
     
@@ -40,23 +41,14 @@ form.addEventListener('submit',function(event){
     
 
      function getData(){
-        const email = document.getElementById("email").value
-        const create_password = document.getElementById("password").value
+        const email = document.getElementById("email").value.trim();
+        const create_password = document.getElementById("password").value.trim();
 
         let array = JSON.parse(localStorage.getItem("users"))
 
-        // let user_details = new Array();
-
-        //user_details=JSON.parse(localStorage.getItem("user"))?JSON.parse(localStorage.getItem("user")):[]
-
-         //user_details.push ({
-           // "useremail" : email,
-            //"password" : create_password
-        //});
-
         let res;
             array.find(element =>{
-                if(element["user_email"] == email && element["user_password"] == create_password){
+                if(element["email"] == email && element["password"] == create_password){
                     let constant = element
                     localStorage.setItem("profile",JSON.stringify (constant))
 
@@ -71,27 +63,11 @@ form.addEventListener('submit',function(event){
             if(res==1){
                 swal("Yep!", "you logged in bruh!", "success");
 
-                 window.location.href="real-profile.html"
+                 window.location.href="../../index.html"
             }
             else{
                 swal("Oops!", "email or password is not correct!", "error");
             }
-           
-
-        // const user = localStorage.getItem(email)
-        // const data = JSON.parse(user);
-        // console.log(data);
-
-        // if(email == data.user_email && create_password == data.user_password){
-        //     swal("Yep!", "Welcome bruh!", "success");
-
-        //     //window.location.href="../../index.html"
-        // }
-        // else if(email == null && create_password == null){
-        //     swal("Oops!", "please fill the input page!", "error");
-        // }
-        //  else{
-        //     swal("Oops!", "email or password is not correct!", "error");
         }
         
 

@@ -121,6 +121,9 @@ const url = window.location.search;
 const urlParams = new URLSearchParams(url);
 
 const productname = urlParams.get("id")
+const type = urlParams.get("type")
+let id_arr = productname.split(",");
+console.log(id_arr);
 
 const search = product_array.find(function (userobj){
 
@@ -128,7 +131,7 @@ const name = userobj["user_id"]+"";
 //console.log(name);
 
 //console.log(name);
-if (productname === name) {
+if (id_arr[0] === name) {
     return true
 
 } else {
@@ -140,31 +143,195 @@ if (productname === name) {
 //button elements
 const order = document.getElementById("buy")
 const cart = document.getElementById("cart")
+const cart_text = document.getElementById("cart_text")
 
+const user_array = JSON.parse(localStorage.getItem("profile"))
+
+
+const cart_arr = JSON.parse(localStorage.getItem("cart"))
+
+let already_in_cart = false
+
+if (cart_arr !== null) {
+    cart_arr.find(function (obj) {
+        if (user_array["user_id"] === obj["user_id"] && id_arr[0] === obj["product_id"]+"") {
+            already_in_cart = true
+            cart_text.innerText = "Go to cart"
+            cart_text.style.marginRight = "5px"
+        }
+    })
+}
 //this function for add to cart
 cart.addEventListener("click",function(){
-    search["cart"] = true
-    localStorage.setItem("products",JSON.stringify(product_array))
+
+if (user_array === false || user_array === null) {
+
+    window.location.href = "../../sign-in/login.html"
+}
+else{
+    let cart_arr = JSON.parse(localStorage.getItem("cart"))?JSON.parse(localStorage.getItem("cart")):[]
+
+    const quantity = document.getElementById("quantity")
+
+    //creating unique id
+    let uid = Math.floor(Math.random() * 1000)
+    cart_arr.push(
+        {
+            "cart_id" : uid,
+            "user_id" : user_array["user_id"],
+            "product_id" : search["user_id"],
+            "quantity" : quantity.value,
+            "type" : type
+        }
+    )
+
+if (already_in_cart == false) {
+    localStorage.setItem("cart",JSON.stringify(cart_arr)); 
+}
+
+    window.location.href = "../cart.html?user_id="+user_array["user_id"]+","+id_arr[1]
+}
 })
 
 order.addEventListener("click",function(){
-const quantity = document.getElementById("quantity")
+
+if (user_array === false || user_array === null) {
+    window.location.href = "../../sign-in/login.html"
+
+} else {
+    const quantity = document.getElementById("quantity")
 search["quantity"] = quantity.value
 
 localStorage.setItem("products",JSON.stringify(product_array))
 
-window.location.href = "../address.html?id="+productname
+window.location.href = "../address.html?id="+id_arr[0]+","+id_arr[1]+"&type="+type
+}
 })
 
-
+//get element for showing products 
 const pro_name = document.getElementById("pr_name")
 const pro_image = document.getElementById("pr_image")
 const pro_price = document.getElementById("pr_price")
 
+//insert the information which i got from array
 pro_name.innerText = search["product_name"]
-pro_price.innerText = search["product_price"]
-
+pro_price.innerText = search["types"][type]["price"]
 pro_image.setAttribute("src",search["product_img_1"])
+
+//owner id for finding shop
+//it's get from url params
+const owner_id = id_arr[1]
+
+//get the shop array from localstorage
+const shops_arr = JSON.parse(localStorage.getItem("shop"))
+
+//find the shop with owner id
+const shop_obj = shops_arr.find(function (obj) {
+    if (owner_id === obj["id"]+"") {
+        return true  
+    }
+    else{
+        return false
+    }
+})
+
+const shop_name = document.getElementById("shop_name")
+const shop_img = document.getElementById("shop_img")
+const shop_address = document.getElementById("shop_address")
+const shop_number = document.getElementById("shop_num")
+const work_days = document.getElementById("work_days")
+const work_hour = document.getElementById("work_hour")
+const shop_map = document.getElementById("map_link")
+
+shop_name.innerHTML = shop_obj["name"]
+shop_img.src = shop_obj["img"]
+shop_address.innerHTML = shop_obj["address"]+`<b> - ${shop_obj["pincode"]}</b>`
+shop_number.innerHTML = "Phone: "+shop_obj["phone_number"]
+
+const maxbtn = document.querySelector(".plus")
+const minbtn = document.querySelector(".minus")
+const input = document.getElementById("quantity")
+
+
+
+maxbtn.addEventListener("click",function () {
+    let qty = parseFloat(input.value);
+    qty = qty + 1
+    input.value = qty
+})
+
+ //this event for decrease quantity value
+    minbtn.addEventListener("click",function () {
+        if (input.value !== "1") {
+     let qty = parseFloat(input.value);
+     qty = qty - 1
+     input.value = qty        
+        }
+
+    })
+
+
+
+    //get elements from my account btn for redirecting
+const login = document.getElementById("login")
+const profile = JSON.parse(localStorage.getItem("profile"))
+// const profile = JSON.parse(localStorage.getItem("profile"))
+
+//this condition for showing login text while there is no profile are logged out
+if (profile == false) {
+
+    login.innerText = "Login"
+}
+else if (profile == null) {
+
+    login.innerText = "Login"
+}
+//this logic for decide which page want to go in diffrent situation
+login.addEventListener("click", function () {
+    if (profile == false) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else if (profile == null) {
+        window.location.href = "/pages/sign-in/login.html"
+        login.innerText = "Login"
+    }
+    else {
+        window.location.href = "/pages/sign-in/real-profile.html"
+    }
+});
+
+    //this logic for user going to orders page
+    const orders = document.getElementById("order")
+
+    orders.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/my_orders.html?user_id=" + profile["user_id"]
+        }
+    })
+    cart.addEventListener("click", function () {
+        if (profile == false) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else if (profile == null) {
+            window.location.href = "../../../pages/sign-in/login.html"
+        }
+        else {
+            window.location.href = "../../../pages/buyer/cart.html?user_id=" + profile["user_id"]
+        }
+    })
+
+
+
+
+
+
 
 
 

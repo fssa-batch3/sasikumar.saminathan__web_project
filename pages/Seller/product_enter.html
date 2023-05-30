@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shopnow</title>
+    <link rel="icon" type = "image/x-icon" href="../../assets/icon/shopping-bag.png">
 </head>
 <body>
     <main>
  <form>
     <div class="main_container">
         <div><p>Product Name</p><input type="text" class="inputs" id="pr_name"></div>
-      <div><p>Product price</p><input type="number" class="inputs" id="pr_price"></div>
+      <div><p>Product price</p><input type="text" class="inputs" id="pr_price"></div>
       <div><p>Ram</p><input type="number" class="inputs" id="pr_ram"></div>
       <div><p>Rom</p><input type="number" class="inputs" id="pr_rom"></div>
     <div class="product-img">
@@ -74,6 +75,10 @@
         }
     </style>
     <script>
+
+
+
+
         //getting values for push
         const pr_name =document.getElementById("pr_name")
         const ram =document.getElementById("pr_ram")
@@ -90,6 +95,7 @@
 
         //genreate unique id
          let uid = Math.floor(Math.random() * 100)
+         
 
 
         submit_btn.addEventListener("click",function(e){
@@ -103,7 +109,7 @@
             product_array.push({
                 "user_id" : uid,
                 "product_name" : pr_name.value,
-                "product_price" : "₹"+price.value,
+                "product_price" : "₹ " + price.value,
                 "product_ram" : ram.value,
                 "product_rom" : rom.value,
                 "product_img_1" : img_1.value,
@@ -203,6 +209,24 @@
         if (edit_btn.innerHTML == "SAVE") {
              edit_btn.innerHTML = "EDIT"
              set();
+             const pr_array = JSON.parse(localStorage.getItem("products"))
+
+pr_array.find(function (e) {
+    if (search["user_id"] === e['user_id']) {
+e["product_name"] = pr_name.value
+e["product_ram"] = ram.value
+e["product_rom"] = rom.value
+e["product_price"] = price.value
+e["product_img_1"] = img_1.value
+e["product_img_2"] = img_2.value
+e["product_img_3"] = img_3.value
+e["product_img_4"] = img_4.value
+e["highlights"] = highlights.value
+
+localStorage.setItem("products",JSON.stringify(pr_array))
+
+    }
+})
 
 
 
@@ -246,19 +270,28 @@
 
   }
     })
-
-         
     delete_btn.addEventListener("click",function(){
-        const product_array = JSON.parse(localStorage.getItem("products"))
+        product_array.find(function(obj){
+            if (search["user_id"] === obj["user_id"]) {
+                obj["status"] = false
 
-        product_array.find(function (erase) {
-            if (search["user_id"] === erase["user_id"]){
-
-                erase["status"] = false
                 localStorage.setItem("products",JSON.stringify(product_array))
             }
         })
     })
+
+         
+    // delete_btn.addEventListener("click",function(){
+    //     const product_array = JSON.parse(localStorage.getItem("products"))
+
+    //     product_array.find(function (erase) {
+    //         if (search["user_id"] === erase["user_id"]){
+
+    //             erase["status"] = false
+    //             localStorage.setItem("products",JSON.stringify(product_array))
+    //         }
+    //     })
+    // })
   
   
     

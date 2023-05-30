@@ -130,7 +130,7 @@ ul a{
 .about-text h2{
     font-size: 35px;
     background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
-    -webkit-background-clip: text;
+    /* -webkit-background-clip: text; */
     -webkit-text-fill-color: transparent;
 }
 .header a,.logo-name{

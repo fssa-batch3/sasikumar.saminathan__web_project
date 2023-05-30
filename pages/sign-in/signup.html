@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shopnow</title>
+    <link rel="icon" type = "image/x-icon" href="../../assets/icon/shopping-bag.png">
     <link rel="stylesheet" href="../../assets/css/uesr_signup.css">
     <script src="../../assets/js/sweetalert.min.js"></script>
 
@@ -20,12 +21,11 @@
 </div>
 <div class = "login-text">
 
-    <h2 ><b>SIGN UP</b> </h2>
     <!-- form for contain inputs and button -->
  <form id="forms">
     <input type="text" placeholder="Name" class="input-1" id="name" pattern="^[A-Za-z]+" title="use letters only" required>
     <input type="email" placeholder="Email" class="input-1" id="email" required >
-    <input type="number" placeholder="Phone number" class="input-1" id="phone_no" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" required>
+    <input type="text" placeholder="Phone number" pattern="[0-9]{10}" class="input-1" id="phone_no"  title="numbers only" required>
     <input type="password" placeholder="Create Password" class="input-2" id="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
     <input type="password" placeholder="Confirm Password" class="input-2" id="pass_2" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title="UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" required>
      
@@ -51,13 +51,14 @@
    function getData() {
 
     //get values from input
-    const name = document.getElementById("name").value
-    const num = document.getElementById("phone_no").value
-    const email = document.getElementById("email").value
-    const create_password = document.getElementById("password").value
-    const confirm_password = document.getElementById("pass_2").value
+    const name = document.getElementById("name").value.trim()
+    const num = document.getElementById("phone_no").value.trim()
+    const email = document.getElementById("email").value.trim()
+    const create_password = document.getElementById("password").value.trim()
+    const confirm_password = document.getElementById("pass_2").value.trim()
 
-
+    //creating id with math random
+    let user_id = Math.floor(Math.random() * 10000)
     //creating new and declar in user_record var
     let user_records = new Array();
 
@@ -78,10 +79,11 @@
     else{
 
         user_records.push ({
-        "user_name" : name,
-        "user_no" : num,
-        "user_email" : email,
-        "user_password" : create_password
+        "user_id" : user_id,
+        "name" : name,
+        "phone_number" : num,
+        "email" : email,
+        "password" : create_password
     });
 
     //after check this conditons redirect to home page
@@ -91,7 +93,6 @@
     localStorage.setItem("users",JSON.stringify(user_records));
       
    }
-  
 </script>
 
 </body>

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shopnow</title>
+    <link rel="icon" type = "image/x-icon" href="../../assets/icon/shopping-bag.png">
     <link rel="stylesheet" href="../../assets/css/payment.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
     <header> 
@@ -19,59 +21,708 @@
     </div>
 </header>
 <main>
-    <div class="container">
-        <h2 class="head">Payment options</h2><hr>
-     <form action="order.html">
-        <div class="payment">
-            <div class="radio radio-1"><input type="radio" name="radio"><img src="../../assets/icon/UPI.gif" alt="" width="30px" height="30px"><p>UPI</p></div>
-            <div class="radio radio-2"><input type="radio" name="radio"><img src="../../assets/icon/UPI.gif" alt="" width="30px" height="30px"><p>wallets</p></div>
-            <div class="radio radio-3"><input type="radio" name="radio"><img src="../../assets/icon/icons8-credit-card-64.png" alt="" width="30px" height="30px"><p>Credit/Debit/Atm card </p></div>
-            <div class="radio radio-4"><input type="radio" name="radio"><img src="../../assets/icon/icons8-merchant-account-50.png" alt="" width="30px" height="30px"><p>Net banking</p></div>
-            <div class="radio radio-5"><input type="radio" name="radio"><img src="../../assets/icon/icons8-cash-on-delivery-66.png" alt="" width="30px" height="30px"><p>Cash on delivery</p></div>
+    <div class="checkout">
+        <p class="address">Delivery address</p>
+        <div class="add_container">
+            <div id="person_info"><p id="add_person_name">Sasikumar</p><p id="add_number">6374523686</p></div>
+            <div id="location_info"><p id="location">ST Couriers, IT Corridor, Lakshman Nagar, Perungudi, Chennai, Tamil Nadu -</p><p id="add_pincode">600096</p></div>
         </div>
-        <a href="order.html"><button class="btn" id="order">CONFIRM ORDER</button></a>
-     </form>
+        <!-- product detatil -->
+        <p class="product">Product detail</p>
+<div class="main_container">
+    <div class="pro_container">
+
+        <img src="https://iili.io/HVTwSyl.webp" alt="apple" id="mob_img">
+
+    <div class="pro_info">
+        <p id="mob_name" class="name">APPLE iPhone 14</p>
+        <div id="rate">
+        <p id="mob_price">₹39,999</p>
+        <p >Qty  </p><p class="mob_qty">0</p>
+        </div>
     </div>
+ </div>
+</div>
+         <!-- payment method -->
+         <p class="product">Payment options</p>
+         <form action="" id="forms">
+            <div class="payment">
+                <div class="radio radio-1" ><input type="radio" class="radio_btn" name="radio" data-keyword = "UPI" required><img src="../../assets/icon/UPI.gif" alt="" width="30px" height="30px"><p>UPI</p></div>
+                <!-- <form class="mini_form"> -->
+                <div class="upi_container">
+                <label class="custom-field one">
+                
+                    <input type="text" placeholder=" " id="upi_input" name="userupi" required/>
+                    <span class="placeholder">Enter UPI ID</span>
+                </label>
+                <button class="button-39" type="submit">PAY</button>
+                
+                  <div class="success"></div>
+            </div>
+                <!-- </form> -->
+                <div class="radio radio-3"><input type="radio" class="radio_btn" name="radio" data-keyword = "Credit/Debit/Atm card" required><img src="../../assets/icon/icons8-credit-card-64.png" alt="" width="30px" height="30px"><p>Credit/Debit/Atm card </p></div>
+                <div class="card_container">
+                    <label class="custom-field one">
+                        <input type="text" placeholder=" " class="card_input" name="useremail" required/>
+                        <span class="placeholder">Enter Card Number</span>
+                      </label>
+                      <button class="button-39" type="submit">PAY</button>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" name="date" min="2023-06-01" max="2040-06-01" class="date_input" required><input type="password" class="cvv" name="username" placeholder="CVV" required></div>
+                     <div class="success"></div>
+                      
+                </div>
+                <div class="radio radio-4"><input type="radio" class="radio_btn" name="radio" data-keyword = "EMI" required><img src="../../assets/icon/icons8-merchant-account-50.png" alt="" width="30px" height="30px"><p>No cost EMI</p></div>
+                <div id="emi_options">
+                    <div class="radio emi_radio-1"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "3" required><p class="emi_month">3000 for 3 months</p></div>
+                    <div class="radio emi_radio-2"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "6" required><p class="emi_month">6000 for 6 months</p></div>
+                    <div class="radio emi_radio-3"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "9" required><p class="emi_month">9000 for 9 months</p></div>
+                    <div class="radio emi_radio-4"><input type="radio" class="emi_radio_btn" name="emi_radio" data-keyword = "12" required><p class="emi_month">12000 for 12 months</p></div>
+                    <button id="choose_emi" class="button-65" type="button">Choose this plan</button>
+                </div>
+                <div id="emi_card_container">
+                    <p id="emi_plan">Your plan is</p>
+                    <label class="custom-field one">
+                        <input type="text" placeholder=" " class="card_input" name="text" required/>
+                        <span class="placeholder">Enter Card Number</span>
+                      </label>
+                      <button class="button-39" type="submit">PAY</button>
+                      <div id="date_label"><P>Expiry date : </P><input type="date" name="userdate" max="2040-06-01" min="2023-06-01" class="date_input" required><input type="password" class="cvv" name="cvv" placeholder="CVV" required></div>
+                     <div class="success"></div>
+                      
+                </div>
+                <div class="radio radio-5"><input type="radio" class="radio_btn" name="radio" data-keyword = "Cash on delivery" required><img src="../../assets/icon/icons8-cash-on-delivery-66.png" alt="" width="30px" height="30px"><p>Cash on delivery</p></div>
+            </div>
+            <button class="btn" id="order" type="submit">CONFIRM ORDER</button>
+            
+         </form>
+    </div>
+    <div class="summary_container navigation">
+        <h2>Product detail</h2>
+        <!-- <hr id="hr"> -->
+        <div class="pr_price"><p id="qty">Product Price</p><p class="price">₹34,999</p></div> 
+        <div class="pr_price" ><p>Delivery charges</p><p id="deliver">FREE</p></div>
+        <hr id="hr_2">
+        <div class="pr_price" id="total"><p>Order total</p><p class="price">₹34,999</p></div> 
+     </div>
+     <!-- <div class="container">
+        <img src="../../assets/icon/check.gif" alt="" width="140px" height="100px">
+        <h2 id="thanks">Thank you for your purchase</h2>
+        <p><b>We recived your purchase request <br>we'll be in touch shortly</b></p>
+    </div> -->
 </main> 
 <script>
- //get product details array from local storage
- const product_array = JSON.parse(localStorage.getItem("products"))
- //console.log(product_array)
+    //event for form submit
+    const form = document.getElementById("forms")
+    form.addEventListener("submit",function (e) {
+        e.preventDefault();
+        paymentSuccess();
+        getData();
+        
+    })
 
-//get url from search bar
-const url = window.location.search;
-//console.log(url);
-const urlParams = new URLSearchParams(url);
-//console.log(urlParams);
-const productname = urlParams.get("id")
-
-//console.log(productname);
-
-//console.log(productname);
-
-let user
-const search = product_array.find(function (userobj){
-
-    const name = userobj["user_id"]+"";
-    //console.log(name);
-    user = name
-    
-    //console.log(name);
-    if (productname === name) {
+//get address array from local storage
+ const address = JSON.parse(localStorage.getItem("address"))
+ const profile = JSON.parse(localStorage.getItem("profile"))
+ //find the object which selected by user 
+ const address_obj = address.find(function (obj) {
+    if (obj["select"] == true && profile["user_id"] === obj["user_id"]) {
         return true
-
-    } else {
-
+    }
+    else{
         return false
+    }
+ })
 
+ //get the address container elements
+ const address_name = document.getElementById("add_person_name")
+ const address_num = document.getElementById("add_number")
+ const address_info = document.getElementById("location")
+ const address_pincode = document.getElementById("add_pincode")
+
+ //set the finded value in that container
+ address_name.innerText = address_obj["name"]
+ address_num.innerText = address_obj["phone_number"]
+ address_info.innerText = address_obj["house_number"]+", "+address_obj["area"]+", "+address_obj["landmark"]+" -"
+ address_pincode.innerText = address_obj["pincode"]
+
+ const url = window.location.search
+ const search = new URLSearchParams(url)
+ const product_id = search.get("id")
+ const product_type = parseFloat(search.get("type"))
+
+ //store the qty and total amount of mobile
+let summary_info = product_id.split(",")
+let mobile_qty = document.getElementById("qty")
+let mobile_price = document.querySelectorAll(".price")
+
+//get seller info from shop id
+let seller_arr = JSON.parse(localStorage.getItem("sellers"))
+console.log(seller_arr);
+let seller_obj;
+seller_arr.find(function (obj) {
+
+//if order come directly
+if (summary_info.length === 2) {
+    if (summary_info[1] === obj["shop_id"]+"") {
+        
+       seller_obj = obj
+    }
+}
+
+//if come from cart
+if (summary_info.length === 3) {
+    if (summary_info[2] === obj["shop_id"]+"") {
+        
+       seller_obj = obj
+    }
+}
+})
+console.log(seller_obj);
+
+//cart paramms contains two numbers with "," special character so it's for verify 
+if (summary_info.length === 3) {
+
+
+mobile_qty.innerText = `Price (${summary_info[0]} items)`
+mobile_price[0].innerText = "₹"+summary_info[1]
+mobile_price[1].innerText = "₹"+summary_info[1]
+
+    let main_div = document.querySelector(".main_container")
+    main_div.innerHTML = " "
+
+    const cart_arr = JSON.parse(localStorage.getItem("cart"))
+
+    const username = profile["user_id"]
+
+const cart_obj = cart_arr.filter(function (obj) {
+    if (username === obj["user_id"] && obj["cart"] !== false) {
+        return true
+    }
+    else{
+        return false
     }
 })
-const order_btn = document.getElementById("order")
+//console.log(cart_obj);
+//geting products array for match with cart objects
+const product_arr = JSON.parse(localStorage.getItem("products"))
+//pushing finded arraysin this array
+const product_array = []
+for(j = 0; j < cart_obj.length;j++ ){
 
-order_btn.addEventListener("click",function(){
-    search["order"] = true
-    localStorage.setItem("products",JSON.stringify(product_array))
+for(i = 0; i < product_arr.length;i++){
+if(cart_obj[j]["product_id"] ===  product_arr[i]["user_id"]){
+    product_array.push(product_arr[i])
+
+}
+}
+} 
+
+let pr_container = ""
+
+for (let i = 0; i < product_array.length; i++) {
+
+    let type = cart_obj[i]["type"]
+
+    pr_container += `<div class="pro_container">
+<img src="${product_array[i]["product_img_1"]}" alt="apple" id="mob_img">
+<div class="pro_info">
+<p id="mob_name" class="name" >${product_array[i]["product_name"]}</p>
+<div id="rate">
+<p id="mob_price" class="price" >${"₹ "+ parseFloat(product_array[i]["types"][type]["price"].slice(1)) * parseFloat(cart_obj[i]["quantity"])}</p>
+<p data-keyword="${product_array[i]["user_id"]}" class="qty_para">Qty  </p><p class="mob_qty" data-keyword = "${cart_obj[i]["type"]}">${cart_obj[i]["quantity"]}</p>
+</div></div></div>` 
+    
+}
+
+main_div.innerHTML = pr_container
+
+}
+
+
+ const pr_array = JSON.parse(localStorage.getItem("products"))
+//get the elements from product container
+const product_img = document.getElementById("mob_img")
+ const product_name = document.getElementById("mob_name")
+ const product_price = document.getElementById("mob_price")
+//  console.log(product_price);
+ const product_qty = document.querySelector(".mob_qty")
+if (summary_info.length == 2) {
+     
+ //find the specific object from the products array
+ const pr_obj = pr_array.find(function (obj) {
+    if (summary_info[0] == obj["user_id"]+"") {
+        return true
+    }
+    else{
+        return false
+    }
+ })
+ console.log(pr_obj);
+
+
+ //set the values to product container
+ product_img.src = pr_obj["product_img_1"]
+ product_name.innerText = pr_obj["product_name"]
+ product_price.innerText = pr_obj["types"][product_type]["price"]
+ product_qty.innerText = pr_obj["quantity"]
+
+ //set the value in total container
+ const price = document.querySelectorAll(".price")
+ price[0].innerText = pr_obj["types"][product_type]["price"]
+price[1].innerText = pr_obj["types"][product_type]["price"]
+}
+
+//  let radio_btn = document.querySelectorAll(".radio_btn")
+//  const upi_input = document.querySelector(".upi_container")
+//  //store the payment method
+//  let payment_method = ""
+//  //  for loop for finding checked btn
+//  for(let j = 0;j < radio_btn.length;j++){
+//     // console.log(radio_btn[j]);
+
+//  }
+function getData() {
+     //get product details array from local storage
+ const product_array = JSON.parse(localStorage.getItem("products"))
+ 
+ //get users id for idnefiying
+ const user_array = JSON.parse(localStorage.getItem("profile"))
+ 
+ const order_btn = document.getElementById("order")
+
+       // JavaScript function to
+        // Display 12 hour format
+       
+        let time;
+        let day;
+        myFunction();
+        function myFunction() {
+            let date = new Date();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+
+            let today = new Date+""
+            let date_arr = today.split(" ");
+            
+
+              
+            // Check whether AM or PM
+            let newformat = hours >= 12 ? 'PM' : 'AM';
+              
+            // Find current hour in AM-PM Format
+            hours = hours % 12;
+
+            // To display "0" as "12"
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+              
+            time = hours + ':' + minutes + ' ' + newformat;
+            
+            day = date_arr[2]+" "+date_arr[1]+" "+date_arr[3]
+            
+            
+        }
+
+
+ 
+//  order_btn.addEventListener("click",function(){
+ 
+     let order_arr = JSON.parse(localStorage.getItem("orders"))?JSON.parse(localStorage.getItem("orders")):[]
+ 
+    if (summary_info.length == 2) {
+        let qty_digit = document.querySelector(".mob_qty")
+        let quantity = qty_digit.innerHTML
+
+        let uid = Math.floor(Math.random() * 1000)
+     order_arr.push(
+         {
+ 
+             "order_id" : uid,
+             "user_id" : user_array["user_id"],
+             "product_id" : summary_info[0],
+             "payment_method" : payment_method,
+             "address_id" : address_obj["id"],
+             "quantity" : quantity,
+             "shop_id" : summary_info[1],
+             "type" : product_type,
+             "date" : day,
+             "time" : time
+         }
+     )
+    }
+    else{
+
+        let qty = document.querySelectorAll(".qty_para")
+        let qty_digit = document.querySelectorAll(".mob_qty")
+
+
+        for (let j = 0; j < qty.length; j++) {
+
+            let product_id = qty[j].dataset.keyword
+            let quantity = qty_digit[j].innerHTML
+            let type = qty_digit[j].dataset.keyword
+            let uid = Math.floor(Math.random() * 1000)
+            
+     order_arr.push(
+         {
+ 
+             "order_id" : uid,
+             "user_id" : user_array["user_id"],
+             "product_id" : product_id,
+             "payment_method" : payment_method,
+             "address_id" : address_obj["id"],
+             "quantity" : quantity,
+             "shop_id" : summary_info[2],
+             "type" : parseFloat(type),
+             "date" : day,
+             "time" : time
+         }
+     )
+            
+        }
+
+        let cart_array = JSON.parse(localStorage.getItem("cart"))
+let updated_cart = cart_array.filter(function (obj) {
+    if (user_array["user_id"] === obj["user_id"]) {
+                return false
+            }
+            else{
+                return true
+            }    
 })
+
+
+
+
+        localStorage.setItem("cart",JSON.stringify(updated_cart))
+
+    }
+
+    
+ 
+     localStorage.setItem("orders",JSON.stringify(order_arr));
+     
+    
+
+
+
+  
+    
+
+    
+//  })
+
+
+//sending order conformation email to customer 
+let profile = JSON.parse(localStorage.getItem("profile"))
+
+let email = profile["email"]
+// console.log(email);
+let name = profile["name"]
+let today = new Date+""
+let date_arr = today.split(" ");
+
+let email_body = `Dear ${name},<br>
+
+Thank you for placing an order with Shopnow. We are pleased to inform you that your order has been received and is being processed. This email is to confirm that your order has been successfully placed and is currently being processed.<br>
+<br>
+Order details:<br>
+Order number: 12998923<br>
+Order date: ${date_arr[2]+" "+date_arr[1]+" "+date_arr[3]}<br>
+Order total: ${product_price.innerText}<br>
+Payment method: ${payment_method}<br>
+<br>
+Please note that your order confirmation email serves as a receipt of your purchase. We will send you another email once your order has shipped with the tracking information.<br>
+<br>
+If you have any questions or concerns regarding your order, please do not hesitate to contact our customer support team at shopnow@gmail.com. We are always available to assist you.<br>
+<br>
+Thank you for choosing Shopnow for your purchase. We look forward to serving you again.<br>
+<br>
+Best regards,<br>
+<br>
+Shopnow<br>`
+Email.send({
+        
+        Host: "smtp.elasticemail.com", 
+        Username: "sasikumar.saminathan@fssa.freshworks.com",
+        Password: "99626D4C1367E3DFA672BF88864145E86A6C",
+        To: email,
+        From: "sasikumar.saminathan@fssa.freshworks.com",
+        Subject: `${name} Your order confirmed`,
+        Body: email_body,
+      }).then((success) => {
+       
+        alert("message sent successfully. Please check the spam folder in your mail.");
+      }).catch((error) => {
+          
+        alert("error sending message");
+      })
+
+//sending order request to seller
+
+let product_name2 = document.querySelectorAll(".name")
+// console.log(product_name2);
+let product_price2 = document.querySelectorAll(".price")
+// console.log(product_price2.innerHTML);
+let qty = document.querySelectorAll(".mob_qty")
+console.log(seller_obj["email"]);
+
+let product_total = "";
+
+for (let k = 0; k < qty.length; k++) {
+    
+    product_total += `Product Name : ${product_name2[k].innerText}<br>
+                      Product price : ${product_price2[k].innerText}<br>
+                      Product Qty : ${qty[k].innerText}<br><br>`
+    
+}
+let seller_email = `
+Dear ${seller_obj["name"]},<br>
+
+We are pleased to inform you that we have received an order request from ${name} for the following items:<br>
+<br>
+${product_total}
+<br>
+The order total, including shipping and taxes, comes to ${product_price.innerText}.<br>
+<br>
+We kindly request that you confirm the availability and pricing of these items as soon as possible. Please also provide us with an estimated date for shipment, including any tracking information if available.<br>
+
+We expect the highest level of professionalism and customer service from our vendors, and we trust that you will do everything in your power to ensure that this order is processed promptly and accurately.<br>
+
+If you have any questions or concerns, please do not hesitate to contact us at shopnow@gmail.com. We appreciate your prompt response to this order request.<br>
+<br>
+Thank you for your business and we look forward to continuing our partnership.<br>
+<br>
+Best regards,<br>
+<br>
+Shopnow <br>`
+
+Email.send({
+        
+        Host: "smtp.elasticemail.com", 
+        Username: "sasikumar.saminathan@fssa.freshworks.com",
+        Password: "99626D4C1367E3DFA672BF88864145E86A6C",
+        To: seller_obj["email"],
+        From: "sasikumar.saminathan@fssa.freshworks.com",
+        Subject: `Order Request Received`,
+        Body: seller_email,
+      }).then((success) => {
+       
+        alert("seller message sent successfully. Please check the spam folder in your mail.");
+         //after complete this all functions it will redirect to the next page
+        window.location.href = "order.html"
+      }).catch((error) => {
+          
+        alert("error sending message");
+      })
+
+
+ 
+}
+const radio_btn = document.querySelectorAll(".radio_btn")
+ const upi_input = document.querySelector(".upi_container")
+ const card_input = document.querySelector(".card_container")
+ const upi_inp = document.getElementById("upi_input")
+const card_inp = document.querySelectorAll(".card_input")
+const date_inp = document.querySelectorAll(".date_input")
+const cvv_inp = document.querySelectorAll(".cvv")
+const emi_container = document.getElementById("emi_options")
+let emi_radio_input = document.querySelectorAll(".emi_radio_btn")
+let emi_card_container = document.getElementById("emi_card_container")
+ //store the payment method
+ let payment_method = ""
+
+//  for loop for finding checked btn
+ for(let j = 0;j < radio_btn.length;j++){
+
+    radio_btn[j].addEventListener("click",function () {
+        if (radio_btn[j].checked === true) {
+          payment_method =  radio_btn[j].dataset.keyword
+
+          if (payment_method === "UPI") {
+            upi_input.style.display = "block"
+            card_input.style.display = "none"
+            emi_container.style.display = "none"
+            emi_card_container.style.display = "none"
+          }
+          if (payment_method === "Credit/Debit/Atm card") {
+            upi_input.style.display = "none"
+            card_input.style.display = "block"
+            emi_card_container.style.display = "none"
+            emi_container.style.display = "none"
+          }
+          if (payment_method === "Cash on delivery") {
+            upi_input.style.display = "none"
+            emi_container.style.display = "none"
+            card_input.style.display = "none"
+            emi_card_container.style.display = "none"
+
+          }
+          if (payment_method === "EMI") {
+            upi_input.style.display = "none"
+            emi_container.style.display = "block"
+            card_input.style.display = "none"
+            emi_card_container.style.display = "none"
+
+          }
+
+
+
+          if (card_input.style.display === "block") {
+            upi_inp.removeAttribute("required")
+            card_inp[0].setAttribute("required","")
+            date_inp[0].setAttribute("required","")
+            cvv_inp[0].setAttribute("required","")
+            emi_radio_input[0].removeAttribute("required")
+            emi_radio_input[1].removeAttribute("required")
+            emi_radio_input[2].removeAttribute("required")
+            emi_radio_input[3].removeAttribute("required")
+            card_inp[1].removeAttribute("required")
+            date_inp[1].removeAttribute("required")
+            cvv_inp[1].removeAttribute("required")
+
+
+        }
+        if (upi_input.style.display === "block") {
+            upi_inp.setAttribute("required","")
+            card_inp[0].removeAttribute("required")
+            date_inp[0].removeAttribute("required")
+            cvv_inp[0].removeAttribute("required")
+            card_inp[1].removeAttribute("required")
+            date_inp[1].removeAttribute("required")
+            cvv_inp[1].removeAttribute("required")
+            emi_radio_input[0].removeAttribute("required")
+            emi_radio_input[1].removeAttribute("required")
+            emi_radio_input[2].removeAttribute("required")
+            emi_radio_input[3].removeAttribute("required")
+
+        }
+        if (emi_container.style.display === "block") {
+            upi_inp.removeAttribute("required")
+            card_inp[0].removeAttribute("required")
+            date_inp[0].removeAttribute("required")
+            cvv_inp[0].removeAttribute("required")
+            emi_radio_input[j].setAttribute("required","")
+
+            
+        }
+          
+     }
+     if (radio_btn[3].checked === true) {
+        upi_inp.removeAttribute("required")
+            card_inp[0].removeAttribute("required")
+            date_inp[0].removeAttribute("required")
+            cvv_inp[0].removeAttribute("required")
+            card_inp[1].removeAttribute("required")
+            date_inp[1].removeAttribute("required")
+            cvv_inp[1].removeAttribute("required")
+        emi_radio_input[0].removeAttribute("required")
+        emi_radio_input[1].removeAttribute("required")
+        emi_radio_input[2].removeAttribute("required")
+        emi_radio_input[3].removeAttribute("required")
+        emi_card_container.style.display = "none"
+
+     }        
+    })
+
+
+    radio_btn[j].addEventListener("click",function () {
+        if (radio_btn[j].checked === true) {
+          payment_method =  radio_btn[j].dataset.keyword
+          console.log(payment_method);
+          
+     }        
+    })
+
+
+ }
+
+ const payment_done_alert = document.querySelectorAll(".success")
+ const pay_btn = document.querySelectorAll(".button-39")
+
+
+
+    // for (let j = 0; j < pay_btn.length; j++) {
+    
+    // pay_btn[j].addEventListener("click",function(){
+
+
+
+
+
+        
+function paymentSuccess() {
+
+    if (upi_input.style.display === "block") {
+        payment_done_alert[0].innerHTML = "<p id=payment_done>Payment was successful</p>"
+    }
+    if (card_input.style.display === "block") {
+        payment_done_alert[1].innerHTML = "<p id=payment_done>Payment was successful</p>"
+    }
+    
+    }
+
+    if(summary_info.length === 2){
+  pr_array.find(function (obj) {
+    
+    
+    if (summary_info[0] === obj["user_id"]+"") {
+      mobile_qty.innerText = `Price (${obj["quantity"]} items)`
+      mobile_price[0].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
+      mobile_price[1].innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
+      product_price.innerText = "₹"+parseFloat(obj["quantity"]) * parseFloat(obj["types"][product_type]["price"].slice(1))
+    }
+  
+  })
+}
+
+//get the price of total products
+let emi_price = parseFloat(product_price.innerText.slice(1))
+
+//get those emi plans text
+let emi_plans = document.querySelectorAll(".emi_month")
+
+//set the plans as per divieded by month
+emi_plans[0].innerText = "₹"+Math.round(emi_price/3) + " for 3 months"
+emi_plans[1].innerText = "₹"+Math.round(emi_price/6) + " for 6 months"
+emi_plans[2].innerText = "₹"+Math.round(emi_price/9) + " for 9 months"
+emi_plans[3].innerText = "₹"+Math.round(emi_price/12) + " for 12 months"
+
+
+// for choose emi options
+let emi_radio_btn = document.querySelectorAll(".emi_radio_btn")
+let emi_month;
+for (let i = 0; i < emi_radio_btn.length; i++) {
+    emi_radio_btn[i].addEventListener("click",function () {
+        if (emi_radio_btn[i].checked === true) {
+           emi_month = emi_plans[i].innerText
+        }        
+    })
+}
+
+let emi_choose_btn = document.getElementById("choose_emi")
+let emi_plan = document.getElementById("emi_plan")
+
+emi_choose_btn.addEventListener("click",function () {
+    emi_container.style.display = "none"
+            emi_radio_input[0].removeAttribute("required")
+            emi_radio_input[1].removeAttribute("required")
+            emi_radio_input[2].removeAttribute("required")
+            emi_radio_input[3].removeAttribute("required")
+
+    emi_card_container.style.display = "block"
+    emi_plan.innerText = "Your plan is "+ emi_month
+
+})
+
+    // })
+//  }
+
+
+
+
+
+
 
 </script>  
 </body>

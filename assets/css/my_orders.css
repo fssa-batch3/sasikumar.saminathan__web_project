@@ -304,3 +304,28 @@ hr{
     display: block;
 
 }
+select{
+    float: right;
+    position: relative;
+    top: 2rem;
+    right: 10rem;
+    padding: 0.4rem;
+    width: 100px;
+    border-radius: 7px;
+    border: none;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    outline: none;
+
+}
+.order_container{
+    margin-top: 100px;
+}
+#order_img{
+    width: 30%;
+    height: 30rem;
+    margin-left: 35%;
+    display: none;
+}
+body{
+    background-color: white;
+}

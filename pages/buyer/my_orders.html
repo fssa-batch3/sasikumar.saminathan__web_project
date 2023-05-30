@@ -5,25 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/my_orders.css">
-    <title>Document</title>
+    <title>Shopnow</title>
+    <link rel="icon" type = "image/x-icon" href="../../assets/icon/shopping-bag.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <!-- toggle bar -->
-        <ul class="menu">
-            <li><a href="./pages/sign-in/login.html">Login</a></li>
-            <li><a href="./pages/Seller/Seller.html">Seller</a></li>
-            <li><a href="./pages/buyer/cart.html">Cart</a></li>
-            <li><a href="./pages/buyer/side flow/pincode.html">Shops</a></li>
-            <li><a href="./pages/sign-in/real-profile.html">Profile</a></li>
-            <li><a href="#">Orders</a></li>
-        </ul>
-        <!-- div:logo  contain:logo img and name -->
         <div class="logo">
-            <img src="./../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
+            <img src="../../../assets/icon/shopping-bag.png" alt="shopping-bag" width="30px" height="30px">
             <h5 class="logo-name"><b>Shopnow</b></h5>
         </div>
 
@@ -32,29 +23,35 @@
 
         <!-- header nav links -->
         <ul class="top-list">
-            <li><a aria-label="login" href="./pages/sign-in/login.html"><button class="login"><b>Login</b></button></a>
+            <li><button class="login" id="login"><b>My account</b></button>
             </li>
-            <li><a aria-label="seller" href="pages/Seller/Seller.html">
+            <li><a aria-label="seller" href="../../../pages/Seller/Seller.html">
                     <p class="seller">Seller</p>
                 </a></li>
-            <li><a aria-label="cart" href="./pages/buyer/cart.html"><i class="home-icon fa fa-shopping-cart"
+            <li><a id="cart" aria-label="cart"><i class="home-icon fa fa-shopping-cart"
                         aria-hidden="true"></i></a></li>
-            <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
-                        class="home-icon fa-solid fa-location-dot"></i></a></li>
+            <!-- <li><a aria-label="pincode" href="./pages/buyer/side flow/pincode.html"><i
+                        class="home-icon fa-solid fa-location-dot"></i></a></li> -->
+                        <!-- <li><a id="order"><i class="home-icon fa-solid fa-bag-shopping"></i></a></li> -->
 
         </ul>
         <i id="bar" class="fa-solid fa-bars"></i>
     </header>
     <main>
-        <div class="head"><p>My Orders</p><hr></div>
-        <input type="search" placeholder="search your orders here" class="search" id="search">
-        <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
+        <div class="head"><p>Orders</p><hr></div>
+        <select class="filterby">
+            <option value="In-transit">In-transit</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        <!-- <input type="search" placeholder="search your orders here" class="search" id="search">
+        <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label> -->
         <div class="order_container"></div>
+        <img src="../../assets/image/order_something.jpg.jpg" id="order_img" alt="">
         <div class="cancel">
             <p>Are you reallly going to cancel the order</p>
             <div class="sure_btn">
                 <button id="sure">YES</button>
-                <button>NO</button>
+                <button id="not">NO</button>
             </div>
         </div>
         <!-- <div class="main_container">
@@ -82,28 +79,47 @@
 
     <script>
 
-        //get the product array from localstorage 
-        const product_array = JSON.parse(localStorage.getItem("products"))
+    //first step : get the id from url and filter the objects
+    const url = window.location.search
+    const urlParams = new URLSearchParams(url)  
+    const username = JSON.parse(urlParams.get("user_id"))
 
-        //filtter the array based orders
-         const pr_array = product_array.filter(function (e) {
-
-
-        if (e["order"] === true) {
+    let order_img = document.getElementById("order_img")
+getData();
+    function getData() {
+        //get orders array from localstorage
+    const orders_arr = JSON.parse(localStorage.getItem("orders"))
+   const order =  orders_arr.filter(function (obj) {
+        
+        if (obj["user_id"] === username && obj["order"] !== false) {
             return true
-            
         }
         else{
             return false
         }
+    });
+    
+    // console.log(order);
+    const product_arr = JSON.parse(localStorage.getItem("products"))
+    const pr_array = []
+    for(j = 0; j < order.length;j++ ){       
+    for(i = 0; i < product_arr.length;i++){
+        if(order[j]["product_id"] ===  product_arr[i]["user_id"]+""){
+            pr_array.push(product_arr[i])
+        }
+    }
+}
+    // console.log(pr_array);
 
 
-})
 
 
     for(let j = 0; j < pr_array.length;j++){
-
+// console.log(pr_array[j]["quantity"]);
     //ordered products main container  
+
+    let type = order[j]["type"]
+
     const main_div = document.createElement("div")
     main_div.setAttribute("class","main_container")
 
@@ -133,12 +149,12 @@
 
     //p tag for quantity
     const pr_qty = document.createElement("p")
-    pr_qty.innerText = "Qty"+" "+pr_array[j]["quantity"]
+    pr_qty.innerText = "Qty"+" "+ order[j]["quantity"]
     div_3.append(pr_qty)
 
     //product price
     const pr_price = document.createElement("p")
-    pr_price.innerText = pr_array[j]["product_price"]
+    pr_price.innerText = "₹ "+parseFloat(pr_array[j]["types"][type]["price"].slice(2)) * parseFloat(order[j]["quantity"]) 
     div_3.append(pr_price)
 
     //div 4 contains status about product
@@ -153,6 +169,7 @@
 
     //status progress
     const pr_status_info = document.createElement("p")
+    pr_status_info.setAttribute("class","pro_status")
     pr_status_info.innerText = "In-transit"
     div_4.append(pr_status_info)
 
@@ -168,7 +185,7 @@
 
     //expected date to order
     const date = document.createElement("p")
-    date.innerText = "7 March 2023"
+    date.innerText = order[j]["date"]
     div_5.append(date)
 
     //btn_div contain with btn's 
@@ -192,7 +209,7 @@
 
     //cancel order btn
     let cancel_btn = document.createElement("button")
-    cancel_btn.setAttribute("data-keyword",pr_array[j]["user_id"])
+    cancel_btn.setAttribute("data-keyword",order[j]["order_id"])
     cancel_btn.setAttribute("id","cancel_btn")
     btn_div.append(cancel_btn)
 
@@ -208,10 +225,20 @@
 
     document.querySelector(".order_container").append(main_div)
 
+    // console.log(order[j]);
+    if (order[j]["order_staus"] === "delivered") {
+        cancel_btn.style.display = "none"
+        track_btn.style.display = "none"
+        pr_status_info.innerText = "Delivered"
+        expect_date.innerText = "Delivered by"
+    }
+    
+
     cancel_btn.addEventListener("click",function remove(e){
         const confirm_pop = document.querySelector(".cancel")
         confirm_pop.classList.toggle('cancel_active');
         const sure = document.getElementById("sure")
+        const not_sure = document.getElementById("not")
 
                 sure.addEventListener("click",function(){
 
@@ -219,49 +246,98 @@
         const data = cancel_btn.dataset.keyword
     
 
-    const order_arr = JSON.parse(localStorage.getItem("products"))
+    const order_arr = order
     
-    order_arr.find(function(order){
+    //find object from array for delete that order 
+    let order_obj = order_arr.filter(function(order){
         
-        if (data === order["user_id"]+"") {
-            order["order"] = false
-
-            localStorage.setItem("products",JSON.stringify(order_arr))
-
+        if (data === order["order_id"]+"") {
+            
             main_div.remove();
 
-            confirm_pop.classList.toggle('cancel_active');
+            confirm_pop.classList.remove('cancel_active');
+             order["order"] = false
+             return true
+        }
+        else{
+            return true
         }
 
         
+         })
+         localStorage.setItem("orders",JSON.stringify(order_obj))
+
+         document.querySelector(".order_container").innerHTML = ""
+         getData();
+         
+         let main_container = document.querySelectorAll(".main_container")
+
+        if (main_container.length === 0) {
+            order_img.style.display = "block"
+        }
+       })
+       
+       //if click no it will be work
+       not_sure.addEventListener("click",function () {
+        confirm_pop.classList.remove('cancel_active')
+       })
+     }) 
+   }
+
+   //set order count in profile
+   const profile = JSON.parse(localStorage.getItem("profile"))
+   profile["order_count"] = pr_array.length
+   localStorage.setItem("profile",JSON.stringify(profile))
+
+   let product_div = document.querySelectorAll(".main_container")
+    let product_name = document.querySelectorAll(".pro_status")
+    let select = document.querySelector("select")
+ 
+    function getStatus() {
+        for (let i = 0; i < product_div.length; i++) {
+
+            if (select.value !== product_name[i].innerText) {
+                
+                product_div[i].style.display = "none"
+            }
+            else{
+                product_div[i].style.display = "flex"
+
+            }
+         }
+    }
+
+    getStatus();
+    select.addEventListener("change",function(){
+        getStatus();  
     })
-           
-        })
-
-            
-        
-    }) 
-
 
     }
 
-    // const cancel_but = document.getElementById("cancel_btn")
-    // const confirm_pop = document.querySelector(".cancel")
+    let main_container = document.querySelectorAll(".main_container")
 
-    // cancel_but.addEventListener("click",function remove(e){
-    //     // confirm_pop.classList.toggle('cancel_active');
+    if (main_container.length === 0) {
+            order_img.style.display = "block"
+        }
 
-    //     // const sure = document.getElementById("sure")
+//get elements from my account btn for redirecting
+const login = document.getElementById("login")
 
-    //     // sure.addEventListener("click",function(){
-    //     //     const main = document.querySelector(".main_container")
-    //     //     main.style.display = "none"
-    //     // })
-    //     alert("why")
-        
-    // }) 
+login.addEventListener("click", function () {
 
-   
+        window.location.href = "/pages/sign-in/real-profile.html"
+
+});
+
+    cart.addEventListener("click", function () {
+
+            window.location.href = "cart.html?user_id=" + profile["user_id"]
+
+    })
+
+    document.querySelector(".logo").addEventListener("click",function(){
+        window.location.href = "../../../index.html"
+    })
 
 
     </script>
